@@ -4,7 +4,7 @@ return [
   'color_picker' => 'Farbwähler',
   'chart' => 
   [
-    'drag_chart' => 'Sie können das Diagramm zum Zoomen ziehen.',
+    'drag_chart' => 'Du kannst das Diagramm zum Zoomen ziehen.',
     'reset_zoom' => 'Zoom zurücksetzen',
   ],
 ];

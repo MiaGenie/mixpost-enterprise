@@ -1,13 +1,13 @@
 <?php
 
 return [
-  'already_registered' => 'Bereits registriert?',
-  'email_address' => 'E-Mail-Adresse eingeben',
+  'already_registered' => 'Schon registriert?',
+  'email_address' => 'E-Mail Adresse eingeben',
   'register' => 'Registrieren',
-  'verify_email' => 'E-Mail Adresse überprüfen',
-  'click_to_verify' => 'Bitte klicken Sie auf die Schaltfläche unten, um Ihre E-Mail-Adresse zu bestätigen.',
-  'no_account_no_action' => 'Wenn Sie kein Konto erstellt haben, sind keine weiteren Schritte erforderlich.',
+  'verify_email' => 'E-Mail Adresse verifizieren',
+  'click_to_verify' => 'Bitte klicke auf die Schaltfläche unten, um deine E-Mail-Adresse zu bestätigen.',
+  'no_account_no_action' => 'Wenn du kein Konto erstellt hast, sind keine weiteren Schritte erforderlich.',
   'resend_verification' => 'Verifizierungs-E-Mail erneut senden',
-  'confirm_email' => 'Bevor Sie beginnen, verifizieren Sie bitte Ihre E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen per E-Mail geschickt haben.',
-  'email_verification_sent' => 'Ein Verifizierungslink wurde an Ihre E-Mail-Adresse gesendet.',
+  'confirm_email' => 'Bevor du loslegst, verifiziere bitte deine E-Mail-Adresse, indem du auf den Link klickst, den wir dir per E-Mail geschickt haben.',
+  'email_verification_sent' => 'Der Link zur E-Mail-Verifizierung wurde an deine E-Mail-Adresse gesendet.',
 ];

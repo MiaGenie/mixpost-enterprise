@@ -1,11 +1,11 @@
 <?php
 
 return [
-  'business' => 'Unternehmen',
+  'business' => 'Geschäft',
   'configuration' => 'Konfiguration',
   'dashboard' => 'Dashboard',
   'plans' => 'Pläne',
-  'receipts' => 'Rechnungen',
+  'receipts' => 'Quittungen',
   'security' => 'Sicherheit',
-  'workspace_settings' => 'Workspace-Einstellungen',
+  'workspace_settings' => 'Arbeitsbereich-Einstellungen',
 ];

@@ -2,6 +2,12 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 4.0.2 - 2024-11-16
+
+**Changes**
+
+- Updated translations
+
 ## 4.0.1 - 2024-11-08
 
 **Fixes**

@@ -64,7 +64,7 @@ const save = () => {
         </template>
 
         <template #description>
-            <ReadDocHelp :href="$page.props.config.system.twitter_api_workspace_docs_url ? $page.props.config.system.twitter_api_workspace_docs_url : `${$page.props.mixpost.docs_link}/books/integration-of-social-platforms/page/twitter`"
+            <ReadDocHelp :href="$page.props.config.system.twitter_api_workspace_docs_url ? $page.props.config.system.twitter_api_workspace_docs_url : `${$page.props.mixpost.docs_link}/services/social/x`"
                          class="mt-xs"/>
         </template>
 

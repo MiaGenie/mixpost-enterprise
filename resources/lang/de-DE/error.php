@@ -2,7 +2,7 @@
 
 return [
   'something_wrong' => 'Etwas ist schief gelaufen.',
-  'try_again' => 'Es stimmt etwas nicht. Versuchen Sie es erneut!',
+  'try_again' => 'Es ist etwas falsch. Versuche es noch einmal!',
   'payment_failed' => 'Zahlung konnte nicht verarbeitet werden',
-  'payment_failed_desc' => 'Wir konnten Ihre :app_name Zahlung für Arbeitsbereich :workspace nicht bearbeiten',
+  'payment_failed_desc' => 'Wir konnten deine :app_name Zahlung für den Arbeitsbereich :workspace nicht bearbeiten.',
 ];
