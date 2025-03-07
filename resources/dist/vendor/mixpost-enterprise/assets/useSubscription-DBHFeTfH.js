@@ -1,0 +1,1 @@
+import{S as e,a as r,b as a}from"./Subscription-CbfMHFMF.js";const S=()=>{function c(n){return n===e||n===r}function i(n){return n===e||n===r}function t(n){return n!==a}function u(n){return n===r}function o(n){return n===a}return{canChangePlan:c,canChangePayment:i,canCancel:t,isTrialing:u,isCanceled:o}};export{S as u};
