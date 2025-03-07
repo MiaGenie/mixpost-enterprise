@@ -2,6 +2,12 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 4.0.1 - 2024-11-08
+
+**Fixes**
+
+- Fixed incorrect trial days data type for subscription
+
 ## 4.0.0 - 2024-10-31
 
 **Fixes**
