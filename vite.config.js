@@ -15,6 +15,8 @@ export default defineConfig(({command, mode}) => {
     let homeDir = homedir()
     let serverConfig = {}
 
+    let ziggyPath = resolve('../../../vendor/tightenco/ziggy/dist/vue.m');
+
     if (host && homeDir) {
         const certificatesPath = env.CERTIFICATES_PATH !== undefined ? env.CERTIFICATES_PATH : `.config/valet/Certificates/${host}`;
 
@@ -31,6 +33,10 @@ export default defineConfig(({command, mode}) => {
                 host
             },
             host
+        }
+    } else {
+        serverConfig = {
+            port: 5175,
         }
     }
 
@@ -55,8 +61,9 @@ export default defineConfig(({command, mode}) => {
         ],
         resolve: {
             alias: {
-                '@mRs': '/vendor/inovector/mixpost-pro-team/resources',
-                '@mJs': '/vendor/inovector/mixpost-pro-team/resources/js',
+                'ziggy': ziggyPath,
+                '@mRs': '/../mixpost-pro-team/resources',
+                '@mJs': '/../mixpost-pro-team/resources/js',
                 '@mCss': '/vendor/inovector/mixpost-pro-team/resources/css',
                 '@css': '/resources/css',
                 '@img': 'resources/img'

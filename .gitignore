@@ -1,0 +1,5 @@
+.idea
+/vendor
+/node_modules
+/resources/dist/hot
+editor.config.js
