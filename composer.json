@@ -21,8 +21,8 @@
     ],
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://packages.inovector.com"
+            "type": "vcs",
+            "url": "https://github.com/miagenie/mixpost-pro-team"
         }
     ],
     "require": {
@@ -32,7 +32,7 @@
         "flowframe/laravel-trend": "^0.3",
         "illuminate/contracts": "^10.47|^11.0",
         "inertiajs/inertia-laravel": "^1.0",
-        "inovector/mixpost-pro-team": "^3.0",
+        "inovector/mixpost-pro-team": "dev-main",
         "league/commonmark": "^2.4",
         "spatie/laravel-package-tools": "^1.14",
         "stripe/stripe-php": "^13.0",
