@@ -34,7 +34,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function version(Request $request)
     {
-        if (file_exists($manifest = public_path('vendor/mixpost-enterprise/manifest.json'))) {
+        if (file_exists($manifest = public_path('vendor/genie-enterprise/manifest.json'))) {
             return md5_file($manifest);
         }
 

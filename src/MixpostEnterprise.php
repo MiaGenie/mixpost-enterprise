@@ -22,7 +22,7 @@ class MixpostEnterprise
             );
         }
 
-        $manifestPath = public_path('vendor/mixpost-enterprise/manifest.json');
+        $manifestPath = public_path('vendor/genie-enterprise/manifest.json');
 
         if (!file_exists($manifestPath)) {
             return new HtmlString(<<<HTML
@@ -34,8 +34,8 @@ class MixpostEnterprise
         $manifest = json_decode(file_get_contents($manifestPath), true);
 
         return new HtmlString(<<<HTML
-                <script type="module" src="/vendor/mixpost-enterprise/{$manifest['resources/js/app.js']['file']}"></script>
-                <link rel="stylesheet" href="/vendor/mixpost-enterprise/{$manifest['resources/js/app.js']['css'][0]}">
+                <script type="module" src="/vendor/genie-enterprise/{$manifest['resources/js/app.js']['file']}"></script>
+                <link rel="stylesheet" href="/vendor/genie-enterprise/{$manifest['resources/js/app.js']['css'][0]}">
             HTML
         );
     }

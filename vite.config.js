@@ -41,12 +41,12 @@ export default defineConfig(({command, mode}) => {
     }
 
     return {
-        publicDir: 'vendor/mixpost-enterprise',
+        publicDir: 'vendor/genie-enterprise',
         plugins: [
             laravel({
                 input: 'resources/js/app.js',
                 publicDirectory: 'resources/dist',
-                buildDirectory: 'vendor/mixpost-enterprise',
+                buildDirectory: 'vendor/genie-enterprise',
                 refresh: true
             }),
             vue({
