@@ -3,6 +3,7 @@
 namespace Inovector\MixpostEnterprise;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Inovector\MixpostEnterprise\Models\UsageRecord;
 use Inovector\MixpostEnterprise\Models\Workspace;
 use Inovector\Mixpost\Schedule as ScheduleCore;
@@ -12,6 +13,10 @@ class Schedule extends ScheduleCore
 {
     public static function register($schedule, ?Builder $query = null, ?Closure $customCommands = null): void
     {
+        if (!DB::getSchemaBuilder()->hasTable(app(Workspace::class)->getTable())) {
+            return;
+        }
+
         $query = $query ?? Workspace::query()
             ->unlocked()
             ->with('subscriptions');
