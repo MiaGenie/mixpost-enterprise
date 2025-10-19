@@ -12,14 +12,23 @@ import PrimaryButton from "../../../Components/Button/PrimaryButton.vue";
 import HorizontalGroup from "../../../Components/Layout/HorizontalGroup.vue";
 import Error from "../../../Components/Form/Error.vue";
 import Input from "../../../Components/Form/Input.vue";
+import Select from "@/Components/Form/Select.vue";
 
 defineOptions({layout: MinimalLayout});
 
 const routePrefix = inject('routePrefix');
 
+const props = defineProps({
+    locales: {
+        type: Array,
+        required: true,
+    }
+})
+
 const form = useForm({
     name: '',
     hex_color: '',
+    locale: ''
 });
 
 const changeColorModal = ref(false);
@@ -76,6 +85,23 @@ const submit = () => {
                                    :autofocus="true"
                                    required/>
                             <Error :message="form.errors.name" class="mt-1"/>
+                        </div>
+                    </HorizontalGroup>
+
+                    <HorizontalGroup class="mt-lg">
+                        <template #title>
+                            <label for="language">{{ $t('genie.language') }}</label>
+                        </template>
+
+                        <div class="w-full">
+                            <Select
+                                v-model="form.locale"
+                                required
+                            >
+                                <option v-for="locale in locales" :value="locale.long">
+                                    {{ locale.english }} - {{ locale.native }} - ({{ locale.long }})
+                                </option>
+                            </Select>
                         </div>
                     </HorizontalGroup>
 
