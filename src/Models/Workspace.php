@@ -34,6 +34,7 @@ class Workspace extends WorkspaceCoreModel
         'pm_card_last_four',
         'pm_card_expires',
         'limits',
+        'locale',
     ];
 
     protected $casts = [

@@ -13,7 +13,8 @@ class UpdateWorkspace extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:60'],
-            'hex_color' => ['required', new HexRule()]
+            'hex_color' => ['required', new HexRule()],
+            'locale' => ['required', 'string', 'max:10']
         ];
     }
 
@@ -21,7 +22,8 @@ class UpdateWorkspace extends FormRequest
     {
         return WorkspaceManager::current()->update([
             'name' => $this->input('name'),
-            'hex_color' => Str::after($this->input('hex_color'), '#')
+            'hex_color' => Str::after($this->input('hex_color'), '#'),
+            'locale' => $this->input('locale'),
         ]);
     }
 }

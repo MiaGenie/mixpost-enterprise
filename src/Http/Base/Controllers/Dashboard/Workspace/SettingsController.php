@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Inertia\Inertia;
 use Inertia\Response;
 use Inovector\Mixpost\Facades\WorkspaceManager;
+use Inovector\Mixpost\Util;
 use Inovector\MixpostEnterprise\Configs\SystemConfig;
 use Inovector\MixpostEnterprise\Http\Base\Requests\Dashboard\Workspace\UpdateWorkspace;
 use Inovector\MixpostEnterprise\Http\Base\Resources\WorkspaceResource;
@@ -19,7 +20,8 @@ class SettingsController extends Controller
             'workspace' => new WorkspaceResource(WorkspaceManager::current()),
             'allow_workspace_service' => [
                 'twitter' => app(SystemConfig::class)->allowWorkspaceTwitterService()
-            ]
+            ],
+            'locales' => Util::config('locales')
         ]);
     }
 

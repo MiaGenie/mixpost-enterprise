@@ -30,6 +30,10 @@ const props = defineProps({
     },
     workspace: {
         type: Object
+    },
+    locales: {
+        type: Array,
+        required: true,
     }
 })
 
@@ -62,7 +66,8 @@ const selectedOwner = ref(isEdit.value && props.workspace.owner ? {
 const form = useForm(isEdit.value ? cloneDeep(props.workspace) : {
     name: '',
     hex_color: '',
-    access_status: ACCESS_STATUS_SUBSCRIPTION
+    access_status: ACCESS_STATUS_SUBSCRIPTION,
+    locale: ''
 });
 
 const selectColor = () => {
@@ -168,6 +173,23 @@ const submit = () => {
                         <template #footer>
                             <Error :message="form.errors.access_status"/>
                         </template>
+                    </HorizontalGroup>
+
+                    <HorizontalGroup class="mt-lg">
+                        <template #title>
+                            <label for="language">{{ $t('genie.language') }}</label>
+                        </template>
+
+                        <div class="w-full">
+                            <Select
+                                v-model="form.locale"
+                                required
+                            >
+                                <option v-for="locale in locales" :value="locale.long">
+                                    {{ locale.english }} - {{ locale.native }} - ({{ locale.long }})
+                                </option>
+                            </Select>
+                        </div>
                     </HorizontalGroup>
 
                     <HorizontalGroup class="mt-lg">

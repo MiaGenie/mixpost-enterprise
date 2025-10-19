@@ -14,6 +14,7 @@ import SecondaryButton from "../../../Components/Button/SecondaryButton.vue";
 import Input from "../../../Components/Form/Input.vue";
 import PageHeader from "../../../Components/DataDisplay/PageHeader.vue";
 import ClipboardCard from "../../../Components/Util/ClipboardCard.vue";
+import Select from "@/Components/Form/Select.vue";
 
 defineOptions({layout: WorkspaceLayout});
 
@@ -26,12 +27,17 @@ const props = defineProps({
     workspace: {
         required: true,
         type: Object,
+    },
+    locales: {
+        type: Array,
+        required: true,
     }
 })
 
 const form = useForm({
     name: props.workspace.name,
-    hex_color: props.workspace.hex_color
+    hex_color: props.workspace.hex_color,
+    locale: props.workspace.locale
 });
 
 const changeColorModal = ref(false);
@@ -82,6 +88,23 @@ const save = () => {
 
                     <HorizontalGroup class="mt-lg">
                         <template #title>
+                            <label for="language">{{ $t('genie.language') }}</label>
+                        </template>
+
+                        <div class="w-full">
+                            <Select
+                                v-model="form.locale"
+                                required
+                            >
+                                <option v-for="locale in locales" :value="locale.long">
+                                    {{ locale.english }} - {{ locale.native }} - ({{ locale.long }})
+                                </option>
+                            </Select>
+                        </div>
+                    </HorizontalGroup>
+
+                    <HorizontalGroup class="mt-lg">
+                        <template #title>
                             {{ $t('theme.color') }}
                         </template>
 
@@ -102,7 +125,7 @@ const save = () => {
             </Panel>
         </form>
 
-        <template v-if="$page.props.mixpost.features.api_access_tokens">
+        <template v-if="$page.props.mixpost.features.api_access_tokens && false">
             <Panel class="mt-lg">
                 <template #title>
                     {{ $t('system.usage_api') }}
