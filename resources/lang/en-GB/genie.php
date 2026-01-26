@@ -62,6 +62,17 @@ return [
 
     'analytics' => 'Analytics',
 
+    'max_facebook_daily_posts' => "Maximum daily limit of Facebook posts reached. \n Max limit: :value.",
+    'max_facebook_twitter_posts' => "Maximum daily limit of Twitter posts reached. \n Max limit: :value.",
+    'max_facebook_instagram_posts' => "Maximum daily limit of Instagram posts reached. \n Max limit: :value.",
+    'max_facebook_threads_posts' => "Maximum daily limit of Threads posts reached. \n Max limit: :value.",
+    'max_facebook_mastodon_posts' => "Maximum daily limit of Mastodon posts reached. \n Max limit: :value.",
+    'max_facebook_youtube_posts' => "Maximum daily limit of YouTube posts reached. \n Max limit: :value.",
+    'max_facebook_pinterest_posts' => "Maximum daily limit of Pinterest posts reached. \n Max limit: :value.",
+    'max_facebook_linkedin_posts' => "Maximum daily limit of LinkedIn posts reached. \n Max limit: :value.",
+    'max_facebook_tiktok_posts' => "Maximum daily limit of TikTok posts reached. \n Max limit: :value.",
+    'max_facebook_bluesky_posts' => "Maximum daily limit of BlueSky posts reached. \n Max limit: :value.",
+
     'rules' => 'Rules',
     'create_rule' => 'Create Rule',
     'edit_rule' => 'Edit Rule',
