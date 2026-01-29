@@ -39,7 +39,7 @@ class TwitterPosts extends FeatureLimitResource
             })
             ->count();
 
-        if ($count <= (int)$value) {
+        if ($count < (int)$value) {
             return $this->makePasses();
         }
 
