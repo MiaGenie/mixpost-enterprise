@@ -41,7 +41,6 @@ class WorkspaceResource extends JsonResource
                     'joined_at' => Util::dateTimeFormat(Carbon::parse($this->pivot->joined))
                 ];
             }),
-            'locale' => $this->locale,
         ];
     }
 }
