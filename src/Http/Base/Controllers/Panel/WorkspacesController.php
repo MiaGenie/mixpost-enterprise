@@ -17,7 +17,6 @@ use Inovector\MixpostEnterprise\Http\Base\Resources\SubscriptionResource;
 use Inovector\MixpostEnterprise\Http\Base\Resources\WorkspaceResource;
 use Inovector\MixpostEnterprise\Models\Plan;
 use Inovector\MixpostEnterprise\Models\Workspace;
-use Inovector\MixpostEnterprise\Util;
 
 class WorkspacesController extends Controller
 {
@@ -47,8 +46,7 @@ class WorkspacesController extends Controller
     public function create(): Response
     {
         return Inertia::render('Panel/Workspaces/CreateEdit', [
-            'mode' => 'create',
-            'locales' => Util::config('locales')
+            'mode' => 'create'
         ]);
     }
 
@@ -100,8 +98,7 @@ class WorkspacesController extends Controller
 
         return Inertia::render('Panel/Workspaces/CreateEdit', [
             'mode' => 'edit',
-            'workspace' => new WorkspaceResource($workspace),
-            'locales' => Util::config('locales')
+            'workspace' => new WorkspaceResource($workspace)
         ]);
     }
 
