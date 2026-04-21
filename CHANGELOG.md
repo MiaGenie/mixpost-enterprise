@@ -2,6 +2,14 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 4.1.0 - 2025-05-19
+
+**Miscellaneous**
+
+- Support Mixpost Pro 3.6
+- Support Laravel 12
+- Upgraded to Tailwind CSS 4
+
 ## 4.0.3 - 2024-12-07
 
 **Fixes**
