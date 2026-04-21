@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'impersonating' => 'Sich als  ausgeben',
+    'impersonating' => 'Sich als  ausgeben',
 ];

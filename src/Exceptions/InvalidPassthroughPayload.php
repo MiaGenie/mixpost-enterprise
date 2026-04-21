@@ -2,10 +2,6 @@
 
 namespace Inovector\MixpostEnterprise\Exceptions;
 
-
 use Exception;
 
-class InvalidPassthroughPayload extends Exception
-{
-
-}
+class InvalidPassthroughPayload extends Exception {}

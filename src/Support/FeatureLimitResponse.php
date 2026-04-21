@@ -9,10 +9,8 @@ class FeatureLimitResponse
 {
     public function __construct(
         private readonly FeatureLimitResponseStatus $status,
-        private string|array|null                   $messages = null
-    )
-    {
-    }
+        private string|array|null $messages = null
+    ) {}
 
     public function status(): FeatureLimitResponseStatus
     {
@@ -31,7 +29,7 @@ class FeatureLimitResponse
 
     public function fails(): bool
     {
-        return !$this->passes();
+        return ! $this->passes();
     }
 
     public function withMessages(string|array $messages): static
@@ -45,7 +43,7 @@ class FeatureLimitResponse
     {
         if ($this->fails()) {
             throw ValidationException::withMessages([
-                'limit' => $this->messages()
+                'limit' => $this->messages(),
             ]);
         }
     }

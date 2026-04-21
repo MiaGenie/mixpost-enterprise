@@ -21,11 +21,11 @@ trait ManagesCustomer
             'locale' => Settings::get('locale', $billable->id) ?? 'en',
         ];
 
-        if (!array_key_exists('name', $options) && $name = $billable->name) {
+        if (! array_key_exists('name', $options) && $name = $billable->name) {
             $options['name'] = $name;
         }
 
-        if (!array_key_exists('email', $options) && $email = $billable->email) {
+        if (! array_key_exists('email', $options) && $email = $billable->email) {
             $options['email'] = $email;
         }
 

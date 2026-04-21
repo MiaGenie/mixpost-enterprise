@@ -16,12 +16,12 @@ class PaymentPlatformFactory extends Factory
             'credentials' => [
                 'vendor_id' => '123456',
                 'vendor_auth_code' => '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
-                'public_key' => '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef'
+                'public_key' => '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
             ],
             'options' => [
-                'sandbox' => true
+                'sandbox' => true,
             ],
-            'enabled' => true
+            'enabled' => true,
         ];
     }
 }

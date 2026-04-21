@@ -82,17 +82,15 @@ class Theme
                     '700' => '#be123c',
                     '800' => '#9f1239',
                     '900' => '#881337',
-                ]
+                ],
             ],
             'primary_context' => '#ffffff',
             'alert' => '#1F1B4B',
-            'alert_context' => '#e5e7eb'
+            'alert_context' => '#e5e7eb',
         ];
     }
 
-    public function __construct(public readonly ThemeConfig $config)
-    {
-    }
+    public function __construct(public readonly ThemeConfig $config) {}
 
     public function config(): ThemeConfig
     {
@@ -144,9 +142,9 @@ class Theme
         }
 
         if (strlen($color) == 6) {
-            $hex = array($color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5]);
+            $hex = [$color[0].$color[1], $color[2].$color[3], $color[4].$color[5]];
         } elseif (strlen($color) == 3) {
-            $hex = array($color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2]);
+            $hex = [$color[0].$color[0], $color[1].$color[1], $color[2].$color[2]];
         } else {
             return $defaultColor;
         }
@@ -157,9 +155,9 @@ class Theme
             if (abs($opacity) > 1) {
                 $opacity = 1.0;
             }
-            $output = 'rgba(' . implode(",", $rgb) . ',' . $opacity . ')';
+            $output = 'rgba('.implode(',', $rgb).','.$opacity.')';
         } else {
-            $output = 'rgb(' . implode(",", $rgb) . ')';
+            $output = 'rgb('.implode(',', $rgb).')';
         }
 
         return $output;

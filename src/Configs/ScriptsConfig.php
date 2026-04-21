@@ -15,7 +15,7 @@ class ScriptsConfig extends Config
     {
         return [
             'head' => '',
-            'body' => ''
+            'body' => '',
         ];
     }
 

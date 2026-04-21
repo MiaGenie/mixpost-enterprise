@@ -9,9 +9,9 @@ use Inovector\MixpostEnterprise\PaymentPlatforms\Stripe\Concerns\SDK;
 
 class Billable
 {
-    use SDK;
     use ManagesCustomer;
     use ManagesPaymentMethods;
+    use SDK;
 
     public Workspace $workspace;
 

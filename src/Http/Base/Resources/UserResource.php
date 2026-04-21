@@ -3,8 +3,8 @@
 namespace Inovector\MixpostEnterprise\Http\Base\Resources;
 
 use Illuminate\Support\Carbon;
-use Inovector\MixpostEnterprise\Util;
 use Inovector\Mixpost\Http\Base\Resources\UserResource as CoreUserResource;
+use Inovector\MixpostEnterprise\Util;
 
 class UserResource extends CoreUserResource
 {
@@ -25,7 +25,7 @@ class UserResource extends CoreUserResource
                 return [
                     'role' => $this->pivot->role,
                     'can_approve' => boolval($this->pivot->can_approve),
-                    'joined_at' => Util::dateTimeFormat(Carbon::parse($this->pivot->joined))
+                    'joined_at' => Util::dateTimeFormat(Carbon::parse($this->pivot->joined)),
                 ];
             }),
         ];

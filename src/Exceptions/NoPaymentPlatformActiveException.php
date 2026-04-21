@@ -4,7 +4,4 @@ namespace Inovector\MixpostEnterprise\Exceptions;
 
 use Exception;
 
-class NoPaymentPlatformActiveException extends Exception
-{
-
-}
+class NoPaymentPlatformActiveException extends Exception {}

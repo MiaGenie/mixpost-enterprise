@@ -36,11 +36,11 @@ class SystemConfig extends Config
 
     public function multipleWorkspacesEnabled(): bool
     {
-        return (bool)$this->get('multiple_workspaces');
+        return (bool) $this->get('multiple_workspaces');
     }
 
     public function allowWorkspaceTwitterService(): bool
     {
-        return (bool)$this->get('workspace_twitter_service');
+        return (bool) $this->get('workspace_twitter_service');
     }
 }

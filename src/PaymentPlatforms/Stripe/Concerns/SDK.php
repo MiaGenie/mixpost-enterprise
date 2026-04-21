@@ -10,7 +10,7 @@ trait SDK
     {
         return new StripeClient([
             'api_key' => $this->credentials['secret'],
-            'stripe_version' => '2023-08-16'
+            'stripe_version' => '2023-08-16',
         ]);
     }
 }

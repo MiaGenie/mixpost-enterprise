@@ -16,7 +16,7 @@ class SubscriptionInfoController extends Controller
 
         $subscription = $workspace->subscription();
 
-        if (!$subscription) {
+        if (! $subscription) {
             return response()->noContent();
         }
 

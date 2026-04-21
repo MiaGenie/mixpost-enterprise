@@ -22,7 +22,7 @@ class PlanFactory extends Factory
             'yearly_platform_plan_id' => Str::random(6),
             'enabled' => true,
             'sort_order' => 0,
-            'limits' => []
+            'limits' => [],
         ];
     }
 
@@ -34,45 +34,45 @@ class PlanFactory extends Factory
                 'form' => [
                     [
                         'name' => 'count',
-                        'value' => $scheduledPosts
-                    ]
-                ]
+                        'value' => $scheduledPosts,
+                    ],
+                ],
             ],
             [
                 'code' => 'NumberOfBrandsSocialAccounts',
                 'form' => [
                     [
                         'name' => 'count',
-                        'value' => $numberOfBrandsSocialAccounts
-                    ]
-                ]
+                        'value' => $numberOfBrandsSocialAccounts,
+                    ],
+                ],
             ],
             [
                 'code' => 'NumberOfSocialAccounts',
                 'form' => [
                     [
                         'name' => 'count',
-                        'value' => $numberOfSocialAccounts
-                    ]
-                ]
+                        'value' => $numberOfSocialAccounts,
+                    ],
+                ],
             ],
             [
                 'code' => 'WorkspaceMembers',
                 'form' => [
                     [
                         'name' => 'count',
-                        'value' => $workspaceMembers
-                    ]
-                ]
+                        'value' => $workspaceMembers,
+                    ],
+                ],
             ],
             [
                 'code' => 'WorkspaceStorage',
                 'form' => [
                     [
                         'name' => 'size',
-                        'value' => $workspaceStorage
-                    ]
-                ]
+                        'value' => $workspaceStorage,
+                    ],
+                ],
             ],
         ];
     }

@@ -14,7 +14,7 @@ trait SDK
      */
     protected function makeApiCall($method, $uri, array $payload = []): Response
     {
-        $response = Http::$method($this->vendorsUrl() . '/api/2.0' . $uri, array_merge($this->credentials, $payload));
+        $response = Http::$method($this->vendorsUrl().'/api/2.0'.$uri, array_merge($this->credentials, $payload));
 
         if ($response['success'] === false) {
             throw new PaymentPlatformApiCallException($response['error']['message'], $response['error']['code']);
@@ -29,6 +29,6 @@ trait SDK
             Arr::get($this->options, 'sandbox', false), FILTER_VALIDATE_BOOLEAN
         );
 
-        return 'https://' . ($sandboxEnabled ? 'sandbox-' : '') . 'vendors.paddle.com';
+        return 'https://'.($sandboxEnabled ? 'sandbox-' : '').'vendors.paddle.com';
     }
 }

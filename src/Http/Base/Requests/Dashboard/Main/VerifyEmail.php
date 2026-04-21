@@ -15,7 +15,7 @@ class VerifyEmail extends EmailVerificationRequest
     {
         $user = self::getUserClass()::find($this->user()->id);
 
-        if (!$user->hasVerifiedEmail()) {
+        if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
 
             event(new UserEmailVerified($user));

@@ -34,12 +34,12 @@ class BillingController extends Controller
                     'card_brand' => $workspace->pm_card_brand,
                     'card_last_four' => $workspace->pm_card_last_four,
                     'card_expires' => $workspace->pm_card_expires,
-                ]
+                ],
             ]),
             'subscription' => $subscription ? (new SubscriptionResource($subscription))->except(['platform_plan_id', 'platform_subscription_id']) : null,
             'currency' => app(BillingConfig::class)->get('currency'),
-            'has_delay' => (bool)$request->get('delay', false),
-            'free_plan_exists' => Plan::activeFreeExists(),
+            'hasDelay' => (bool) $request->get('delay', false),
+            'freePlanExists' => Plan::activeFreeExists(),
             'can_be_resumed' => $paymentPlatform->supportResumeSubscription() && $subscription?->canBeResumed(),
         ]);
     }

@@ -27,12 +27,12 @@ class PlanResource extends JsonResource
                 'yearly' => [
                     'amount' => $this->yearly_amount,
                     'platform_plan_id' => $this->yearly_platform_plan_id,
-                ]
+                ],
             ],
             'trial_days' => $this->trial_days,
             'enabled' => $this->enabled,
             'sort_order' => $this->sort_order,
-            'limits' => $this->limits
+            'limits' => $this->limits,
         ];
     }
 }

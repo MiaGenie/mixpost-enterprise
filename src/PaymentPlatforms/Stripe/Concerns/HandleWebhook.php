@@ -2,9 +2,9 @@
 
 namespace Inovector\MixpostEnterprise\PaymentPlatforms\Stripe\Concerns;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inovector\MixpostEnterprise\Enums\SubscriptionStatus;
 use Inovector\MixpostEnterprise\Events\Subscription\SubscriptionCanceled;
@@ -31,7 +31,7 @@ trait HandleWebhook
     public function handleWebhook(Request $request): Response
     {
         $payload = json_decode($request->getContent(), true);
-        $method = 'handle' . Str::studly(str_replace('.', '_', $payload['type']));
+        $method = 'handle'.Str::studly(str_replace('.', '_', $payload['type']));
 
         if (method_exists($this, $method)) {
             $this->setMaxNetworkRetries();
@@ -45,12 +45,12 @@ trait HandleWebhook
             return new Response('Webhook Handled');
         }
 
-        return new Response();
+        return new Response;
     }
 
     protected function handleInvoicePaymentSucceeded(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
@@ -67,7 +67,7 @@ trait HandleWebhook
             'amount' => number_format($data['amount_paid'] / 100, 2),
             'tax' => $data['tax'] ? number_format($data['tax'] / 100, 2) : 0,
             'currency' => Str::upper($data['currency']),
-            'quantity' => (int)$data['lines']['data'][0]['quantity'],
+            'quantity' => (int) $data['lines']['data'][0]['quantity'],
             'receipt_url' => '',
             'description' => $data['lines']['data'][0]['description'],
             'paid_at' => Carbon::createFromTimestamp($data['status_transitions']['paid_at']),
@@ -78,7 +78,7 @@ trait HandleWebhook
 
     protected function handleCustomerSubscriptionCreated(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
@@ -104,13 +104,13 @@ trait HandleWebhook
 
     protected function handleCustomerSubscriptionUpdated(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
         $data = $payload['data']['object'];
 
-        if (!$subscription = $this->findBillableSubscription($billable, $data['id'])) {
+        if (! $subscription = $this->findBillableSubscription($billable, $data['id'])) {
             return;
         }
 
@@ -119,6 +119,7 @@ trait HandleWebhook
             $data['status'] === StripeSubscription::STATUS_INCOMPLETE_EXPIRED
         ) {
             $subscription->delete();
+
             return;
         }
 
@@ -136,7 +137,7 @@ trait HandleWebhook
         if (isset($data['trial_end'])) {
             $trialEnd = Carbon::createFromTimestamp($data['trial_end']);
 
-            if (!$subscription->trial_ends_at || $subscription->trial_ends_at->ne($trialEnd)) {
+            if (! $subscription->trial_ends_at || $subscription->trial_ends_at->ne($trialEnd)) {
                 $subscription->trial_ends_at = $trialEnd;
             }
         }
@@ -165,13 +166,13 @@ trait HandleWebhook
 
     protected function handleCustomerSubscriptionDeleted(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
         $data = $payload['data']['object'];
 
-        if (!$subscription = $this->findBillableSubscription($billable, $data['id'])) {
+        if (! $subscription = $this->findBillableSubscription($billable, $data['id'])) {
             return;
         }
 
@@ -190,7 +191,7 @@ trait HandleWebhook
 
     protected function handleCustomerUpdated(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
@@ -199,7 +200,7 @@ trait HandleWebhook
 
     protected function handleCustomerDeleted(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
@@ -218,7 +219,7 @@ trait HandleWebhook
 
     protected function handlePaymentMethodAutomaticallyUpdated(array $payload): void
     {
-        if (!$billable = $this->findBillable($payload)) {
+        if (! $billable = $this->findBillable($payload)) {
             return;
         }
 
@@ -233,7 +234,7 @@ trait HandleWebhook
 
         $workspace = Workspace::where('stripe_id', $customer)->first();
 
-        if (!$workspace) {
+        if (! $workspace) {
             return null;
         }
 

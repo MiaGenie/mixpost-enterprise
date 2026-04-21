@@ -16,7 +16,7 @@ Route::prefix(EnterpriseUtil::corePath(true))
             Mixpost::getWebDashboardMiddlewares(),
             [HandleInertiaRequests::class]
         ))->group(function () {
-            require __DIR__ . '/includes/panel.php';
+            require __DIR__.'/includes/panel.php';
         });
     });
 
@@ -26,9 +26,9 @@ Route::prefix(Util::corePath())
     ->group(function () {
         // Onboarding routes
         Route::middleware([
-            HandleInertiaRequests::class
+            HandleInertiaRequests::class,
         ])->group(function () {
-            require __DIR__ . '/includes/onboarding.php';
+            require __DIR__.'/includes/onboarding.php';
         });
 
         // Dashboard routes
@@ -36,12 +36,11 @@ Route::prefix(Util::corePath())
             Mixpost::getWebDashboardMiddlewares(),
             [HandleInertiaRequests::class]
         ))->group(function () {
-            require __DIR__ . '/includes/main.php';
+            require __DIR__.'/includes/main.php';
 
-            require __DIR__ . '/includes/workspace.php';
+            require __DIR__.'/includes/workspace.php';
         });
 
         // Guest Routes
-        require __DIR__ . '/includes/guest.php';
+        require __DIR__.'/includes/guest.php';
     });
-

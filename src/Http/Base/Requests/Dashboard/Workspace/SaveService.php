@@ -15,7 +15,7 @@ class SaveService extends BaseSaveService
             return $this->input("configuration.$key");
         });
 
-        (new UpdateOrCreateService())(
+        (new UpdateOrCreateService)(
             name: $this->route('service'),
             configuration: $configuration,
             active: $this->input('active', false)

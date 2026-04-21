@@ -13,6 +13,7 @@ class UserCreated implements WebhookEvent
     use Dispatchable, SerializesModels;
 
     public User $user;
+
     public bool $fromAdmin;
 
     public function __construct(User $user, bool $fromAdmin = false)

@@ -22,9 +22,9 @@ class CancelSubscription extends FormRequest
 
         $subscription = $workspace->subscription();
 
-        if (!$subscription || !$subscription->active()) {
+        if (! $subscription || ! $subscription->active()) {
             throw ValidationException::withMessages([
-                'subscription' => __("mixpost-enterprise::workspace.workspace_no_active_subscription")
+                'subscription' => __('mixpost-enterprise::workspace.workspace_no_active_subscription'),
             ]);
         }
 

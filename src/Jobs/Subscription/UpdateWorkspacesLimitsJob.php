@@ -16,9 +16,7 @@ class UpdateWorkspacesLimitsJob implements ShouldQueue
 
     public $deleteWhenMissingModels = true;
 
-    public function __construct(public readonly Plan $plan)
-    {
-    }
+    public function __construct(public readonly Plan $plan) {}
 
     public function handle(): void
     {

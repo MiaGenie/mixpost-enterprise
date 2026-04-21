@@ -22,13 +22,13 @@ class ResumeSubscription extends FormRequest
 
         $subscription = $workspace->subscription();
 
-        if (!$subscription) {
+        if (! $subscription) {
             throw ValidationException::withMessages([
                 'subscription' => __('mixpost-enterprise::subscription.not_found'),
             ]);
         }
 
-        if (!$subscription->canBeResumed()) {
+        if (! $subscription->canBeResumed()) {
             throw ValidationException::withMessages([
                 'subscription' => __('mixpost-enterprise::subscription.cannot_resume'),
             ]);

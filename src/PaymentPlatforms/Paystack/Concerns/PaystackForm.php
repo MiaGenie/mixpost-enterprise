@@ -8,7 +8,7 @@ trait PaystackForm
     {
         return [
             'secret_key' => '',
-            'public_key' => ''
+            'public_key' => '',
         ];
     }
 
@@ -22,8 +22,8 @@ trait PaystackForm
     public static function formRules(): array
     {
         return [
-            "credentials.secret_key" => ['required'],
-            "credentials.public_key" => ['required'],
+            'credentials.secret_key' => ['required'],
+            'credentials.public_key' => ['required'],
         ];
     }
 

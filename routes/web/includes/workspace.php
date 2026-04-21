@@ -30,7 +30,7 @@ use Inovector\MixpostEnterprise\Http\Base\Middleware\WorkspaceOwner;
 
 Route::middleware([
     IdentifyWorkspace::class,
-    CheckWorkspaceUser::class . ':' . WorkspaceUserRole::ADMIN->name
+    CheckWorkspaceUser::class.':'.WorkspaceUserRole::ADMIN->name,
 ])->prefix('{workspace}')
     ->name('workspace.')
     ->group(function () {
@@ -45,7 +45,7 @@ Route::middleware([
             ->name('invitations.')
             ->middleware(WorkspaceAccess::class)->group(function () {
                 Route::post('/', InviteMemberController::class)->name('invite');
-//              Route::put('{invitation}', UpdateInvitationController::class)->name('update');
+                //              Route::put('{invitation}', UpdateInvitationController::class)->name('update');
                 Route::delete('{invitation}', CancelInvitationController::class)->name('cancel');
             });
 

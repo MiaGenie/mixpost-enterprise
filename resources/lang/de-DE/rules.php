@@ -1,8 +1,7 @@
 <?php
 
 return [
-  'currency' => 
-  [
-    'invalid_currency' => 'Ungültige Währung',
-  ],
+    'currency' => [
+        'invalid_currency' => 'Ungültige Währung',
+    ],
 ];

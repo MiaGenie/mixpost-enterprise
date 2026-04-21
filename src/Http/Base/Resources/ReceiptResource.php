@@ -23,7 +23,7 @@ class ReceiptResource extends JsonResource
             'description' => $this->description,
             'created_at' => Util::dateFormat($this->created_at),
             'paid_at' => Util::dateFormat($this->paid_at),
-            'paid_at_raw' => $this->paid_at->format('Y-m-d H:i')
+            'paid_at_raw' => $this->paid_at->format('Y-m-d H:i'),
         ];
     }
 }

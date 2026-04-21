@@ -13,7 +13,7 @@ class InvitationController extends Controller
     {
         $invitation = Invitation::firstOrFailByUuid($request->route('invitation'));
 
-        if (!$invitation->user && !$invitation->userByEmail) {
+        if (! $invitation->user && ! $invitation->userByEmail) {
             return redirect()->route('mixpost_e.register', ['email' => $invitation->email]);
         }
 

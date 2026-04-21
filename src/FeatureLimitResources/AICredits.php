@@ -12,6 +12,7 @@ use Inovector\MixpostEnterprise\Support\FeatureLimitResponse;
 class AICredits extends FeatureLimitResource
 {
     public string $name = 'AI Credits';
+
     public string $description = 'The number of AI credits available for use.';
 
     public function form(): array
@@ -19,7 +20,7 @@ class AICredits extends FeatureLimitResource
         return [
             CountNumber::make('count')->default(function () {
                 return 40;
-            })
+            }),
         ];
     }
 
@@ -38,7 +39,7 @@ class AICredits extends FeatureLimitResource
             ->whereYear('created_at', Carbon::now()->year)
             ->count();
 
-        if ($used < (int)$value) {
+        if ($used < (int) $value) {
             return $this->makePasses();
         }
 

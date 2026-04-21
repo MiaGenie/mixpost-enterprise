@@ -23,7 +23,7 @@ class WorkspaceFactory extends Factory
             'generic_subscription_plan_id' => null,
             'generic_subscription_free' => false,
             'generic_trial_ends_at' => null, // Carbon::now()->addDays(7),
-            'limits' => null
+            'limits' => null,
         ];
     }
 }

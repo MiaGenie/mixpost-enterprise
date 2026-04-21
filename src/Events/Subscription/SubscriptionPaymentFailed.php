@@ -13,6 +13,7 @@ class SubscriptionPaymentFailed implements WebhookEvent
     use Dispatchable, SerializesModels;
 
     public Workspace $workspace;
+
     public array $payload;
 
     public function __construct(Workspace $workspace, array $payload)

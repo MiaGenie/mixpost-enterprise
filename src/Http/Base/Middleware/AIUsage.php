@@ -14,7 +14,7 @@ class AIUsage
     {
         app(AICredits::class)
             ->limits(WorkspaceManager::current()->limits)
-            ->validator((object)[
+            ->validator((object) [
                 'workspace' => WorkspaceManager::current(),
             ])
             ->validate();

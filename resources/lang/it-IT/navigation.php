@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'impersonating' => 'Impersonare',
+    'impersonating' => 'Impersonare',
 ];

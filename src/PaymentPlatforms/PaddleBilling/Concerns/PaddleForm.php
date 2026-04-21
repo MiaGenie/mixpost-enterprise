@@ -25,10 +25,10 @@ trait PaddleForm
     public static function formRules(): array
     {
         return [
-            "credentials.api_key" => ['required'],
-            "credentials.client_side_token" => ['required'],
-            "credentials.webhook_secret" => ['required'],
-            "options.sandbox" => ['required', Rule::in(['true', 'false', true, false])],
+            'credentials.api_key' => ['required'],
+            'credentials.client_side_token' => ['required'],
+            'credentials.webhook_secret' => ['required'],
+            'options.sandbox' => ['required', Rule::in(['true', 'false', true, false])],
         ];
     }
 
@@ -38,7 +38,7 @@ trait PaddleForm
             'credentials.api_key' => 'The API Key is required.',
             'credentials.client_side_token' => 'The Client Side Token is required.',
             'credentials.webhook_secret' => 'The Webhook Secret is required.',
-            'options.sandbox' => 'The Sandbox is required.'
+            'options.sandbox' => 'The Sandbox is required.',
         ];
     }
 }

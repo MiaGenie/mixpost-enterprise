@@ -11,6 +11,7 @@ use Inovector\MixpostEnterprise\Support\FeatureLimitResponse;
 class ScheduledPosts extends FeatureLimitResource
 {
     public string $name = 'Scheduled posts';
+
     public string $description = 'The number of scheduled posts users can have at once.';
 
     public function form(): array
@@ -18,7 +19,7 @@ class ScheduledPosts extends FeatureLimitResource
         return [
             CountNumber::make('count')->default(function () {
                 return 30;
-            })
+            }),
         ];
     }
 
@@ -34,7 +35,7 @@ class ScheduledPosts extends FeatureLimitResource
             ->where('status', PostStatus::SCHEDULED->value)
             ->count();
 
-        if ($count < (int)$value) {
+        if ($count < (int) $value) {
             return $this->makePasses();
         }
 

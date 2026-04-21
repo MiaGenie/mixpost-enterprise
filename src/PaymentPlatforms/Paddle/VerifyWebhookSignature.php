@@ -27,7 +27,7 @@ class VerifyWebhookSignature
         ksort($fields);
 
         foreach ($fields as $k => $v) {
-            if (!in_array(gettype($v), ['object', 'array'])) {
+            if (! in_array(gettype($v), ['object', 'array'])) {
                 $fields[$k] = "$v";
             }
         }
@@ -38,10 +38,10 @@ class VerifyWebhookSignature
     protected static function isInvalidSignature(array $fields, $signature, $publicKey): bool
     {
         return openssl_verify(
-                serialize($fields),
-                base64_decode($signature),
-                openssl_get_publickey($publicKey),
-                OPENSSL_ALGO_SHA1
-            ) !== 1;
+            serialize($fields),
+            base64_decode($signature),
+            openssl_get_publickey($publicKey),
+            OPENSSL_ALGO_SHA1
+        ) !== 1;
     }
 }

@@ -2,7 +2,4 @@
 
 namespace Inovector\MixpostEnterprise\Database\Factories;
 
-class UserTokenFactory extends \Inovector\Mixpost\Database\Factories\UserTokenFactory
-{
-
-}
+class UserTokenFactory extends \Inovector\Mixpost\Database\Factories\UserTokenFactory {}

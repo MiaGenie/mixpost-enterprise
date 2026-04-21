@@ -13,6 +13,7 @@ class SubscriptionUpdated implements WebhookEvent
     use Dispatchable, SerializesModels;
 
     public Subscription $subscription;
+
     public array $payload;
 
     public function __construct(Subscription $subscription, array $payload)
@@ -33,15 +34,15 @@ class SubscriptionUpdated implements WebhookEvent
 
     public function payload(): array
     {
-        if (!$this->subscription->relationLoaded('workspace')) {
+        if (! $this->subscription->relationLoaded('workspace')) {
             $this->subscription->load('workspace');
         }
 
-        if (!$this->subscription->relationLoaded('planMonthly')) {
+        if (! $this->subscription->relationLoaded('planMonthly')) {
             $this->subscription->load('planMonthly');
         }
 
-        if (!$this->subscription->relationLoaded('planYearly')) {
+        if (! $this->subscription->relationLoaded('planYearly')) {
             $this->subscription->load('planYearly');
         }
 

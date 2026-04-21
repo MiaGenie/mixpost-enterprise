@@ -16,13 +16,13 @@ class PortalPaymentPlatformController extends Controller
 
         $subscription = $workspace->subscription();
 
-        if (!$subscription) {
+        if (! $subscription) {
             return response()->noContent();
         }
 
         $url = $subscription->portalUrl();
 
-        if (!$url) {
+        if (! $url) {
             return back()->with('error', __('mixpost-enterprise::dashboard.unable_update_payment'));
         }
 

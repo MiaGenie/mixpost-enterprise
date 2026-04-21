@@ -29,7 +29,7 @@ class DeclineInvitation extends FormRequest
 
     protected function invitation(): Invitation
     {
-        if (!$this->invitation) {
+        if (! $this->invitation) {
             return $this->invitation = Invitation::firstOrFailByUuid($this->route('invitation'))->load('workspace');
         }
 

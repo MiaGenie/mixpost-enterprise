@@ -19,7 +19,7 @@ class ImpersonateController extends Controller
             return $this->stopImpersonating();
         }
 
-        if (!Impersonation::canImpersonate()) {
+        if (! Impersonation::canImpersonate()) {
             abort(403);
         }
 
@@ -40,7 +40,7 @@ class ImpersonateController extends Controller
 
         Impersonation::stopImpersonating();
 
-        if (!Impersonation::canImpersonate()) {
+        if (! Impersonation::canImpersonate()) {
             return redirect()->route('mixpost.home');
         }
 

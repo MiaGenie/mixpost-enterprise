@@ -14,6 +14,7 @@ use Inovector\MixpostEnterprise\Models\Plan;
 class NewSubscription extends FormRequest
 {
     private ?BillingConfig $config = null;
+
     private ?int $remainingTrialDays = null;
 
     public function rules(): array
@@ -22,7 +23,7 @@ class NewSubscription extends FormRequest
             'cycle' => ['required', Rule::in(['monthly', 'yearly'])],
             'plan_id' => [
                 'required',
-                (new Exists(Plan::class, 'id'))->where('enabled', true)
+                (new Exists(Plan::class, 'id'))->where('enabled', true),
             ],
             'coupon' => ['nullable', 'string'],
         ];
@@ -43,7 +44,7 @@ class NewSubscription extends FormRequest
 
         $this->handleGenericSubscription($workspace, $plan);
 
-        if (!$platformPlanId) {
+        if (! $platformPlanId) {
             throw ValidationException::withMessages([
                 'plan_id' => __('mixpost-enterprise::plan.platform_plan_not_found'),
             ]);
@@ -58,7 +59,7 @@ class NewSubscription extends FormRequest
 
     private function handleGenericSubscription($workspace, $plan): void
     {
-        if (!($this->genericTrialEnabled() && $this->defaultTrialDays())) {
+        if (! ($this->genericTrialEnabled() && $this->defaultTrialDays())) {
             return;
         }
 
@@ -74,7 +75,7 @@ class NewSubscription extends FormRequest
             return;
         }
 
-        (new NewGenericSubscription())(
+        (new NewGenericSubscription)(
             workspace: $workspace,
             plan: $plan
         );
@@ -91,14 +92,14 @@ class NewSubscription extends FormRequest
 
     private function config(): array
     {
-        if (!$this->config) {
-            $this->config = new BillingConfig();
+        if (! $this->config) {
+            $this->config = new BillingConfig;
         }
 
         return [
             'generic_trial' => $this->config->get('generic_trial'),
             'currency' => $this->config->get('currency'),
-            'trial_days' => (int)$this->config->get('trial_days'),
+            'trial_days' => (int) $this->config->get('trial_days'),
         ];
     }
 
@@ -129,7 +130,7 @@ class NewSubscription extends FormRequest
         $build = $workspace->newSubscription('default', $platformPlanId)
             ->returnTo(route('mixpost_e.workspace.billing', [
                 'workspace' => $workspace->uuid,
-                'delay' => true
+                'delay' => true,
             ]))
             ->cancelUrl(route('mixpost_e.workspace.upgrade', [
                 'workspace' => $workspace->uuid,
@@ -138,7 +139,7 @@ class NewSubscription extends FormRequest
                 'currency' => $this->currency(),
             ]);
 
-        if ($this->defaultTrialDays() && !$this->genericTrialEnabled()) {
+        if ($this->defaultTrialDays() && ! $this->genericTrialEnabled()) {
             $build->trialDays($this->remainingTrialDays !== null ? $this->remainingTrialDays : $this->defaultTrialDays());
         }
 

@@ -2,16 +2,16 @@
 
 namespace Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns;
 
+use Exception;
 use Illuminate\Support\Carbon;
 use Inovector\Mixpost\Concerns\UsesAuth;
 use Inovector\MixpostEnterprise\Enums\SubscriptionStatus;
+use Inovector\MixpostEnterprise\Models\Subscription;
 use Inovector\MixpostEnterprise\Models\Workspace;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Billable;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Util;
 use Inovector\MixpostEnterprise\SubscriptionInfo;
 use Inovector\MixpostEnterprise\SubscriptionPayment;
-use Inovector\MixpostEnterprise\Models\Subscription;
-use Exception;
 
 trait ManagesSubscriptions
 {
@@ -42,7 +42,7 @@ trait ManagesSubscriptions
 
             $result = $this->makeApiCall('post', '/subscription', $data);
 
-            if (!$result->successful()) {
+            if (! $result->successful()) {
                 return $result->json('message');
             }
 
@@ -60,13 +60,13 @@ trait ManagesSubscriptions
             'original_request' => [
                 'plan_id' => request('plan_id'),
                 'cycle' => request('cycle'),
-            ]
+            ],
         ])->render();
     }
 
     public function subscriptionInfo(Subscription $subscription): SubscriptionInfo
     {
-        $paystackSubscriptionResult = $this->makeApiCall('get', '/subscription/' . $subscription->platform_subscription_id);
+        $paystackSubscriptionResult = $this->makeApiCall('get', '/subscription/'.$subscription->platform_subscription_id);
 
         if ($paystackSubscriptionResult->successful()) {
             $paystackSubscription = $paystackSubscriptionResult->json('data');
@@ -74,9 +74,9 @@ trait ManagesSubscriptions
             throw new Exception($paystackSubscriptionResult->json('message'));
         }
 
-        $billingPortalUrl = $this->makeApiCall('get', '/subscription/' . $subscription->platform_subscription_id . '/manage/link')->json('data');
+        $billingPortalUrl = $this->makeApiCall('get', '/subscription/'.$subscription->platform_subscription_id.'/manage/link')->json('data');
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($paystackSubscription)
             ->setStatus(Util::mapStatus($subscription->status->value))
             ->setNextPayment(new SubscriptionPayment(
@@ -92,7 +92,7 @@ trait ManagesSubscriptions
         // Paystack doesn't support swapping plan subscription
         // User will have to cancel the current subscription and create a new one
 
-        return (new SubscriptionInfo())->setRaw([]);
+        return (new SubscriptionInfo)->setRaw([]);
     }
 
     public function cancelSubscription(Subscription $subscription, Carbon $endsAt): SubscriptionInfo
@@ -102,7 +102,7 @@ trait ManagesSubscriptions
             'token' => $subscription->platform_data['email_token'],
         ]);
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setStatus($result->json('status', false) ? SubscriptionStatus::CANCELED : $subscription->status);
     }
 
@@ -112,7 +112,7 @@ trait ManagesSubscriptions
             'authorization_code' => $authorizationCode,
         ]);
 
-        if (!$result->successful()) {
+        if (! $result->successful()) {
             return $result->json('message');
         }
 
@@ -121,7 +121,7 @@ trait ManagesSubscriptions
 
     private function ensureCurrencySupport(string $currency): void
     {
-        if (!in_array($currency, ['NGN', 'GHS', 'ZAR', 'USD'])) {
+        if (! in_array($currency, ['NGN', 'GHS', 'ZAR', 'USD'])) {
             throw new Exception('Currency not supported');
         }
     }

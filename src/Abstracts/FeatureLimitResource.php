@@ -10,6 +10,7 @@ use Inovector\MixpostEnterprise\Support\FeatureLimitResponse;
 abstract class FeatureLimitResource implements FeatureLimitResourceInterface
 {
     public string $name = 'Feature limit';
+
     public string $description = '';
 
     protected array $values;

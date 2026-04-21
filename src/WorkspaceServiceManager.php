@@ -20,10 +20,10 @@ class WorkspaceServiceManager extends ServiceManager
         ];
     }
 
-    public function get(string $name, null|string $key = null)
+    public function get(string $name, ?string $key = null): mixed
     {
-        if (!WorkspaceManager::current()) {
-            throw new CurrentWorkspaceCouldNotBeDetermined();
+        if (! WorkspaceManager::current()) {
+            throw new CurrentWorkspaceCouldNotBeDetermined;
         }
 
         $defaultPayload = [
@@ -52,7 +52,7 @@ class WorkspaceServiceManager extends ServiceManager
         });
 
         // Decrypt the configuration from the cache
-        if (!is_array($value['configuration'] ?? [])) {
+        if (! is_array($value['configuration'] ?? [])) {
             try {
                 $value = array_merge($value, [
                     'configuration' => json_decode(Crypt::decryptString($value['configuration']), true),
@@ -73,10 +73,10 @@ class WorkspaceServiceManager extends ServiceManager
 
     protected function resolveCacheKey(string $name): string
     {
-        if (!WorkspaceManager::current()) {
-            throw new CurrentWorkspaceCouldNotBeDetermined();
+        if (! WorkspaceManager::current()) {
+            throw new CurrentWorkspaceCouldNotBeDetermined;
         }
 
-        return $this->config->get('mixpost.cache_prefix') . ".workspace-" . WorkspaceManager::current()->id . ".services.$name";
+        return $this->config->get('mixpost.cache_prefix').'.workspace-'.WorkspaceManager::current()->id.".services.$name";
     }
 }

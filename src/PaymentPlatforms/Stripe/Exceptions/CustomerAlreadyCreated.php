@@ -9,6 +9,6 @@ class CustomerAlreadyCreated extends Exception
 {
     public static function exists(Workspace $workspace): static
     {
-        return new static($workspace->name . " is already a Stripe customer with ID {$workspace->stripe_id}.");
+        return new static($workspace->name." is already a Stripe customer with ID {$workspace->stripe_id}.");
     }
 }

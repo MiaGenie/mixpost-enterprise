@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'sign_out' => 'Odhlásit se',
+    'sign_out' => 'Odhlásit se',
 ];

@@ -62,7 +62,7 @@ class VerifyWebhookSignature
                 [$key, $value] = explode('=', $part, 2);
 
                 match ($key) {
-                    'ts' => $components['ts'] = (int)$value,
+                    'ts' => $components['ts'] = (int) $value,
                     'h1' => $components['hashes']['h1'][] = $value,
                 };
             }

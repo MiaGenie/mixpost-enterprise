@@ -13,11 +13,11 @@ class ResendEmailVerificationController extends Controller
 {
     public function __invoke(): RedirectResponse
     {
-        if (!app(OnboardingConfig::class)->get('email_verification') || Auth::user()->hasVerifiedEmail()) {
+        if (! app(OnboardingConfig::class)->get('email_verification') || Auth::user()->hasVerifiedEmail()) {
             return redirect()->route('mixpost.home');
         }
 
-        Auth::user()->notify((new VerifyEmail())->locale(App::getLocale()));
+        Auth::user()->notify((new VerifyEmail)->locale(App::getLocale()));
 
         return redirect()->back()->with('success', __('mixpost-enterprise::onboarding.email_verification_sent'));
     }

@@ -17,10 +17,10 @@ class ThemeConfigController extends Controller
     {
         return Inertia::render('Panel/Configs/ThemeConfig', [
             'configs' => Theme::config()->all(),
-            'primary_colors' => Arr::map(Theme::getDefault('primary'), function ($_, $color) {
+            'primaryColors' => Arr::map(Theme::getDefault('primary'), function ($_, $color) {
                 return [
                     'key' => $color,
-                    'name' => Str::title($color)
+                    'name' => Str::title($color),
                 ];
             }),
         ]);

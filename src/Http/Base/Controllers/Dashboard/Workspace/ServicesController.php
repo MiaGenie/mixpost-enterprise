@@ -20,9 +20,9 @@ class ServicesController extends Controller
             'redirect_to_accounts' => $request->get('redirect-to-accounts', false),
             'config' => [
                 'system' => [
-                    'twitter_api_workspace_docs_url' => app(SystemConfig::class)->get('twitter_api_workspace_docs_url')
-                ]
-            ]
+                    'twitter_api_workspace_docs_url' => app(SystemConfig::class)->get('twitter_api_workspace_docs_url'),
+                ],
+            ],
         ]);
     }
 

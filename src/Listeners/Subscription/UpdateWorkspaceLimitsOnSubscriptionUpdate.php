@@ -8,11 +8,11 @@ class UpdateWorkspaceLimitsOnSubscriptionUpdate
 {
     public function handle(SubscriptionUpdated $event): void
     {
-        if (!$event->subscription->workspace) {
+        if (! $event->subscription->workspace) {
             return;
         }
 
-        if (!$event->subscription->plan()) {
+        if (! $event->subscription->plan()) {
             return;
         }
 

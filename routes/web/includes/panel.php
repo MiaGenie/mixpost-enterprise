@@ -29,7 +29,6 @@ use Inovector\MixpostEnterprise\Http\Base\Controllers\Panel\WorkspaceItemsContro
 use Inovector\MixpostEnterprise\Http\Base\Controllers\Panel\WorkspacesController;
 use Inovector\MixpostEnterprise\Http\Base\Controllers\Panel\WorkspaceUsersController;
 
-
 Route::middleware([Admin::class])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 

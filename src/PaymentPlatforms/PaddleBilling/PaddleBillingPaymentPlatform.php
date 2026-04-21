@@ -3,21 +3,21 @@
 namespace Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling;
 
 use Inovector\MixpostEnterprise\Abstracts\PaymentPlatform;
+use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\HandleWebhook;
 use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\ManagesCustomer;
 use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\ManagesReceipts;
 use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\ManagesSubscriptions;
-use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\HandleWebhook;
 use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\PaddleForm;
 use Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns\SDK;
 
 class PaddleBillingPaymentPlatform extends PaymentPlatform
 {
+    use HandleWebhook;
+    use ManagesCustomer;
+    use ManagesReceipts;
+    use ManagesSubscriptions;
     use PaddleForm;
     use SDK;
-    use ManagesCustomer;
-    use ManagesSubscriptions;
-    use ManagesReceipts;
-    use HandleWebhook;
 
     public static function name(): string
     {

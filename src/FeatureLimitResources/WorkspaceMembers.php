@@ -9,6 +9,7 @@ use Inovector\MixpostEnterprise\Support\FeatureLimitResponse;
 class WorkspaceMembers extends FeatureLimitResource
 {
     public string $name = 'Workspace Members';
+
     public string $description = 'The maximum number of members in a workspace.';
 
     public function form(): array
@@ -16,7 +17,7 @@ class WorkspaceMembers extends FeatureLimitResource
         return [
             CountNumber::make('count')->default(function () {
                 return 5;
-            })
+            }),
         ];
     }
 
@@ -30,7 +31,7 @@ class WorkspaceMembers extends FeatureLimitResource
 
         $totalCount = $data->workspace->users()->count() + $data->workspace->invitations()->count();
 
-        if ($totalCount < (int)$value) {
+        if ($totalCount < (int) $value) {
             return $this->makePasses();
         }
 

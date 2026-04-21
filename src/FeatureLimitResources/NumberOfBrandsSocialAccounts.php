@@ -10,6 +10,7 @@ use Inovector\MixpostEnterprise\Support\FeatureLimitResponse;
 class NumberOfBrandsSocialAccounts extends FeatureLimitResource
 {
     public string $name = 'No. of Brands Social Accounts';
+
     public string $description = 'Each brand provides full brand management, where the user connects all social media accounts associated with that brand.';
 
     public function form(): array
@@ -37,13 +38,13 @@ class NumberOfBrandsSocialAccounts extends FeatureLimitResource
         if (isset($data->items)) {
             $totalCount = $count + count($data->items ?? []);
 
-            if ($totalCount > (int)$value) {
+            if ($totalCount > (int) $value) {
                 return $this->makeFails()
-                    ->withMessages(__('mixpost-enterprise::feature_limit.max_brand_account') . $value);
+                    ->withMessages(__('mixpost-enterprise::feature_limit.max_brand_account').$value);
             }
         }
 
-        if ($count < (int)$value) {
+        if ($count < (int) $value) {
             return $this->makePasses();
         }
 

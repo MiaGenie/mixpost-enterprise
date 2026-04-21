@@ -1,112 +1,82 @@
 <script setup>
-import {inject} from "vue";
-import { useI18n } from "vue-i18n";
-import {Head, router} from '@inertiajs/vue3';
-import useNotifications from "../../../Composables/useNotifications";
-import PageHeader from "@/Components/DataDisplay/PageHeader.vue";
-import Panel from "@/Components/Surface/Panel.vue";
-import HorizontalGroup from "@/Components/Layout/HorizontalGroup.vue";
-import UserWorkspaces from "../../../Components/User/UserWorkspaces.vue";
-import Indicators from "../../../Components/User/Indicators.vue";
-import Actions from "../../../Components/User/Actions.vue";
+import { useI18n } from 'vue-i18n'
+import { Head } from '@inertiajs/vue3'
+import PageHeader from '@/Components/DataDisplay/PageHeader.vue'
+import Panel from '@/Components/Surface/Panel.vue'
+import HorizontalGroup from '@/Components/Layout/HorizontalGroup.vue'
+import UserWorkspaces from '../../../Components/User/UserWorkspaces.vue'
+import Indicators from '../../../Components/User/Indicators.vue'
+import Actions from '../../../Components/User/Actions.vue'
 
 const { t: $t } = useI18n()
 
-const routePrefix = inject('routePrefix');
-const confirmation = inject('confirmation');
-
-const props = defineProps({
-    user: {
-        type: Object
-    },
-    email_verification: {
-        type: Boolean
-    }
+defineProps({
+  user: {
+    type: Object
+  },
+  emailVerification: {
+    type: Boolean
+  }
 })
-
-const {notify} = useNotifications();
-
-const deleteUser = () => {
-    confirmation()
-        .title($t('user.delete_user'))
-        .description($t('user.confirm_delete_user'))
-        .destructive()
-        .onConfirm((dialog) => {
-            dialog.isLoading(true);
-
-            router.delete(route(`${routePrefix}.users.delete`, {user: props.user.id}), {
-                onSuccess(response) {
-                    if (!response.props.flash.error) {
-                        notify('success', $t('user.user_deleted'));
-                    }
-                },
-                onFinish() {
-                    dialog.isLoading(false);
-                }
-            })
-        })
-        .show();
-
-}
 </script>
 <template>
-    <Head :title="$t('user.view_user')"/>
+  <Head :title="$t('user.view_user')" />
 
-    <div class="w-full mx-auto row-py">
-        <PageHeader :title="$t('user.view_user')">
-            <template #description>
-                {{ user.name }}
+  <div class="w-full mx-auto row-py">
+    <PageHeader :title="$t('user.view_user')">
+      <template #description>
+        {{ user.name }}
+      </template>
+
+      <Actions :user="user" :view="false" />
+    </PageHeader>
+
+    <div class="row-px">
+      <Panel>
+        <template #title>{{ $t('user.user_details') }}</template>
+
+        <div class="form-field">
+          <Indicators :user="user" conditional-class="mb-lg" />
+
+          <HorizontalGroup>
+            <template #title>
+              {{ $t('general.name') }}
             </template>
 
-            <Actions :user="user" :view="false"/>
-        </PageHeader>
+            {{ user.name }}
+          </HorizontalGroup>
 
-        <div class="row-px">
-            <Panel>
-                <template #title>{{$t('user.user_details')}}</template>
+          <HorizontalGroup class="mt-md">
+            <template #title>
+              {{ $t('general.email') }}
+            </template>
 
-                <div class="form-field">
-                    <Indicators :user="user" conditionalClass="mb-lg"/>
+            {{ user.email }}
+          </HorizontalGroup>
 
-                    <HorizontalGroup>
-                        <template #title>
-                            {{ $t('general.name') }}
-                        </template>
+          <HorizontalGroup class="mt-md">
+            <template #title>
+              {{ $t('general.created_at') }}
+            </template>
 
-                        {{ user.name }}
-                    </HorizontalGroup>
+            {{ user.created_at }}
+          </HorizontalGroup>
 
-                    <HorizontalGroup class="mt-md">
-                        <template #title>
-                            {{ $t('general.email') }}
-                        </template>
+          <template v-if="emailVerification">
+            <HorizontalGroup class="mt-md">
+              <template #title>
+                {{ $t('user.email_verified_at') }}
+              </template>
 
-                        {{ user.email }}
-                    </HorizontalGroup>
-
-                    <HorizontalGroup class="mt-md">
-                        <template #title>
-                            {{ $t('general.created_at') }}
-                        </template>
-
-                        {{ user.created_at }}
-                    </HorizontalGroup>
-
-                    <template v-if="email_verification">
-                        <HorizontalGroup class="mt-md">
-                            <template #title>
-                                {{ $t('user.email_verified_at') }}
-                            </template>
-
-                            {{ user.email_verified_at ? user.email_verified_at : '-' }}
-                        </HorizontalGroup>
-                    </template>
-                </div>
-            </Panel>
-
-            <div class="mt-lg">
-                <UserWorkspaces :user="user"/>
-            </div>
+              {{ user.email_verified_at ? user.email_verified_at : '-' }}
+            </HorizontalGroup>
+          </template>
         </div>
+      </Panel>
+
+      <div class="mt-lg">
+        <UserWorkspaces :user="user" />
+      </div>
     </div>
+  </div>
 </template>

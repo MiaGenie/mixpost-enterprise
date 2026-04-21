@@ -14,7 +14,7 @@ class ResumeSubscriptionController extends Controller
     {
         $platformInstance = PaymentPlatform::activePlatformInstance();
 
-        if (!$platformInstance->supportResumeSubscription()) {
+        if (! $platformInstance->supportResumeSubscription()) {
             return redirect()
                 ->route('mixpost_e.workspace.billing', ['workspace' => WorkspaceManager::current()->uuid])
                 ->with('warning', __('mixpost-enterprise::subscription.platform_not_support_resume'));

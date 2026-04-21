@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Inovector\MixpostEnterprise\Enums\WorkspaceAccessStatus;
 
-return new class extends Migration {
+return new class extends Migration
+{
     use \Inovector\Mixpost\Concerns\UsesUserModel;
 
     private $usersTableName;

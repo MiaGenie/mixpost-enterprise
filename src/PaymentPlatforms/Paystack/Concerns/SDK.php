@@ -9,7 +9,7 @@ trait SDK
 {
     protected function makeApiCall($method, $uri, array $payload = []): Response
     {
-        return Http::withToken($this->credentials['secret_key'])->$method($this->vendorsUrl() . $uri, $payload);
+        return Http::withToken($this->credentials['secret_key'])->$method($this->vendorsUrl().$uri, $payload);
     }
 
     protected function vendorsUrl(): string

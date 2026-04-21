@@ -17,7 +17,7 @@ abstract class Metric implements MetricContract
 
     public static function make(): static
     {
-        return new static();
+        return new static;
     }
 
     public function timezone(): string
@@ -35,7 +35,7 @@ abstract class Metric implements MetricContract
             10 => Carbon::now()->tz($this->timezone())->subDays(10)->startOfDay(),
             30 => Carbon::now()->tz($this->timezone())->subDays(30)->startOfDay(),
             60 => Carbon::now()->tz($this->timezone())->subDays(60)->startOfDay(),
-            90 => Carbon::now()->tz($this->timezone())->subDays(90)->startOfDay()
+            90 => Carbon::now()->tz($this->timezone())->subDays(90)->startOfDay(),
         ];
     }
 

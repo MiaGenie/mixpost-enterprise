@@ -11,7 +11,7 @@ class SendUserEmailVerificationLink
 {
     public function handle(UserCreated $event): void
     {
-        if (!app(OnboardingConfig::class)->get('email_verification')) {
+        if (! app(OnboardingConfig::class)->get('email_verification')) {
             return;
         }
 
@@ -19,6 +19,6 @@ class SendUserEmailVerificationLink
             return;
         }
 
-        $event->user->notify((new VerifyEmail())->locale(App::getLocale()));
+        $event->user->notify((new VerifyEmail)->locale(App::getLocale()));
     }
 }

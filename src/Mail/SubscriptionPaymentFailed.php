@@ -14,7 +14,7 @@ use Inovector\MixpostEnterprise\Util;
 
 class SubscriptionPaymentFailed extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels, Mail;
+    use Mail, Queueable, SerializesModels;
 
     public $deleteWhenMissingModels = true;
 
@@ -45,8 +45,8 @@ class SubscriptionPaymentFailed extends Mailable implements ShouldQueue
                 'subscription' => $this->subscription,
                 'workspace' => $this->subscription->workspace,
                 'url' => route('mixpost_e.workspace.billing', [
-                    'workspace' => $this->subscription->workspace->uuid
-                ])
+                    'workspace' => $this->subscription->workspace->uuid,
+                ]),
             ]
         );
     }

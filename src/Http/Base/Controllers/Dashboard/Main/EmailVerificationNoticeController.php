@@ -13,7 +13,7 @@ class EmailVerificationNoticeController extends Controller
 {
     public function __invoke(): RedirectResponse|Response
     {
-        if (!app(OnboardingConfig::class)->get('email_verification') || Auth::user()->hasVerifiedEmail()) {
+        if (! app(OnboardingConfig::class)->get('email_verification') || Auth::user()->hasVerifiedEmail()) {
             return redirect()->route('mixpost.home');
         }
 

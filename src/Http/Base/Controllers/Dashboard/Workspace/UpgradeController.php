@@ -30,11 +30,11 @@ class UpgradeController extends Controller
 
         return Inertia::render('Dashboard/Workspace/Upgrade', [
             'workspace' => new WorkspaceResource($workspace),
-            'billing_configs' => app(BillingConfig::class)->all(),
+            'billingConfigs' => app(BillingConfig::class)->all(),
             'subscription' => $subscription ? new SubscriptionResource($subscription) : null,
             'plans' => PlanResource::collection(Plan::active()->paid()->get())->resolve(),
-            'payment_support_trialing' => $paymentPlatform->supportTrialing(),
-            'payment_support_coupon' => $paymentPlatform->supportCoupon(),
+            'paymentSupportTrialing' => $paymentPlatform->supportTrialing(),
+            'paymentSupportCoupon' => $paymentPlatform->supportCoupon(),
         ]);
     }
 }
