@@ -1,3 +1,5 @@
+@reference './app.css';
+
 /* Custom styles for PickTime Component */
 
 .pickTime .flatpickr-calendar {
@@ -93,7 +95,7 @@
 }
 
 .flatpickr-time .numInputWrapper:focus-within {
-    @apply border-primary-200 ring ring-primary-200 ring-opacity-50;
+    @apply border-primary-200 ring ring-primary-200 ring-black/50;
 }
 
 .flatpickr-time.time24hr .numInputWrapper {
@@ -123,3 +125,4 @@
 .flatpickr-time .flatpickr-time-separator, .flatpickr-time .flatpickr-am-pm {
     @apply mx-1;
 }
+

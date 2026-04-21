@@ -60,7 +60,7 @@ const submit = () => {
                     {{ $t('dashboard.create_workspace') }}
                 </template>
 
-                <div class="sm:max-w-lg">
+                <div class="sm:max-w-(--container-lg)">
                     <HorizontalGroup>
                         <template #title>
                             <label for="name">{{ $t('general.name') }}</label>

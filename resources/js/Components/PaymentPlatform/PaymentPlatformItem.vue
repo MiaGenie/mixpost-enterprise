@@ -78,11 +78,11 @@ const update = () => {
 </script>
 <template>
     <TableRow :hoverable="true">
-        <TableCell :clickable="true" @click="open" align="left" class="!py-md">
+        <TableCell :clickable="true" @click="open" align="left" class="py-md!">
             <span class="font-medium">{{ platform.readable_name }}</span>
         </TableCell>
 
-        <TableCell :clickable="true" @click="open" align="right" class="!py-md">
+        <TableCell :clickable="true" @click="open" align="right" class="py-md!">
             <Badge v-if="platform.enabled" variant="success">{{ $t('general.enabled') }}</Badge>
         </TableCell>
     </TableRow>

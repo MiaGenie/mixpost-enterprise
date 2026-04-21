@@ -2,6 +2,16 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 4.0.3 - 2024-12-07
+
+**Fixes**
+
+- Fixed `X` service default documentation URL
+
+**Changes**
+
+- Enhanced translations
+
 ## 4.0.2 - 2024-11-16
 
 **Changes**

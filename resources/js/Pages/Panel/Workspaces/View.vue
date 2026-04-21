@@ -58,7 +58,7 @@ const redirectToPortal = () => {
             <Panel>
                 <template #title>{{ $t('general.details') }}</template>
 
-                <div class="md:max-w-2xl">
+                <div class="md:max-w-(--container-2xl)">
                     <Indicators :workspace="workspace" conditionalClass="mb-lg"/>
 
                     <HorizontalGroup>

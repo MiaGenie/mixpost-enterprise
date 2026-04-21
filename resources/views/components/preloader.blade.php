@@ -1,4 +1,4 @@
-@props(['size' => 'md', 'opacity' => 100, 'rounded' => false])
+@props(['size' => 'md', 'opacity' => 100, 'rounded-sm' => false])
 
 @php
     $sizeClass = [

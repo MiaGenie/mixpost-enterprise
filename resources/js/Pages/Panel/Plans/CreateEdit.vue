@@ -133,7 +133,7 @@ const submit = () => {
                     <Panel>
                         <template #title>{{ $t('general.details') }}</template>
 
-                        <div class="w-full max-w-lg">
+                        <div class="w-full max-w-(--container-lg)">
                             <HorizontalGroup>
                                 <template #title>
                                     <label for="name">{{ $t('general.name') }}</label>

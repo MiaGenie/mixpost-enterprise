@@ -25,5 +25,5 @@ const proxyChecked = computed({
 
 <template>
     <input type="radio" :value="value" v-model="proxyChecked"
-           class="rounded-full w-5 h-5 border-gray-200 text-primary-500 shadow-sm focus:border-primary-200 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:border-gray-100 disabled:cursor-not-allowed">
+           class="rounded-full w-5 h-5 border-gray-200 text-primary-500 shadow-xs focus:border-primary-200 focus:ring-3 focus:ring-primary-200/50 disabled:border-gray-100 disabled:cursor-not-allowed">
 </template>

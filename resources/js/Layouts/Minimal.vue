@@ -20,7 +20,7 @@ const routePrefix = inject('routePrefix');
         </template>
 
         <template v-else>
-            <div class="w-full max-w-5xl mx-auto">
+            <div class="w-full max-w-(--container-5xl) mx-auto">
                 <div class="flex justify-between relative mb-12">
                     <Link :href="route(`${routePrefix}.dashboard`)" class="flex items-center">
                         <Logo/>

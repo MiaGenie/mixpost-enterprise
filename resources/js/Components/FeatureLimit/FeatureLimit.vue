@@ -53,7 +53,7 @@ const fields = computed(() => {
             </div>
         </div>
 
-        <div class="max-w-xl w-full p-md">
+        <div class="max-w-(--container-xl) w-full p-md">
             <template v-for="field in fields" :key="field.item.name">
                 <component :is="components[field.item.component]"
                            v-model="field.model.value"

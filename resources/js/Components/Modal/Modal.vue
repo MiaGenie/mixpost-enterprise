@@ -54,14 +54,14 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
     return {
-        'sm': 'sm:max-w-sm',
-        'md': 'sm:max-w-md',
-        'lg': 'sm:max-w-lg',
-        'xl': 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
-        '3xl': 'sm:max-w-3xl',
-        '4xl': 'sm:max-w-4xl',
-        '5xl': 'sm:max-w-5xl',
+        'sm': 'sm:max-w-(--container-sm)',
+        'md': 'sm:max-w-(--container-md)',
+        'lg': 'sm:max-w-(--container-lg)',
+        'xl': 'sm:max-w-(--container-xl)',
+        '2xl': 'sm:max-w-(--container-2xl)',
+        '3xl': 'sm:max-w-(--container-3xl)',
+        '4xl': 'sm:max-w-(--container-4xl)',
+        '5xl': 'sm:max-w-(--container-5xl)',
     }[props.maxWidth];
 });
 </script>
@@ -92,7 +92,7 @@ const maxWidthClass = computed(() => {
                     leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <div v-show="show" class="flex flex-col h-full">
-                        <div class="bg-white rounded-lg transform transition-all sm:w-full sm:mx-auto" :class="[maxWidthClass, dialogClass]">
+                        <div class="bg-white rounded-lg transform-[translateX(--spacing(0))] transition-all sm:w-full sm:mx-auto" :class="[maxWidthClass, dialogClass]">
                             <slot v-if="show" />
                         </div>
                     </div>

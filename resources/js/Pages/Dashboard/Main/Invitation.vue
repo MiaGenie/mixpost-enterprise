@@ -57,7 +57,7 @@ const accept = () => {
     <Head :title="title"/>
 
     <div class="w-full">
-        <PageHeader class="!px-0" title="">
+        <PageHeader class="px-0!" title="">
             <BackToDashboardButton/>
         </PageHeader>
 

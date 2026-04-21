@@ -7,23 +7,21 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
+        "@tailwindcss/vite": "^4.0.17",
         "@vitejs/plugin-vue": "^5.1.4",
-        "autoprefixer": "^10.4.13",
         "axios": "^1.7.7",
         "fs": "^0.0.1-security",
         "laravel-vite-plugin": "^1.0.5",
         "lodash": "^4.17.19",
         "os": "^0.1.2",
         "path": "^0.12.7",
-        "postcss": "^8.4.47",
-        "postcss-nesting": "^10.1.10",
-        "tailwindcss": "^3.2.6",
+        "tailwindcss": "^4.0.17",
         "unplugin-vue-define-options": "^1.2.4",
         "vite": "^5.4.9",
-        "vue": "^3.5.12"
+        "vue": "^3.5.13"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^1.0.2",
+        "@inertiajs/vue3": "^2.0.5",
         "@jaames/iro": "^5.5.2",
         "@tiptap/core": "^2.7.2",
         "@tiptap/extension-document": "^2.7.2",
@@ -46,6 +44,7 @@
         "vue-flatpickr-component": "^9.0.6",
         "vue-i18n": "^9.9.0",
         "vue-select": "^4.0.0-beta.6",
-        "vuedraggable": "^4.1.0"
+        "vuedraggable": "^4.1.0",
+        "ziggy-js": "^2.5.2"
     }
 }

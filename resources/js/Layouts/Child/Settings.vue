@@ -12,7 +12,7 @@ const routePrefix = inject('routePrefix');
         <PageHeader :title="$t('general.settings')"/>
 
         <div class="row-px">
-            <Tabs class="overflow-x-auto !flex-nowrap md:!flex-wrap md:gap-sm max-w-full w-full mb-lg">
+            <Tabs class="overflow-x-auto flex-nowrap! md:flex-wrap! md:gap-sm max-w-full w-full mb-lg">
                 <Link :href="route(`${routePrefix}.configs.system.view`)" class="mr-md">
                     <Tab :active="$page.component === 'Panel/Configs/SystemConfig'">{{ $t('panel.system') }}</Tab>
                 </Link>

@@ -35,7 +35,7 @@ const classes = computed(() => {
 const iconClass = 'mr-xs rtl:mr-0 rtl:ml-xs';
 </script>
 <template>
-    <button v-if="as === 'button'" type="button" :class="[classes, sizeClass, 'outline-none focus:outline-none']">
+    <button v-if="as === 'button'" type="button" :class="[classes, sizeClass, 'outline-hidden focus:outline-hidden']">
         <span v-if="$slots.icon" :class="iconClass">
             <slot name="icon"/>
         </span>

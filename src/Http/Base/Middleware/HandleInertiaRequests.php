@@ -13,7 +13,7 @@ use Inovector\Mixpost\Mixpost;
 use Inovector\MixpostEnterprise\Facades\Impersonation;
 use Inovector\MixpostEnterprise\Http\Base\Resources\UserResource;
 use Inovector\MixpostEnterprise\Util;
-use Tightenco\Ziggy\Ziggy;
+use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -52,7 +52,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => $this->auth(),
             'ziggy' => function () use ($request) {
-                return array_merge((new Ziggy)->filter(['mixpost.*', 'mixpost_e.*'])->toArray(), [
+                return array_merge((new Ziggy())->filter(['mixpost.*', 'mixpost_e.*'])->toArray(), [
                     'location' => $request->url(),
                     'workspace_id' => $this->getWorkspaceId($request)
                 ]);

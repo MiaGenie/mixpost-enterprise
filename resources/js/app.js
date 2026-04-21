@@ -8,7 +8,7 @@ import '@css/overrideVSelect.css'
 import {createApp, h} from 'vue';
 import {createInertiaApp} from '@inertiajs/vue3';
 import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
-import {ZiggyVue} from '../../vendor/tightenco/ziggy/dist/vue.m';
+import { ZiggyVue } from 'ziggy-js';
 import {vTooltip} from 'floating-vue'
 import vSelect from "vue-select";
 import {router} from "@inertiajs/vue3";
@@ -34,7 +34,7 @@ createInertiaApp({
         return createApp({render: () => h(App, props)})
             .use(plugin)
             .directive('tooltip', vTooltip)
-            .use(ZiggyVue, Ziggy)
+            .use(ZiggyVue)
             .use(Confirmation)
             .use(AuthPasswordConfirmation)
             .use(i18n)

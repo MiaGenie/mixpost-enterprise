@@ -124,7 +124,7 @@ const save = () => {
 
             <Flex :responsive="false" class="items-center">
                 <Checkbox v-model:checked="form.active" id="active"/>
-                <Label for="active" class="!mb-0">{{ $t('general.active') }}</Label>
+                <Label for="active" class="mb-0!">{{ $t('general.active') }}</Label>
             </Flex>
 
             <template #footer>

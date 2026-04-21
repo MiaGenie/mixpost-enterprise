@@ -30,7 +30,7 @@ defineProps({
             <Badge variant="error"
                    class="h-6"
                    v-tooltip="$t('workspace.locked')">
-                <LockClosed class="!w-[18px] !h-[18px]"/>
+                <LockClosed class="w-[18px]! h-[18px]!"/>
             </Badge>
         </template>
     </Flex>

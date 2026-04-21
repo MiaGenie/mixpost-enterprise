@@ -27,7 +27,7 @@ const { sizeClass } = useButtonSize(props.size);
 <template>
     <button :type="type" :class="sizeClass" class="relative inline-flex items-center bg-white text-black border border-black rounded-md font-medium text-xs uppercase tracking-widest rtl:tracking-normal hover:text-primary-500 hover:border-primary-500 active:text-primary-500 active:border-primary-800 focus:border-primary-800 focus:shadow-outline-indigo disabled:text-gray-500 disabled:cursor-not-allowed transition ease-in-out duration-200">
         <span v-if="$slots.icon" class="inline-flex"
-              :class="{'sm:mr-xs rtl:sm:mr-0 rtl:sm:ml-xs': $slots.default, 'mr-0 sm:mr-xs rtl:sm:mr-0 rtl:sm:ml-xs': hiddenTextOnSmallScreen, 'mr-xs rtl:mr-xs rtl:ml-xs': !hiddenTextOnSmallScreen && $slots.default}">
+              :class="{'sm:mr-xs sm:rtl:mr-0 sm:rtl:ml-xs': $slots.default, 'mr-0 sm:mr-xs sm:rtl:mr-0 sm:rtl:ml-xs': hiddenTextOnSmallScreen, 'mr-xs rtl:mr-xs rtl:ml-xs': !hiddenTextOnSmallScreen && $slots.default}">
             <slot name="icon"/>
         </span>
 

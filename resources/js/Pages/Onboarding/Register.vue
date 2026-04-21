@@ -40,7 +40,7 @@ const submit = () => {
 <template>
   <Head :title="$t('onboarding.register')"/>
 
-  <div class="w-full sm:max-w-lg mx-auto">
+  <div class="w-full sm:max-w-(--container-lg) mx-auto">
     <form @submit.prevent="submit">
       <Panel>
         <template #title>
@@ -112,7 +112,7 @@ const submit = () => {
         <VerticalGroup class="mt-lg">
             <Flex :responsive="false" class="items-center">
                 <Checkbox v-model:checked="form.terms" id="terms" required/>
-                <Label for="terms" class="!mb-0">
+                <Label for="terms" class="mb-0!">
                     <span class="inline-block markdown" v-html="$page.props.configs.terms_accept_description"/>
                 </Label>
             </Flex>

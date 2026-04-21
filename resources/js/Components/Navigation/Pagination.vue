@@ -52,7 +52,7 @@ const formattedLinks = computed(() => {
             <template v-for="(link, index) in formattedLinks">
                 <div v-if="link.url === null"
                      :key="index"
-                     :class="[linkClass, {'!px-0': link.label === '...', '!px-xs': link.component}]"
+                     :class="[linkClass, {'px-0!': link.label === '...', 'px-xs!': link.component}]"
                      class="text-gray-400"
                 >
                     <template v-if="link.component">
@@ -62,7 +62,7 @@ const formattedLinks = computed(() => {
                 </div>
                 <Link v-else :key="`link-${index}`" disabled
                       class="transition-colors ease-in-out duration-200"
-                      :class="[linkClass, { 'bg-primary-500 text-white': link.active, 'hover:text-primary-500 focus:text-primary-500': !link.active, '!px-xs': link.component }]"
+                      :class="[linkClass, { 'bg-primary-500 text-white': link.active, 'hover:text-primary-500 focus:text-primary-500': !link.active, 'px-xs!': link.component }]"
                       :href="link.url">
                     <template v-if="link.component">
                         <component :is="link.component"/>
