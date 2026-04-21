@@ -19,11 +19,11 @@ class InvitationController extends Controller
     {
         $invitation = Invitation::findByUuid($request->route('invitation'));
 
-        if (!$invitation) {
+        if (! $invitation) {
             return redirect()->route('mixpost.home');
         }
 
-        if (!$invitation->isForUser(self::getAuthGuard()->user())) {
+        if (! $invitation->isForUser(self::getAuthGuard()->user())) {
             abort(403);
         }
 

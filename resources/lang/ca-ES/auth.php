@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'sign_out' => 'Tanca sessió',
+    'sign_out' => 'Tanca sessió',
 ];

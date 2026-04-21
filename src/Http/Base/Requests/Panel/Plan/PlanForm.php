@@ -46,7 +46,7 @@ class PlanForm extends FormRequest
 
         $freePlan = Plan::query()->free()->first();
 
-        if ($freePlan && (!$this->route('plan') || $freePlan->id !== (int)$this->route('plan'))) {
+        if ($freePlan && (! $this->route('plan') || $freePlan->id !== (int) $this->route('plan'))) {
             throw ValidationException::withMessages([
                 'type' => __('mixpost-enterprise::plan.free_plan_exists'),
             ]);

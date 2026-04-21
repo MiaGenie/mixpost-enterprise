@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'impersonating' => 'Zich voordoen als',
+    'impersonating' => 'Zich voordoen als',
 ];

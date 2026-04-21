@@ -14,7 +14,7 @@ class AddGenericSubscription extends FormRequest
     {
         return [
             'trial_days' => ['nullable', 'integer', 'min:0', 'max:365'],
-            'plan_id' => ['required', 'exists:' . Plan::class . ',id'],
+            'plan_id' => ['required', 'exists:'.Plan::class.',id'],
             'keep_prev_trial_ends_at' => 'required|boolean',
         ];
     }
@@ -36,7 +36,7 @@ class AddGenericSubscription extends FormRequest
             $subscription->delete();
         }
 
-        (new NewGenericSubscription())(
+        (new NewGenericSubscription)(
             workspace: $workspace,
             plan: $plan,
             overrideTrialDays: $this->input('trial_days'),

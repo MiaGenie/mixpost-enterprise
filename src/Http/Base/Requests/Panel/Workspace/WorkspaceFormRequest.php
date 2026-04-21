@@ -16,9 +16,9 @@ class WorkspaceFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:60'],
-            'hex_color' => ['required', new HexRule()],
-            'owner_id' => ['nullable', 'exists:' . User::class . ',id'],
-            'access_status' => ['required', Rule::in(Arr::map(WorkspaceAccessStatus::cases(), fn($item) => $item->value))],
+            'hex_color' => ['required', new HexRule],
+            'owner_id' => ['nullable', 'exists:'.User::class.',id'],
+            'access_status' => ['required', Rule::in(Arr::map(WorkspaceAccessStatus::cases(), fn ($item) => $item->value))],
         ];
     }
 
@@ -35,7 +35,7 @@ class WorkspaceFormRequest extends FormRequest
             'name' => $this->input('name'),
             'hex_color' => Str::after($this->input('hex_color'), '#'),
             'owner_id' => $this->input('owner_id'),
-            'access_status' => $this->input('access_status')
+            'access_status' => $this->input('access_status'),
         ];
     }
 }

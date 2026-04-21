@@ -10,7 +10,7 @@ use Inovector\MixpostEnterprise\Http\Api\Controllers\Workspace\UpdateWorkspaceCo
 
 Route::middleware(array_merge([
     IdentifyWorkspace::class,
-    CheckWorkspaceUser::class . ':' . WorkspaceUserRole::ADMIN->name
+    CheckWorkspaceUser::class.':'.WorkspaceUserRole::ADMIN->name,
 ], Mixpost::getWorkspaceMiddlewares()))
     ->prefix('{workspace}')
     ->name('workspaces.')

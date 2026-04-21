@@ -13,12 +13,12 @@ class ChangeSubscriptionPlanController extends Controller
     {
         $platformInstance = PaymentPlatform::activePlatformInstance();
 
-        if (!$platformInstance->supportSwapSubscription()) {
+        if (! $platformInstance->supportSwapSubscription()) {
             return redirect()->back()->with('error', __('This payment platform does not support changing subscription plan.'));
         }
 
         $swapSubscriptionPlan->handle();
 
-        return redirect()->back()->with('success',  __('mixpost-enterprise::subscription.sub_plan_changed'));
+        return redirect()->back()->with('success', __('mixpost-enterprise::subscription.sub_plan_changed'));
     }
 }

@@ -27,7 +27,7 @@ class Receipt extends Model
         'quantity',
         'receipt_url',
         'description',
-        'paid_at'
+        'paid_at',
     ];
 
     protected $casts = [

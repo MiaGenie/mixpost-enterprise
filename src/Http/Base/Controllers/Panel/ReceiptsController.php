@@ -27,7 +27,7 @@ class ReceiptsController extends Controller
             ->withQueryString();
 
         return Inertia::render('Panel/Receipts/Index', [
-            'receipts' => fn() => ReceiptResource::collection($receipts),
+            'receipts' => fn () => ReceiptResource::collection($receipts),
             'filter' => [
                 'invoice_number' => $request->query('invoice_number', ''),
             ],
@@ -38,7 +38,7 @@ class ReceiptsController extends Controller
     {
         return Inertia::render('Panel/Receipts/CreateEdit', [
             'mode' => 'create',
-            'defaultCurrency' => (new BillingConfig())->get('currency'),
+            'defaultCurrency' => (new BillingConfig)->get('currency'),
             'currencies' => Util::currenciesForSelect(),
         ]);
     }
@@ -55,7 +55,7 @@ class ReceiptsController extends Controller
         $receipt = Receipt::firstOrFailByUuid($request->route('receipt'))->load('workspace');
 
         return Inertia::render('Panel/Receipts/View', [
-            'receipt' => new ReceiptResource($receipt)
+            'receipt' => new ReceiptResource($receipt),
         ]);
     }
 
@@ -65,9 +65,9 @@ class ReceiptsController extends Controller
 
         return Inertia::render('Panel/Receipts/CreateEdit', [
             'mode' => 'edit',
-            'defaultCurrency' => (new BillingConfig())->get('currency'),
+            'defaultCurrency' => (new BillingConfig)->get('currency'),
             'currencies' => Util::currenciesForSelect(),
-            'receipt' => new ReceiptResource($receipt)
+            'receipt' => new ReceiptResource($receipt),
         ]);
     }
 
@@ -82,6 +82,6 @@ class ReceiptsController extends Controller
     {
         Receipt::where('uuid', $request->route('receipt'))->delete();
 
-        return redirect()->route('mixpost_e.receipts.index')->with('success', "mixpost::finance.receipt_deleted");
+        return redirect()->route('mixpost_e.receipts.index')->with('success', 'mixpost::finance.receipt_deleted');
     }
 }

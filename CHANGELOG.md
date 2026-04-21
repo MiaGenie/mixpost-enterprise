@@ -2,6 +2,17 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 5.0.0 - 2025-08-03
+
+**New features**
+
+- Use Mixpost Pro `v4.0.0`
+
+**Changes**
+
+- Added `nl-NL` language
+- Added support for VAT field in Stripe payments
+
 ## 4.1.1 - 2025-05-28
 
 **Fixes**

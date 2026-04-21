@@ -8,7 +8,7 @@ use Inovector\MixpostEnterprise\Models\Workspace;
 
 class StoreWorkspace extends WorkspaceFormRequest
 {
-    public function handle(): null|Workspace
+    public function handle(): ?Workspace
     {
         $workspace = Workspace::create($this->requestData());
 

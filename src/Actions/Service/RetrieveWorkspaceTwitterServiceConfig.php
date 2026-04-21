@@ -8,13 +8,13 @@ use Inovector\MixpostEnterprise\Facades\WorkspaceServiceManager;
 
 class RetrieveWorkspaceTwitterServiceConfig
 {
-    public function __invoke(null|string $key = null): mixed
+    public function __invoke(?string $key = null): mixed
     {
-        if (!WorkspaceManager::current()) {
+        if (! WorkspaceManager::current()) {
             return null;
         }
 
-        if (!app(SystemConfig::class)->allowWorkspaceTwitterService()) {
+        if (! app(SystemConfig::class)->allowWorkspaceTwitterService()) {
             return null;
         }
 

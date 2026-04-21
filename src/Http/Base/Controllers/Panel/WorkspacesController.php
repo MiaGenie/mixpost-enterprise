@@ -46,7 +46,7 @@ class WorkspacesController extends Controller
     public function create(): Response
     {
         return Inertia::render('Panel/Workspaces/CreateEdit', [
-            'mode' => 'create'
+            'mode' => 'create',
         ]);
     }
 
@@ -74,10 +74,10 @@ class WorkspacesController extends Controller
                     'card_brand' => $workspace->pm_card_brand,
                     'card_last_four' => $workspace->pm_card_last_four,
                     'card_expires' => $workspace->pm_card_expires,
-                ]
+                ],
             ]),
             'subscription' => $subscription ? new SubscriptionResource($subscription) : null,
-            'billing_configs' => (new BillingConfig())->all(),
+            'billingConfigs' => (new BillingConfig)->all(),
             'plans' => PlanResource::collection(Plan::get())->resolve(),
         ]);
     }
@@ -98,7 +98,7 @@ class WorkspacesController extends Controller
 
         return Inertia::render('Panel/Workspaces/CreateEdit', [
             'mode' => 'edit',
-            'workspace' => new WorkspaceResource($workspace)
+            'workspace' => new WorkspaceResource($workspace),
         ]);
     }
 
@@ -106,7 +106,7 @@ class WorkspacesController extends Controller
     {
         $workspace = Workspace::firstOrFailByUuid($request->route('workspace'));
 
-        (new DestroyWorkspace())($workspace);
+        (new DestroyWorkspace)($workspace);
 
         return redirect()
             ->route('mixpost_e.workspaces.index')

@@ -9,27 +9,26 @@ use Inovector\MixpostEnterprise\Models\Workspace;
 class ChangeSubscriptionPlan
 {
     public function __invoke(Workspace $workspace,
-                             Plan      $plan,
-                                       $cycle,
-                             bool      $prorate,
-                             bool      $billImmediately
-    ): void
-    {
+        Plan $plan,
+        $cycle,
+        bool $prorate,
+        bool $billImmediately
+    ): void {
         if ($plan->free()) {
-            (new DowngradeToFreePlanSubscription())($workspace);
+            (new DowngradeToFreePlanSubscription)($workspace);
 
             return;
         }
 
         $subscription = $workspace->subscription();
 
-        if (!$subscription) {
+        if (! $subscription) {
             throw ValidationException::withMessages([
                 'subscription' => __('mixpost-enterprise::subscription.not_found'),
             ]);
         }
 
-        if (!$subscription || !$subscription->recurring()) {
+        if (! $subscription || ! $subscription->recurring()) {
             throw ValidationException::withMessages([
                 'subscription' => __('mixpost-enterprise::subscription.cant_swap_plan'),
             ]);
@@ -37,7 +36,7 @@ class ChangeSubscriptionPlan
 
         $platformPlanId = Plan::platformPlanId($plan, $cycle);
 
-        if (!$platformPlanId) {
+        if (! $platformPlanId) {
             throw ValidationException::withMessages([
                 'plan_id' => __('mixpost-enterprise::plan.platform_plan_not_found'),
             ]);
@@ -53,6 +52,7 @@ class ChangeSubscriptionPlan
 
         if ($billImmediately) {
             $subscription->swapAndInvoice($platformPlanId);
+
             return;
         }
 

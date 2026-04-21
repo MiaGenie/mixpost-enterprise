@@ -19,7 +19,7 @@ class CancelInvitation extends FormRequest
             ->where('uuid', $this->route('invitation'))
             ->first();
 
-        if (!$invitation) {
+        if (! $invitation) {
             return false;
         }
 

@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Inovector\MixpostEnterprise\Models\Workspace;
 use Inovector\MixpostEnterprise\Models\WorkspaceService;
 
-class DeleteWorkspaceDataJob implements ShouldQueue, ShouldBeUnique
+class DeleteWorkspaceDataJob implements ShouldBeUnique, ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -19,11 +19,9 @@ class DeleteWorkspaceDataJob implements ShouldQueue, ShouldBeUnique
     use SerializesModels;
 
     public function __construct(
-        private readonly int    $workspaceId,
+        private readonly int $workspaceId,
         private readonly string $workspaceUuid
-    )
-    {
-    }
+    ) {}
 
     public function handle(): void
     {
@@ -31,13 +29,13 @@ class DeleteWorkspaceDataJob implements ShouldQueue, ShouldBeUnique
             ->byWorkspace($this->workspaceId)
             ->get()
             ->each(function (WorkspaceService $workspaceService) {
-                $this->workspace()->execute(fn() => $workspaceService->delete());
+                $this->workspace()->execute(fn () => $workspaceService->delete());
             });
     }
 
     private function workspace(): Workspace
     {
-        $model = new Workspace();
+        $model = new Workspace;
 
         $model->setRawAttributes([
             'id' => $this->workspaceId,

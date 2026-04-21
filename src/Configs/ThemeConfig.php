@@ -5,7 +5,6 @@ namespace Inovector\MixpostEnterprise\Configs;
 use Illuminate\Support\Arr;
 use Inovector\Mixpost\Abstracts\Config;
 use Inovector\MixpostEnterprise\Facades\Theme;
-use Inovector\Mixpost\Rules\HexRule;
 
 class ThemeConfig extends Config
 {
@@ -27,7 +26,7 @@ class ThemeConfig extends Config
                 'primary_context' => Theme::getDefault('primary_context'),
                 'alert' => Theme::getDefault('alert'),
                 'alert_context' => Theme::getDefault('alert_context'),
-            ]
+            ],
         ];
     }
 

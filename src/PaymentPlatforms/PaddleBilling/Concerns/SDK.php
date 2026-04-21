@@ -2,11 +2,11 @@
 
 namespace Inovector\MixpostEnterprise\PaymentPlatforms\PaddleBilling\Concerns;
 
+use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Inovector\MixpostEnterprise\Exceptions\PaymentPlatformApiCallException;
-use Exception;
 
 trait SDK
 {
@@ -21,13 +21,13 @@ trait SDK
 
         $response = Http::withToken($apiKey)
             ->withHeaders(['Paddle-Version' => 1])
-            ->$method($this->vendorsUrl() . $uri, $payload);
+            ->$method($this->vendorsUrl().$uri, $payload);
 
         if (isset($response['error'])) {
             $message = "Paddle API error '{$response['error']['detail']}' occurred";
 
             if (isset($response['error']['errors'])) {
-                $message .= ' with validation errors (' . json_encode($response['error']['errors']) . ')';
+                $message .= ' with validation errors ('.json_encode($response['error']['errors']).')';
             }
 
             throw new PaymentPlatformApiCallException($message);
@@ -42,6 +42,6 @@ trait SDK
             Arr::get($this->options, 'sandbox', false), FILTER_VALIDATE_BOOLEAN
         );
 
-        return 'https://' . ($sandboxEnabled ? 'sandbox-' : '') . 'api.paddle.com';
+        return 'https://'.($sandboxEnabled ? 'sandbox-' : '').'api.paddle.com';
     }
 }

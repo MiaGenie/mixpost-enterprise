@@ -12,12 +12,12 @@ class StoreReceipt extends ReceiptFormRequest
     public function rules(): array
     {
         return [
-            'workspace_uuid' => ['required', 'string', 'max:255', 'exists:' . Workspace::class . ',uuid'],
+            'workspace_uuid' => ['required', 'string', 'max:255', 'exists:'.Workspace::class.',uuid'],
             'transaction_id' => ['required', 'string', 'max:255'],
-            'invoice_number' => ['required', 'string', 'max:255', 'unique:' . Receipt::class],
+            'invoice_number' => ['required', 'string', 'max:255', 'unique:'.Receipt::class],
             'amount' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
-            'currency' => ['required', new CurrencyRule()],
+            'currency' => ['required', new CurrencyRule],
             'description' => ['sometimes', 'nullable', 'string', 'max:255'],
             'paid_at' => ['required', 'date'],
         ];

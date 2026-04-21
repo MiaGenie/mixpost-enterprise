@@ -13,7 +13,7 @@ class DeleteUserOwnedWorkspaces
             ->where('owner_id', $user->id)
             ->get()
             ->each(function ($workspace) {
-                (new DestroyWorkspace())($workspace, true);
+                (new DestroyWorkspace)($workspace, true);
             });
     }
 }

@@ -10,7 +10,7 @@ trait ManagesCustomer
 {
     public function workspaceHasStripeId(): bool
     {
-        return !is_null($this->workspace->stripe_id);
+        return ! is_null($this->workspace->stripe_id);
     }
 
     public function createCustomer(array $options = []): Customer
@@ -19,15 +19,15 @@ trait ManagesCustomer
             throw CustomerAlreadyCreated::exists($this->workspace);
         }
 
-        if (!array_key_exists('name', $options) && $name = $this->workspace->name) {
+        if (! array_key_exists('name', $options) && $name = $this->workspace->name) {
             $options['name'] = $this->workspace->owner?->name ?? $name;
         }
 
-        if (!array_key_exists('email', $options) && $email = $this->workspace->owner?->email) {
+        if (! array_key_exists('email', $options) && $email = $this->workspace->owner?->email) {
             $options['email'] = $email;
         }
 
-        if (!array_key_exists('metadata', $options) && $metadata = $this->metadata()) {
+        if (! array_key_exists('metadata', $options) && $metadata = $this->metadata()) {
             $options['metadata'] = $metadata;
         }
 
@@ -79,7 +79,7 @@ trait ManagesCustomer
 
     protected function assertCustomerExists(): void
     {
-        if (!$this->workspaceHasStripeId()) {
+        if (! $this->workspaceHasStripeId()) {
             throw InvalidCustomer::notYetCreated($this->workspace);
         }
     }

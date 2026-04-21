@@ -18,7 +18,7 @@ trait ManagesSubscriptions
     {
         $data = [
             'product_id' => $planId,
-            'passthrough' => json_encode($payload['passthrough'])
+            'passthrough' => json_encode($payload['passthrough']),
         ];
 
         if ($couponCode = Arr::get($payload, 'coupon_code')) {
@@ -29,7 +29,7 @@ trait ManagesSubscriptions
             $data['return_url'] = $returnUrl;
         }
 
-        if (!is_null($payload['trial_days'])) {
+        if (! is_null($payload['trial_days'])) {
             $currency = Arr::get($payload, 'meta_data.currency', 'USD');
 
             $data['trial_days'] = $payload['trial_days'];
@@ -51,18 +51,18 @@ trait ManagesSubscriptions
     public function subscriptionInfo(Subscription $subscription): SubscriptionInfo
     {
         $request = $this->makeApiCall('post', '/subscription/users', [
-            'subscription_id' => $subscription->platform_subscription_id
+            'subscription_id' => $subscription->platform_subscription_id,
         ]);
 
         $response = $request['response'][0];
 
-        $info = (new SubscriptionInfo())
+        $info = (new SubscriptionInfo)
             ->setRaw($response)
             ->setStatus($this->mapStatus($response['state']))
             ->setPaymentMethod($response['payment_information']['payment_method'] ?? '')
             ->setCardBrand($response['payment_information']['card_type'] ?? '')
-            ->setCardLastFourDigits((string)$response['payment_information']['last_four_digits'] ?? '')
-            ->setCardExpirationDate((string)$response['payment_information']['expiry_date'] ?? '')
+            ->setCardLastFourDigits((string) $response['payment_information']['last_four_digits'] ?? '')
+            ->setCardExpirationDate((string) $response['payment_information']['expiry_date'] ?? '')
             ->setPortalUrl($response['update_url'])
             ->setLastPayment(new SubscriptionPayment(
                 $response['last_payment']['amount'],
@@ -92,7 +92,7 @@ trait ManagesSubscriptions
 
         $response = $result['response'][0];
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($response)
             ->setStatus($this->mapStatus($response['state']));
     }
@@ -100,12 +100,12 @@ trait ManagesSubscriptions
     public function cancelSubscription(Subscription $subscription, Carbon $endsAt): SubscriptionInfo
     {
         $result = $this->makeApiCall('post', '/subscription/users_cancel', [
-            'subscription_id' => $subscription->platform_subscription_id
+            'subscription_id' => $subscription->platform_subscription_id,
         ]);
 
         $response = $result['response'][0];
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($response)
             ->setStatus($this->mapStatus($response['state']));
     }

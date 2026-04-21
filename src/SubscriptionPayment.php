@@ -7,9 +7,7 @@ use Illuminate\Support\Carbon;
 
 class SubscriptionPayment implements Arrayable
 {
-    public function __construct(private readonly string $amount, private readonly string $currency, private readonly ?Carbon $date)
-    {
-    }
+    public function __construct(private readonly string $amount, private readonly string $currency, private readonly ?Carbon $date) {}
 
     public function amount(): string
     {

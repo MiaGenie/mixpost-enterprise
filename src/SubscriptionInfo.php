@@ -11,12 +11,19 @@ class SubscriptionInfo
     public array $raw = [];
 
     public string $email = '';
+
     public string $paymentMethod = '';
+
     public string $cardBrand = '';
+
     public string $cardLastFourDigits = '';
+
     public string $cardExpirationDate = '';
+
     public string $portalUrl = '';
+
     public ?SubscriptionPayment $lastPayment = null;
+
     public ?SubscriptionPayment $nextPayment = null;
 
     public function setRaw(array $value): static

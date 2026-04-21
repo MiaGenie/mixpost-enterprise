@@ -14,7 +14,7 @@ class PaymentPlatformsController extends Controller
     public function index(): Response
     {
         return Inertia::render('Panel/PaymentPlatforms/PaymentPlatforms', [
-            'platforms' => PaymentPlatform::all()
+            'platforms' => PaymentPlatform::all(),
         ]);
     }
 

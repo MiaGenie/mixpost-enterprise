@@ -19,7 +19,7 @@ class NewGenericSubscription
 
         $trialEndsAt = $workspace->generic_trial_ends_at;
 
-        if (!$trialEndsAt || !$keepPrevTrialEndsAt) {
+        if (! $trialEndsAt || ! $keepPrevTrialEndsAt) {
             $trialEndsAt = $plan->free() ? null : $this->trialEndsAt($withTrial, $overrideTrialDays);
         }
 
@@ -31,23 +31,23 @@ class NewGenericSubscription
 
     private function trialEndsAt($withTrial, $overrideTrialDays): ?Carbon
     {
-        if (!$withTrial) {
+        if (! $withTrial) {
             return null;
         }
 
-        if ($overrideTrialDays !== null && (int)$overrideTrialDays === 0) {
+        if ($overrideTrialDays !== null && (int) $overrideTrialDays === 0) {
             return null;
         }
 
         if ($overrideTrialDays) {
-            return Carbon::now()->addDays((int)$overrideTrialDays);
+            return Carbon::now()->addDays((int) $overrideTrialDays);
         }
 
         $billingConfig = app(BillingConfig::class);
         $trialDays = $billingConfig->get('trial_days');
 
         if ($trialDays && $trialDays !== 0) {
-            return Carbon::now()->addDays((int)$trialDays);
+            return Carbon::now()->addDays((int) $trialDays);
         }
 
         return null;

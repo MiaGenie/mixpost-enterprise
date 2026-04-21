@@ -14,7 +14,7 @@ class ChangeSubscriptionPlanController extends Controller
     {
         $platformInstance = PaymentPlatform::activePlatformInstance();
 
-        if (!$platformInstance->supportSwapSubscription()) {
+        if (! $platformInstance->supportSwapSubscription()) {
             return redirect()
                 ->route('mixpost_e.workspace.billing', ['workspace' => WorkspaceManager::current()->uuid])
                 ->with('warning', __('mixpost-enterprise::subscription.need_cancel_to_swap'));

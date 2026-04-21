@@ -10,11 +10,11 @@ class SendMailWorkspaceOwnerSubscriptionPaymentFailed
 {
     public function handle(object $event): void
     {
-        if (!$event->subscription->workspace) {
+        if (! $event->subscription->workspace) {
             return;
         }
 
-        if (!$event->subscription->workspace->owner) {
+        if (! $event->subscription->workspace->owner) {
             return;
         }
 

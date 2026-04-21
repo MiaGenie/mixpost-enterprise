@@ -11,7 +11,7 @@ class DeleteAccount extends FormRequest
 {
     public function authorize(): bool
     {
-        return (bool)app(OnboardingConfig::class)->get('allow_account_deletion');
+        return (bool) app(OnboardingConfig::class)->get('allow_account_deletion');
     }
 
     public function rules(): array

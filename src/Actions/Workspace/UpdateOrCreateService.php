@@ -2,7 +2,6 @@
 
 namespace Inovector\MixpostEnterprise\Actions\Workspace;
 
-
 use Inovector\MixpostEnterprise\Models\WorkspaceService;
 
 class UpdateOrCreateService
@@ -11,7 +10,7 @@ class UpdateOrCreateService
     {
         return WorkspaceService::updateOrCreate(['name' => $name], [
             'configuration' => $configuration,
-            'active' => $active
+            'active' => $active,
         ]);
     }
 }

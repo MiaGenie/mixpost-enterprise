@@ -19,12 +19,12 @@ class DestroyWorkspace extends FormRequest
                         $fail(__('mixpost-enterprise::workspace.workspace_name_invalid'));
                     }
                 },
-            ]
+            ],
         ];
     }
 
     public function handle(): void
     {
-        (new DestroyWorkspaceAction())(WorkspaceManager::current());
+        (new DestroyWorkspaceAction)(WorkspaceManager::current());
     }
 }

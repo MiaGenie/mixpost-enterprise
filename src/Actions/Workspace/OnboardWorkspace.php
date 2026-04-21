@@ -15,7 +15,7 @@ class OnboardWorkspace
                 $workspace = Workspace::findOrFail($workspace);
             }
 
-            (new NewGenericSubscription())(
+            (new NewGenericSubscription)(
                 workspace: $workspace,
                 plan: $plan,
                 withTrial: false

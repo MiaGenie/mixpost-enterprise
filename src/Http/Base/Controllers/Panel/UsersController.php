@@ -25,7 +25,7 @@ class UsersController extends Controller
         $users = UserQuery::apply($request)->with('admin')->latest()->paginate(20)->onEachSide(1)->withQueryString();
 
         return Inertia::render('Panel/Users/Users', [
-            'users' => fn() => UserResource::collection($users),
+            'users' => fn () => UserResource::collection($users),
             'filter' => [
                 'keyword' => $request->query('keyword', ''),
             ],
@@ -35,7 +35,7 @@ class UsersController extends Controller
     public function create(): Response
     {
         return Inertia::render('Panel/Users/CreateEdit', [
-            'mode' => 'create'
+            'mode' => 'create',
         ]);
     }
 
@@ -52,7 +52,7 @@ class UsersController extends Controller
 
         return Inertia::render('Panel/Users/View', [
             'user' => new UserResource($user),
-            'email_verification' => (new OnboardingConfig())->get('email_verification')
+            'emailVerification' => (new OnboardingConfig)->get('email_verification'),
         ]);
     }
 
@@ -62,7 +62,7 @@ class UsersController extends Controller
 
         return Inertia::render('Panel/Users/CreateEdit', [
             'mode' => 'edit',
-            'user' => new UserResource($user)
+            'user' => new UserResource($user),
         ]);
     }
 

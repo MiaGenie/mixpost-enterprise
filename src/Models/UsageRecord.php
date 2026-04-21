@@ -13,8 +13,8 @@ use Inovector\MixpostEnterprise\Enums\UsageType;
 class UsageRecord extends Model
 {
     use HasFactory;
-    use OwnedByWorkspace;
     use MassPrunable;
+    use OwnedByWorkspace;
 
     protected $table = 'mixpost_e_usage_records';
 
@@ -25,7 +25,7 @@ class UsageRecord extends Model
 
     protected $casts = [
         'type' => UsageType::class,
-        'created_at' => 'timestamp'
+        'created_at' => 'timestamp',
     ];
 
     public $timestamps = false;

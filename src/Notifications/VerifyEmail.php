@@ -3,17 +3,17 @@
 namespace Inovector\MixpostEnterprise\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Inovector\Mixpost\Concerns\Mail;
 
 class VerifyEmail extends Notification implements ShouldQueue
 {
-    use Queueable, Mail;
+    use Mail, Queueable;
 
     public function via($notifiable): array
     {

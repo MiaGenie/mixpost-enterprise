@@ -9,7 +9,7 @@ class PlanLimits implements CastsAttributes
 {
     public function get($model, string $key, $value, array $attributes)
     {
-        if (!$value) {
+        if (! $value) {
             return [];
         }
 
@@ -26,7 +26,7 @@ class PlanLimits implements CastsAttributes
                         'name' => $field['name'],
                         'value' => $field['value'],
                     ];
-                })
+                }),
             ];
         });
 

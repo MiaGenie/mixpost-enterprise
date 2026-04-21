@@ -10,11 +10,11 @@ class ConvertLangJson extends Command
 
     protected function langFolderPath(): string
     {
-        return __DIR__ . '/../../resources/lang';
+        return __DIR__.'/../../resources/lang';
     }
 
     protected function langFolderJsonPath(): string
     {
-        return __DIR__ . '/../../resources/lang-json';
+        return __DIR__.'/../../resources/lang-json';
     }
 }

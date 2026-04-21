@@ -8,7 +8,7 @@ class MixpostEnterprise
 {
     public static function assets()
     {
-        $hot = __DIR__ . '/../resources/dist/hot';
+        $hot = __DIR__.'/../resources/dist/hot';
 
         $devServerIsRunning = file_exists($hot);
 
@@ -24,8 +24,8 @@ class MixpostEnterprise
 
         $manifestPath = public_path('vendor/mixpost-enterprise/manifest.json');
 
-        if (!file_exists($manifestPath)) {
-            return new HtmlString(<<<HTML
+        if (! file_exists($manifestPath)) {
+            return new HtmlString(<<<'HTML'
                 <div>The manifest.json file could not be found.</div>
             HTML
             );

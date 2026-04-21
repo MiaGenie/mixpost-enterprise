@@ -26,6 +26,6 @@ class DownloadReceiptController extends Controller
             return $receipt->redirectToPdf();
         }
 
-        return (new DownloadReceipt())($receipt);
+        return (new DownloadReceipt)($receipt);
     }
 }

@@ -15,7 +15,7 @@ class DeleteWorkspacesController extends Controller
         Workspace::select(['id', 'uuid'])->whereIn('uuid', $request->input('workspaces', []))
             ->get()
             ->each(function ($workspace) {
-                (new DestroyWorkspace())($workspace, true);
+                (new DestroyWorkspace)($workspace, true);
             });
 
         return redirect()

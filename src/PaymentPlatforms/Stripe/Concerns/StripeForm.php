@@ -9,7 +9,7 @@ trait StripeForm
         return [
             'key' => '',
             'secret' => '',
-            'webhook_secret' => ''
+            'webhook_secret' => '',
         ];
     }
 
@@ -21,9 +21,9 @@ trait StripeForm
     public static function formRules(): array
     {
         return [
-            "credentials.key" => ['required'],
-            "credentials.secret" => ['required'],
-            "credentials.webhook_secret" => ['required'],
+            'credentials.key' => ['required'],
+            'credentials.secret' => ['required'],
+            'credentials.webhook_secret' => ['required'],
         ];
     }
 

@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'impersonating' => 'Usurpation d\'identité',
+    'impersonating' => 'Usurpation d\'identité',
 ];

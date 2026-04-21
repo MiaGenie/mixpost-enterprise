@@ -44,7 +44,8 @@ class PaymentMethod implements Arrayable, Jsonable, JsonSerializable
         return json_encode($this->jsonSerialize(), $options);
     }
 
-    #[ReturnTypeWillChange] public function jsonSerialize()
+    #[ReturnTypeWillChange]
+    public function jsonSerialize()
     {
         return $this->toArray();
     }

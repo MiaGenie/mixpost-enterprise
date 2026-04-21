@@ -23,14 +23,14 @@ class Plan extends Model
         'yearly_platform_plan_id',
         'enabled',
         'sort_order',
-        'limits'
+        'limits',
     ];
 
     protected $casts = [
         'type' => PlanType::class,
         'monthly_amount' => Amount::class,
         'yearly_amount' => Amount::class,
-        'limits' => PlanLimits::class
+        'limits' => PlanLimits::class,
     ];
 
     public function scopeOrdered($query): void
@@ -62,7 +62,7 @@ class Plan extends Model
     {
         $model = $plan instanceof Model ? $plan : static::find($plan);
 
-        if (!$model) {
+        if (! $model) {
             return null;
         }
 

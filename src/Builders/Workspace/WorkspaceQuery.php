@@ -6,11 +6,11 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inovector\Mixpost\Contracts\Query;
 use Inovector\MixpostEnterprise\Builders\Workspace\Filters\AccessStatus;
+use Inovector\MixpostEnterprise\Builders\Workspace\Filters\Exclude;
 use Inovector\MixpostEnterprise\Builders\Workspace\Filters\GenericSubscriptionFree;
+use Inovector\MixpostEnterprise\Builders\Workspace\Filters\Keyword;
 use Inovector\MixpostEnterprise\Builders\Workspace\Filters\SubscriptionStatus;
 use Inovector\MixpostEnterprise\Models\Workspace;
-use Inovector\MixpostEnterprise\Builders\Workspace\Filters\Exclude;
-use Inovector\MixpostEnterprise\Builders\Workspace\Filters\Keyword;
 
 class WorkspaceQuery implements Query
 {
@@ -30,7 +30,7 @@ class WorkspaceQuery implements Query
             $query = GenericSubscriptionFree::apply($query, true);
         }
 
-        if ($request->has('access_status') && !empty($request->get('access_status'))) {
+        if ($request->has('access_status') && ! empty($request->get('access_status'))) {
             $query = AccessStatus::apply($query, $request->get('access_status', []));
         }
 

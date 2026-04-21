@@ -16,7 +16,7 @@ class NumberOfSocialAccounts extends FeatureLimitResource
         return [
             CountNumber::make('count')->default(function () {
                 return 4;
-            })
+            }),
         ];
     }
 
@@ -34,13 +34,13 @@ class NumberOfSocialAccounts extends FeatureLimitResource
         if (isset($data->items)) {
             $totalCount = $count + count($data->items ?? []);
 
-            if ($totalCount > (int)$value) {
+            if ($totalCount > (int) $value) {
                 return $this->makeFails()
                     ->withMessages(__('mixpost-enterprise::feature_limit.max_social_accounts', ['value' => $value]));
             }
         }
 
-        if ($count < (int)$value) {
+        if ($count < (int) $value) {
             return $this->makePasses();
         }
 

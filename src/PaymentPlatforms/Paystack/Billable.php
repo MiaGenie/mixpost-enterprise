@@ -8,8 +8,8 @@ use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns\SDK;
 
 class Billable
 {
-    use SDK;
     use ManagesCustomer;
+    use SDK;
 
     public Workspace $workspace;
 

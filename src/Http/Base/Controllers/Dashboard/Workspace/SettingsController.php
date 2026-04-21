@@ -18,8 +18,8 @@ class SettingsController extends Controller
         return Inertia::render('Dashboard/Workspace/Settings', [
             'workspace' => new WorkspaceResource(WorkspaceManager::current()),
             'allow_workspace_service' => [
-                'twitter' => app(SystemConfig::class)->allowWorkspaceTwitterService()
-            ]
+                'twitter' => app(SystemConfig::class)->allowWorkspaceTwitterService(),
+            ],
         ]);
     }
 

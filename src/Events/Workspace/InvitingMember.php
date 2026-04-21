@@ -11,7 +11,9 @@ class InvitingMember
     use Dispatchable, SerializesModels;
 
     public Workspace $workspace;
+
     public string $email;
+
     public string $role;
 
     public function __construct(Workspace $workspace, string $email, string $role)

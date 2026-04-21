@@ -2,11 +2,11 @@
 
 namespace Inovector\MixpostEnterprise;
 
+use Closure;
 use Illuminate\Database\Eloquent\Builder;
+use Inovector\Mixpost\Schedule as ScheduleCore;
 use Inovector\MixpostEnterprise\Models\UsageRecord;
 use Inovector\MixpostEnterprise\Models\Workspace;
-use Inovector\Mixpost\Schedule as ScheduleCore;
-use Closure;
 
 class Schedule extends ScheduleCore
 {

@@ -33,7 +33,7 @@ class UpdatePaymentPlatform extends FormRequest
             'options' => Arr::only($this->input('options', []),
                 array_keys($this->platformClass()::formOptions())
             ),
-            'enabled' => $this->input('enabled')
+            'enabled' => $this->input('enabled'),
         ]);
 
         // Disable all payments except the current one.

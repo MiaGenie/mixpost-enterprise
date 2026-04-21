@@ -17,8 +17,8 @@ use Inovector\MixpostEnterprise\Enums\WorkspaceAccessStatus;
 
 class Workspace extends WorkspaceCoreModel
 {
-    use UsesUserModel;
     use ManagesSubscriptions;
+    use UsesUserModel;
 
     protected $fillable = [
         'uuid',
@@ -40,7 +40,7 @@ class Workspace extends WorkspaceCoreModel
         'access_status' => WorkspaceAccessStatus::class,
         'generic_subscription_free' => 'boolean',
         'generic_trial_ends_at' => 'datetime',
-        'limits' => PlanLimits::class
+        'limits' => PlanLimits::class,
     ];
 
     public function owner(): BelongsTo
@@ -157,10 +157,10 @@ class Workspace extends WorkspaceCoreModel
             return true;
         }
 
-        if ($this->hasGenericSubscription() && $this->hasGenericTrial() && !$this->genericSubscriptionFree()) {
+        if ($this->hasGenericSubscription() && $this->hasGenericTrial() && ! $this->genericSubscriptionFree()) {
             return $this->onGenericTrial();
         }
 
-        return $this->hasGenericSubscription() || (bool)$this->subscription()?->valid();
+        return $this->hasGenericSubscription() || (bool) $this->subscription()?->valid();
     }
 }

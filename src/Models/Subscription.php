@@ -2,17 +2,17 @@
 
 namespace Inovector\MixpostEnterprise\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Inovector\MixpostEnterprise\Concerns\Prorates;
 use Inovector\MixpostEnterprise\Enums\SubscriptionStatus;
 use Inovector\MixpostEnterprise\Exceptions\NoPaymentPlatformActiveException;
-use Inovector\MixpostEnterprise\SubscriptionInfo;
 use Inovector\MixpostEnterprise\PaymentPlatform;
+use Inovector\MixpostEnterprise\SubscriptionInfo;
 use Inovector\MixpostEnterprise\SubscriptionPayment;
 use LogicException;
 
@@ -112,7 +112,7 @@ class Subscription extends Model
                 });
         })->whereNotIn('status', [
             SubscriptionStatus::PAST_DUE->value,
-            SubscriptionStatus::PAUSED->value
+            SubscriptionStatus::PAUSED->value,
         ]);
     }
 
@@ -133,7 +133,7 @@ class Subscription extends Model
 
     public function recurring(): bool
     {
-        return !$this->onTrial() && !$this->paused() && !$this->onPausedGracePeriod() && !$this->canceled();
+        return ! $this->onTrial() && ! $this->paused() && ! $this->onPausedGracePeriod() && ! $this->canceled();
     }
 
     public function paused(): bool
@@ -153,12 +153,12 @@ class Subscription extends Model
 
     public function canceled(): bool
     {
-        return !is_null($this->ends_at);
+        return ! is_null($this->ends_at);
     }
 
     public function ended(): bool
     {
-        return $this->canceled() && !$this->onGracePeriod();
+        return $this->canceled() && ! $this->onGracePeriod();
     }
 
     public function onTrial(): bool
@@ -168,11 +168,11 @@ class Subscription extends Model
 
     public function remainingTrialDays(): int
     {
-        if (!$this->trial_ends_at) {
+        if (! $this->trial_ends_at) {
             return 0;
         }
 
-        return (int)Carbon::today()->diffInDays($this->trial_ends_at);
+        return (int) Carbon::today()->diffInDays($this->trial_ends_at);
     }
 
     public function canBeResumed(): bool
@@ -286,11 +286,11 @@ class Subscription extends Model
     {
         $platformInstance = PaymentPlatform::activePlatformInstance();
 
-        if (!$platformInstance->supportResumeSubscription()) {
+        if (! $platformInstance->supportResumeSubscription()) {
             throw new LogicException('This payment platform does not support resuming subscription.');
         }
 
-        if (!$this->canBeResumed()) {
+        if (! $this->canBeResumed()) {
             throw new LogicException('Cannot resume subscription that is not paused or on grace period.');
         }
 

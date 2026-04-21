@@ -28,7 +28,7 @@ trait HandleWebhook
     {
         $payload = $request->all();
 
-        $method = 'handle' . Str::studly(Str::replace('.', ' ', $payload['event_type']));
+        $method = 'handle'.Str::studly(Str::replace('.', ' ', $payload['event_type']));
 
         if (method_exists($this, $method)) {
             try {
@@ -40,20 +40,20 @@ trait HandleWebhook
             return new Response('Webhook Handled');
         }
 
-        return new Response();
+        return new Response;
     }
 
     protected function handleTransactionCompleted(array $payload): void
     {
         $data = $payload['data'];
 
-        if (!$data['invoice_number']) {
+        if (! $data['invoice_number']) {
             return;
         }
 
         $billable = $this->findBillable($data);
 
-        if (!$billable) {
+        if (! $billable) {
             return;
         }
 
@@ -69,7 +69,7 @@ trait HandleWebhook
             'tax' => $data['details']['totals']['tax'] / 100,
             'currency' => $data['currency_code'],
             'quantity' => 1,
-            'description' => $data['details']['line_items'][0]['product']['name'] . ' - ' . $data['items'][0]['price']['name'],
+            'description' => $data['details']['line_items'][0]['product']['name'].' - '.$data['items'][0]['price']['name'],
             'paid_at' => Carbon::parse($data['billed_at'], 'UTC'),
         ]);
 
@@ -82,11 +82,11 @@ trait HandleWebhook
 
         $billable = $this->findBillable($data);
 
-        if (!$billable) {
+        if (! $billable) {
             return;
         }
 
-        if (!$receipt = $billable->receipts()->where('transaction_id', $data['id'])->first()) {
+        if (! $receipt = $billable->receipts()->where('transaction_id', $data['id'])->first()) {
             return;
         }
 
@@ -104,7 +104,7 @@ trait HandleWebhook
 
         $billable = $this->findBillable($data);
 
-        if (!$billable) {
+        if (! $billable) {
             return;
         }
 
@@ -117,7 +117,7 @@ trait HandleWebhook
 
         $billable = $this->findBillable($data);
 
-        if (!$billable) {
+        if (! $billable) {
             return;
         }
 
@@ -151,7 +151,7 @@ trait HandleWebhook
     {
         $data = $payload['data'];
 
-        if (!$subscription = $this->findSubscription($data['id'])) {
+        if (! $subscription = $this->findSubscription($data['id'])) {
             return;
         }
 
@@ -194,7 +194,7 @@ trait HandleWebhook
     {
         $data = $payload['data'];
 
-        if (!$subscription = $this->findSubscription($data['id'])) {
+        if (! $subscription = $this->findSubscription($data['id'])) {
             return;
         }
 
@@ -211,7 +211,7 @@ trait HandleWebhook
     {
         $data = $payload['data'];
 
-        if (!$subscription = $this->findSubscription($data['id'])) {
+        if (! $subscription = $this->findSubscription($data['id'])) {
             return;
         }
 
@@ -230,7 +230,6 @@ trait HandleWebhook
     {
         return Workspace::findByUuid($data['custom_data']['workspace_uuid'] ?? '');
     }
-
 
     public function mapStatus(string $paddleStatus): SubscriptionStatus
     {

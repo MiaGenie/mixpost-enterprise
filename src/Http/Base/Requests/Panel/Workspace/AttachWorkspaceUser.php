@@ -34,7 +34,7 @@ class AttachWorkspaceUser extends CoreAttachWorkspaceUser
             );
 
             // If is_owner is false and the user is the owner, delete the owner
-            if (!$this->input('is_owner') && $workspace->isOwner($user)) {
+            if (! $this->input('is_owner') && $workspace->isOwner($user)) {
                 $workspace->deleteOwner();
             }
 

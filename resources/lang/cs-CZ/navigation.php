@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'impersonating' => 'Vydávání se za',
+    'impersonating' => 'Vydávání se za',
 ];

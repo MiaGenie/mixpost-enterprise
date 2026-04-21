@@ -11,12 +11,12 @@ class DowngradeToFreePlanSubscription
 {
     public function __invoke(Workspace $workspace, bool $withTrial = false): void
     {
-        if (!Plan::activeFreeExists()) {
+        if (! Plan::activeFreeExists()) {
             throw new LogicException('Active free plan not found.');
         }
 
         DB::transaction(function () use ($withTrial, $workspace) {
-            (new NewGenericSubscription())(
+            (new NewGenericSubscription)(
                 workspace: $workspace,
                 plan: Plan::activeFreeFirst(),
                 withTrial: $withTrial

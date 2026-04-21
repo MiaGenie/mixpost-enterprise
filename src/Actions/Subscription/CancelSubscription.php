@@ -6,9 +6,7 @@ use Inovector\MixpostEnterprise\Models\Subscription;
 
 class CancelSubscription
 {
-    public function __construct(protected readonly Subscription $subscription)
-    {
-    }
+    public function __construct(protected readonly Subscription $subscription) {}
 
     public function cancel(): void
     {
