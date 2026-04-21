@@ -67,6 +67,7 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
             ->name('mixpost-enterprise')
             ->hasViews()
             ->hasRoute('web/web')
+//            ->hasRoute('api/api')
             ->hasTranslations()
             ->hasMigrations([
                 'create_mixpost-enterprise_tables'

@@ -11,7 +11,7 @@ return [
   'detach_user_desc' => 'Bist du sicher, dass du <strong>:user</strong> von <strong>:workspace</strong> abtrennen willst?',
   'edit_user' => 'Benutzer bearbeiten',
   'edit_role' => 'Rolle bearbeiten',
-  'edit_role_on' => 'Rolle im Arbeitsbereich :workspace bearbeiten',
+  'edit_role_on' => 'Rolle im Workspace :workspace bearbeiten',
   'impersonate' => 'Sich als  ausgeben',
   'manage_users' => 'Benutzer verwalten',
   'not_meet_password_requirements' => 'Der :attribute erfüllt nicht die Passwortanforderungen.',
@@ -27,7 +27,7 @@ return [
   'user_deleted' => 'Benutzer gelöscht',
   'user_attached' => 'Benutzer beigefügt',
   'user_details' => 'Benutzerdetails',
-  'users_create_workspaces' => 'Erlaube den Nutzern, mehrere Arbeitsbereiche zu erstellen',
+  'users_create_workspaces' => 'Erlaube es Nutzern, mehrere Workspaces zu erstellen',
   'view_user' => 'Benutzer anzeigen',
   'email_verified_at' => 'E-Mail verifiziert am',
 ];

@@ -3,7 +3,7 @@
 return [
   'admin_console' => 'Admin-Konsole',
   'enterprise_console' => 'Unternehmenskonsole',
-  'add_admin_role' => 'Wenn du einen Benutzer als Eigentümer hinzufügst, der nicht zu diesem Arbeitsbereich gehört, erhält er automatisch die Rolle des Administrators.',
+  'add_admin_role' => 'Wenn du einen Benutzer als Eigentümer hinzufügst, der nicht zu diesem Workspace gehört, erhält er automatisch die Rolle des Administrators.',
   'allow_register' => 'Registrieren zulassen',
   'billing_config_saved' => 'Die Abrechnungskonfiguration wurde erfolgreich gespeichert.',
   'billing_settings' => 'Abrechnung - Einstellungen',
@@ -33,7 +33,7 @@ return [
   'terms_use' => 'Nutzungsbedingungen',
   'trial_days' => 'Schnuppertage',
   'trial_offer' => 'Biete Testzeiträume an, ohne die Zahlungsmethode des Benutzers zu erfassen',
-  'twitter_api_workspace' => 'Dedizierte Twitter-API für den Arbeitsbereich',
+  'twitter_api_workspace' => 'Dedizierte Twitter-API für den Workspace',
   'yearly_only' => 'Nur jährlich',
   'pay_plats' => 'Zahlungsplattformen',
   'config_pay_plat' => 'Konfiguriere die Zahlungsplattform für Abonnements.',

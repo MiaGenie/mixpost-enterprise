@@ -5,7 +5,7 @@ return [
   'configuration' => 'Konfiguration',
   'dashboard' => 'Dashboard',
   'plans' => 'Pläne',
-  'receipts' => 'Quittungen',
+  'receipts' => 'Rechnungen',
   'security' => 'Sicherheit',
-  'workspace_settings' => 'Arbeitsbereich-Einstellungen',
+  'workspace_settings' => 'Workspace-Einstellungen',
 ];

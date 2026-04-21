@@ -10,7 +10,7 @@ return [
     ],
     'workspace' => 
     [
-      'created' => 'Arbeitsbereich erstellt',
+      'created' => 'Workspace erstellt',
     ],
     'subscription' => 
     [

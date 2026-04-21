@@ -16,7 +16,7 @@ return [
   'current_sub_plan' => 'باقة الاشتراك الحالية',
   'change_sub_plan' => ' ترقية الاشتراك بالباقة',
   'debug_sub_information' => 'تصحيح معلومات الاشتراك',
-  'downgrade' => 'تخفيض',
+  'downgrade' => 'الرجوع للباقة المجانية ',
   'downgrade_free_plan' => 'الرجوع إلى الخطة المجانية',
   'dont_have_active_sub' => 'ليس لديك اشتراك نشط',
   'empty_config' => 'اتركه فارغًا اذا اردت استخدام الوضع الافتراضي لأيام التجربة',

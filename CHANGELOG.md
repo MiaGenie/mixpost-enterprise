@@ -2,6 +2,12 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 4.1.1 - 2025-05-28
+
+**Fixes**
+
+- Fixed the issue with creating new subscriptions on the Paddle Billing platform.
+
 ## 4.1.0 - 2025-05-19
 
 **Miscellaneous**

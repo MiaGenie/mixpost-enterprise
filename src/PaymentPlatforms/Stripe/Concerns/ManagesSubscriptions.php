@@ -54,6 +54,7 @@ trait ManagesSubscriptions
                 ]),
             ]),
             'customer' => $customer->id,
+            'billing_address_collection' => 'required',
             'success_url' => Arr::get($payload, 'return_url'),
             'cancel_url' => Arr::get($payload, 'cancel_url'),
         ];
