@@ -19,19 +19,19 @@ class RegisterController extends Controller
 
     public function create(Request $request): Response|RedirectResponse
     {
-        if (!self::getUserClass()::exists()) {
+        if (! self::getUserClass()::exists()) {
             return redirect()->route('mixpost.installation');
         }
 
         $configs = (new OnboardingConfig($request))->all();
-        $configs['terms_accept_description'] = (new CommonMarkConverter())->convert($configs['terms_accept_description'])->getContent();
+        $configs['terms_accept_description'] = (new CommonMarkConverter)->convert($configs['terms_accept_description'])->getContent();
 
         return Inertia::render('Onboarding/Register', [
             'configs' => $configs,
-            'timezone_list' => (new TimezoneList())->splitGroup()->list(),
+            'timezone_list' => (new TimezoneList)->splitGroup()->list(),
             'invitation' => [
                 'email' => $request->query('email'),
-            ]
+            ],
         ]);
     }
 

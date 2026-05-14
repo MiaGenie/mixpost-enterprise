@@ -2,14 +2,17 @@
 
 namespace Inovector\MixpostEnterprise\Abstracts;
 
-use JsonSerializable;
 use Closure;
+use JsonSerializable;
 
 abstract class FeatureLimitFormField implements JsonSerializable
 {
     public string $name;
+
     public string $component;
+
     public mixed $value;
+
     public mixed $defaultCallback;
 
     public function __construct($name)
@@ -26,7 +29,7 @@ abstract class FeatureLimitFormField implements JsonSerializable
         $this->value = $value;
     }
 
-    public function default(Closure|null $callback): static
+    public function default(?Closure $callback): static
     {
         $this->defaultCallback = $callback;
 
@@ -47,7 +50,7 @@ abstract class FeatureLimitFormField implements JsonSerializable
         return [
             'name' => $this->name,
             'component' => $this->component,
-            'value' => $this->value ?? $this->resolveDefaultValue()
+            'value' => $this->value ?? $this->resolveDefaultValue(),
         ];
     }
 

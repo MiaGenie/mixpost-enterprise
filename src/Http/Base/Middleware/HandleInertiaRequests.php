@@ -13,7 +13,7 @@ use Inovector\Mixpost\Mixpost;
 use Inovector\MixpostEnterprise\Facades\Impersonation;
 use Inovector\MixpostEnterprise\Http\Base\Resources\UserResource;
 use Inovector\MixpostEnterprise\Util;
-use Tightenco\Ziggy\Ziggy;
+use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -29,7 +29,6 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      *
-     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -44,7 +43,6 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function share(Request $request)
@@ -54,7 +52,7 @@ class HandleInertiaRequests extends Middleware
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->filter(['mixpost.*', 'mixpost_e.*'])->toArray(), [
                     'location' => $request->url(),
-                    'workspace_id' => $this->getWorkspaceId($request)
+                    'workspace_id' => $this->getWorkspaceId($request),
                 ]);
             },
             'flash' => function () use ($request) {
@@ -66,7 +64,7 @@ class HandleInertiaRequests extends Middleware
                 ];
             },
             'app' => [
-                'name' => config('app.name')
+                'name' => config('app.name'),
             ],
             'mixpost' => [
                 'docs_link' => 'https://docs.mixpost.app',
@@ -77,23 +75,23 @@ class HandleInertiaRequests extends Middleware
                 ],
                 'theme' => [
                     'logo' => Theme::config()->get('logo_url'),
-                    'colors' => Theme::colors()
+                    'colors' => Theme::colors(),
                 ],
                 'features' => [
-                    'api_access_tokens' => Features::isApiAccessTokenEnabled()
+                    'api_access_tokens' => Features::isApiAccessTokenEnabled(),
                 ],
                 'configs' => [
                     'system' => [
                         'multiple_workspace_enabled' => Mixpost::getMultipleWorkspaceEnabled(),
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
     }
 
-    protected function getWorkspaceId(Request $request): string|null
+    protected function getWorkspaceId(Request $request): ?string
     {
-        if (!Util::isWorkspaceRoutes($request)) {
+        if (! Util::isWorkspaceRoutes($request)) {
             return null;
         }
 
@@ -103,7 +101,7 @@ class HandleInertiaRequests extends Middleware
 
     protected function auth(): array
     {
-        if (!self::getAuthGuard()->check()) {
+        if (! self::getAuthGuard()->check()) {
             return [
                 'user' => null,
                 'workspaces' => [],
@@ -115,7 +113,7 @@ class HandleInertiaRequests extends Middleware
 
         // If `Auth Middleware` was not resolved first
         // return empty auth
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             return [];
         }
 

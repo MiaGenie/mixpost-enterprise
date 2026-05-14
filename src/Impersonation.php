@@ -13,11 +13,10 @@ class Impersonation
     use UsesUserModel;
 
     const SESSION_IMPERSONATED_BY = 'mixpost_impersonated_by';
+
     const SESSION_IMPERSONATED_REMEMBER = 'mixpost_impersonated_remember';
 
-    public function __construct(public readonly Request $request)
-    {
-    }
+    public function __construct(public readonly Request $request) {}
 
     public function impersonate(Authenticatable $user): void
     {
@@ -36,7 +35,7 @@ class Impersonation
 
     public function stopImpersonating(): void
     {
-        if (!$this->impersonating()) {
+        if (! $this->impersonating()) {
             return;
         }
 
@@ -44,7 +43,7 @@ class Impersonation
 
         self::getAuthGuard()->logout();
 
-        if (!$impersonator) {
+        if (! $impersonator) {
             return;
         }
 
@@ -55,7 +54,7 @@ class Impersonation
 
     public function canImpersonate(): bool
     {
-        if (!self::getAuthGuard()->check()) {
+        if (! self::getAuthGuard()->check()) {
             return false;
         }
 

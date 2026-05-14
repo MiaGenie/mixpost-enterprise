@@ -12,7 +12,7 @@ class WorkspaceTrialEndedController
     {
         $workspace = WorkspaceManager::current();
 
-        if (!($workspace->hasGenericSubscription() && !$workspace->genericSubscriptionFree() && $workspace->hasExpiredGenericTrial())) {
+        if (! ($workspace->hasGenericSubscription() && ! $workspace->genericSubscriptionFree() && $workspace->hasExpiredGenericTrial())) {
             abort(404);
         }
 

@@ -67,9 +67,10 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
             ->name('mixpost-enterprise')
             ->hasViews()
             ->hasRoute('web/web')
+//            ->hasRoute('api/api')
             ->hasTranslations()
             ->hasMigrations([
-                'create_mixpost-enterprise_tables'
+                'create_mixpost-enterprise_tables',
             ])
             ->hasCommands([
                 PublishAssetsCommand::class,
@@ -81,8 +82,8 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
                     ->startWith(function (InstallCommand $command) {
                         $this->writeSeparationLine($command);
                         $command->line('Mixpost Enterprise Installation. Self-hosted social media management software.');
-                        $command->line('Laravel version: ' . app()->version());
-                        $command->line('PHP version: ' . trim(phpversion()));
+                        $command->line('Laravel version: '.app()->version());
+                        $command->line('PHP version: '.trim(phpversion()));
                         $command->line(' ');
                         $command->line('Website: https://mixpost.app');
                         $this->writeSeparationLine($command);
@@ -99,7 +100,7 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
 
                         $command->line("Visit the Mixpost Enterprise Console at $appUrl/$corePath");
                     });
-            });;
+            });
     }
 
     public function packageRegistered()
@@ -179,7 +180,7 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
             ThemeCore::setCustomColors(ThemeFacade::configuredColors());
         });
 
-        if (!$this->app->runningInConsole()) {
+        if (! $this->app->runningInConsole()) {
             ThemeCore::setCustomColors(ThemeFacade::configuredColors());
         }
     }
@@ -194,7 +195,7 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
 
     protected function bootEnterpriseConsoleUrls(): void
     {
-        if (!$this->app->runningInConsole()) {
+        if (! $this->app->runningInConsole()) {
             Route::matched(function () {
                 Mixpost::enterpriseConsoleUrl(route('mixpost_e.dashboard'));
                 Mixpost::stopImpersonatingUrl(route('mixpost_e.impersonate.stop'));
@@ -229,12 +230,12 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
             ];
         });
 
-        ServiceManager::retrievalAction(new ServiceRetrievalAction());
+        ServiceManager::retrievalAction(new ServiceRetrievalAction);
     }
 
     protected function bootBladePathsSripts(): void
     {
-        if (!$this->app->runningInConsole()) {
+        if (! $this->app->runningInConsole()) {
             Mixpost::bladePathHeadScripts('mixpost-enterprise::partial.headScripts');
             Mixpost::bladePathBodyScripts('mixpost-enterprise::partial.bodyScripts');
         }
@@ -242,7 +243,7 @@ class MixpostEnterpriseServiceProvider extends PackageServiceProvider
 
     protected function bootVersion(): void
     {
-        if (!$this->app->runningInConsole()) {
+        if (! $this->app->runningInConsole()) {
             Route::matched(function () {
                 // Show Mixpost Enterprise version only in system status page
                 if (request()->routeIs('mixpost.system.status')) {

@@ -17,7 +17,7 @@ class AllowMultipleWorkspaces
     {
         $multipleWorkspacesEnabled = app(SystemConfig::class)->multipleWorkspacesEnabled();
 
-        if ($multipleWorkspacesEnabled || !Workspace::ownedBy(self::getAuthGuard()->user())->exists()) {
+        if ($multipleWorkspacesEnabled || ! Workspace::ownedBy(self::getAuthGuard()->user())->exists()) {
             return $next($request);
         }
 

@@ -16,14 +16,14 @@ class UpdateUserRole extends FormRequest
 
     public function authorize(): bool
     {
-        return (int)$this->route('user') !== (int)self::getAuthGuard()->id()
-            && !WorkspaceManager::current()->isOwner(User::findOrFail($this->route('user')));
+        return (int) $this->route('user') !== (int) self::getAuthGuard()->id()
+            && ! WorkspaceManager::current()->isOwner(User::findOrFail($this->route('user')));
     }
 
     public function rules(): array
     {
         return [
-            'role' => ['required', Rule::in(Arr::map(WorkspaceUserRole::cases(), fn($item) => $item->value))],
+            'role' => ['required', Rule::in(Arr::map(WorkspaceUserRole::cases(), fn ($item) => $item->value))],
             'can_approve' => ['required', 'boolean'],
         ];
     }

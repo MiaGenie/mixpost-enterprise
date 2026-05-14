@@ -6,12 +6,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Inovector\Mixpost\Concerns\UsesAuth;
+use Inovector\MixpostEnterprise\Models\Subscription;
 use Inovector\MixpostEnterprise\Models\Workspace;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Stripe\Billable;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Stripe\Util;
 use Inovector\MixpostEnterprise\SubscriptionInfo;
 use Inovector\MixpostEnterprise\SubscriptionPayment;
-use Inovector\MixpostEnterprise\Models\Subscription;
 use LogicException;
 use Stripe\Subscription as StripeSubscription;
 
@@ -30,9 +30,9 @@ trait ManagesSubscriptions
 
         $trialEnd = null;
 
-        if (!is_null($payload['trial_days'])) {
+        if (! is_null($payload['trial_days'])) {
             $minimumTrialPeriod = Carbon::now('UTC')->addHours(48)->addSeconds(10);
-            $trialExpires = Carbon::now('UTC')->addDays((int)$payload['trial_days'])->endOfDay();
+            $trialExpires = Carbon::now('UTC')->addDays((int) $payload['trial_days'])->endOfDay();
 
             $trialEnd = $trialExpires->gt($minimumTrialPeriod) ? $trialExpires : $minimumTrialPeriod;
         }
@@ -43,7 +43,7 @@ trait ManagesSubscriptions
                 [
                     'price' => $planId,
                     'quantity' => 1,
-                ]
+                ],
             ],
             'subscription_data' => array_filter([
                 'trial_end' => $trialEnd?->getTimestamp(),
@@ -54,6 +54,7 @@ trait ManagesSubscriptions
                 ]),
             ]),
             'customer' => $customer->id,
+            'billing_address_collection' => 'required',
             'success_url' => Arr::get($payload, 'return_url'),
             'cancel_url' => Arr::get($payload, 'cancel_url'),
         ];
@@ -61,8 +62,8 @@ trait ManagesSubscriptions
         if ($couponCode = Arr::get($payload, 'coupon_code')) {
             $data['discounts'] = [
                 [
-                    'coupon' => $couponCode
-                ]
+                    'coupon' => $couponCode,
+                ],
             ];
         }
 
@@ -82,7 +83,7 @@ trait ManagesSubscriptions
             'return_url' => route('mixpost_e.workspace.billing', ['workspace' => $subscription->workspace->uuid]),
         ])['url'];
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($stripeSubscription->toArray())
             ->setStatus(Util::mapStatus($subscription->status->value))
             ->setNextPayment(new SubscriptionPayment(
@@ -114,7 +115,7 @@ trait ManagesSubscriptions
             'expand' => ['latest_invoice.payment_intent'],
         ]);
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($result->toArray())
             ->setStatus(Util::mapStatus($result->status));
     }
@@ -129,14 +130,14 @@ trait ManagesSubscriptions
             ]);
         }
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($result->toArray())
             ->setStatus(Util::mapStatus($result->status));
     }
 
     public function resumeSubscription(Subscription $subscription, array $options = []): SubscriptionInfo
     {
-        if (!$subscription->onGracePeriod()) {
+        if (! $subscription->onGracePeriod()) {
             throw new LogicException('Unable to resume subscription that is not within grace period.');
         }
 
@@ -145,7 +146,7 @@ trait ManagesSubscriptions
             'trial_end' => $subscription->onTrial() ? $subscription->trial_ends_at->getTimestamp() : 'now',
         ]);
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($result->toArray())
             ->setStatus(Util::mapStatus($result->status));
     }
@@ -160,7 +161,7 @@ trait ManagesSubscriptions
         foreach ($subscription->items->data as $stripeSubscriptionItem) {
             $price = $stripeSubscriptionItem->price;
 
-            if (!$item = $items->get($price->id, [])) {
+            if (! $item = $items->get($price->id, [])) {
                 $item['deleted'] = true;
             }
 
@@ -179,7 +180,7 @@ trait ManagesSubscriptions
 
             $payload = [];
 
-            if (!isset($options['price_data'])) {
+            if (! isset($options['price_data'])) {
                 $payload['price'] = $price;
             }
 

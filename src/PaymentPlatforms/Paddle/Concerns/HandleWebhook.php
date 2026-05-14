@@ -27,11 +27,11 @@ trait HandleWebhook
     {
         $payload = $request->all();
 
-        if (!isset($payload['alert_name'])) {
-            return new Response();
+        if (! isset($payload['alert_name'])) {
+            return new Response;
         }
 
-        $method = 'handle' . Str::studly($payload['alert_name']);
+        $method = 'handle'.Str::studly($payload['alert_name']);
 
         if (method_exists($this, $method)) {
             try {
@@ -43,7 +43,7 @@ trait HandleWebhook
             return new Response('Webhook Handled');
         }
 
-        return new Response();
+        return new Response;
     }
 
     protected function handleSubscriptionPaymentSucceeded(array $payload): void
@@ -65,7 +65,7 @@ trait HandleWebhook
             'amount' => $payload['sale_gross'],
             'tax' => $payload['payment_tax'],
             'currency' => $payload['currency'],
-            'quantity' => (int)$payload['quantity'],
+            'quantity' => (int) $payload['quantity'],
             'receipt_url' => $payload['receipt_url'],
             'description' => $payload['plan_name'],
             'paid_at' => Carbon::createFromFormat('Y-m-d H:i:s', $payload['event_time'], 'UTC'),
@@ -85,7 +85,7 @@ trait HandleWebhook
     {
         $passthrough = isset($payload['passthrough']) ? json_decode($payload['passthrough'], true) : null;
 
-        if (!isset($passthrough) || !is_array($passthrough) || !isset($passthrough['subscription_name'])) {
+        if (! isset($passthrough) || ! is_array($passthrough) || ! isset($passthrough['subscription_name'])) {
             throw new InvalidPassthroughPayload;
         }
 
@@ -121,7 +121,7 @@ trait HandleWebhook
 
     protected function handleSubscriptionUpdated(array $payload): void
     {
-        if (!$subscription = $this->findSubscription($payload['subscription_id'])) {
+        if (! $subscription = $this->findSubscription($payload['subscription_id'])) {
             return;
         }
 
@@ -149,7 +149,7 @@ trait HandleWebhook
 
     protected function handleSubscriptionCancelled(array $payload): void
     {
-        if (!$subscription = $this->findSubscription($payload['subscription_id'])) {
+        if (! $subscription = $this->findSubscription($payload['subscription_id'])) {
             return;
         }
 
@@ -176,8 +176,8 @@ trait HandleWebhook
     {
         $passthrough = json_decode($passthrough, true);
 
-        if (!is_array($passthrough) || !isset($passthrough['billable_id'])) {
-            throw new InvalidPassthroughPayload();
+        if (! is_array($passthrough) || ! isset($passthrough['billable_id'])) {
+            throw new InvalidPassthroughPayload;
         }
 
         return $this->findWorkspace($passthrough['billable_id']);

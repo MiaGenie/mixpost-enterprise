@@ -12,7 +12,7 @@ class CancelInvitationController extends Controller
     {
         $result = $cancelInvitation->handle();
 
-        if (!$result) {
+        if (! $result) {
             return redirect()->back()->with('error', __('mixpost-enterprise::team.unable_cancel_invitation'));
         }
 

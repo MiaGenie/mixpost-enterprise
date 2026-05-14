@@ -10,7 +10,7 @@ trait ManagesReceipts
     {
         $url = $this->makeApiCall('get', "/transactions/$id/invoice")['data']['url'] ?? null;
 
-        if (!$url) {
+        if (! $url) {
             throw new LogicException('The transaction does not have an invoice PDF.');
         }
 

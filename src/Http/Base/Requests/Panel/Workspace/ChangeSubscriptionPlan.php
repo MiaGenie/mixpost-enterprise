@@ -16,7 +16,7 @@ class ChangeSubscriptionPlan extends FormRequest
     {
         return [
             'cycle' => ['required', Rule::in(['monthly', 'yearly'])],
-            'plan_id' => ['required', 'exists:' . app(Plan::class)->getTable() . ',id'],
+            'plan_id' => ['required', 'exists:'.app(Plan::class)->getTable().',id'],
             'prorate' => ['required', 'boolean'],
             'billing_immediately' => ['required', 'boolean'],
         ];
@@ -29,9 +29,9 @@ class ChangeSubscriptionPlan extends FormRequest
     {
         $workspace = Workspace::firstOrFailByUuid($this->route('workspace'));
 
-        $config = new BillingConfig();
+        $config = new BillingConfig;
 
-        (new ChangeSubscriptionPlanAction())(
+        (new ChangeSubscriptionPlanAction)(
             $workspace,
             Plan::find($this->input('plan_id')),
             $this->input('cycle'),

@@ -2,12 +2,12 @@
 
 namespace Inovector\MixpostEnterprise\PaymentPlatforms\Stripe\Concerns;
 
-use Stripe\Account as StripeAccount;
-use Stripe\PaymentMethod as StripePaymentMethod;
-use Stripe\Card as StripeCard;
-use Stripe\BankAccount as StripeBankAccount;
-use Stripe\Source;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Stripe\PaymentMethod;
+use Stripe\Account as StripeAccount;
+use Stripe\BankAccount as StripeBankAccount;
+use Stripe\Card as StripeCard;
+use Stripe\PaymentMethod as StripePaymentMethod;
+use Stripe\Source;
 
 trait ManagesPaymentMethods
 {
@@ -22,7 +22,7 @@ trait ManagesPaymentMethods
 
     public function hasDefaultPaymentMethod(): bool
     {
-        return (bool)$this->workspace->pm_type;
+        return (bool) $this->workspace->pm_type;
     }
 
     public function addPaymentMethod($paymentMethod)
@@ -64,7 +64,7 @@ trait ManagesPaymentMethods
 
     public function defaultPaymentMethod(): StripeAccount|StripeBankAccount|string|Source|PaymentMethod|StripeCard|null
     {
-        if (!$this->workspaceHasStripeId()) {
+        if (! $this->workspaceHasStripeId()) {
             return null;
         }
 
@@ -127,7 +127,7 @@ trait ManagesPaymentMethods
                 'card',
                 $paymentMethod->card->brand,
                 $paymentMethod->card->last4,
-                $paymentMethod->card->exp_month . '/' . $paymentMethod->card->exp_year
+                $paymentMethod->card->exp_month.'/'.$paymentMethod->card->exp_year
             );
 
             return;
@@ -150,7 +150,7 @@ trait ManagesPaymentMethods
                 'card',
                 $source->brand,
                 $source->last4,
-                $source->exp_month . '/' . $source->exp_year
+                $source->exp_month.'/'.$source->exp_year
             );
         } elseif ($source instanceof StripeBankAccount) {
             $this->workspace->savePaymentMethod(

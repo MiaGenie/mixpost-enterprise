@@ -16,13 +16,13 @@ class PaymentPlatform extends Model
         'name',
         'credentials',
         'options',
-        'enabled'
+        'enabled',
     ];
 
     protected $casts = [
         'credentials' => EncryptArrayObject::class,
         'options' => 'array',
-        'enabled' => 'boolean'
+        'enabled' => 'boolean',
     ];
 
     public $timestamps = false;

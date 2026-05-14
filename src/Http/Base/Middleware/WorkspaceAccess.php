@@ -13,7 +13,7 @@ class WorkspaceAccess
     {
         $workspace = WorkspaceManager::current();
 
-        if (!$workspace) {
+        if (! $workspace) {
             abort(403);
         }
 
@@ -26,20 +26,20 @@ class WorkspaceAccess
                 ->route('mixpost_e.workspace.locked', ['workspace' => $workspace->uuid]);
         }
 
-        if ($workspace->hasGenericSubscription() && !$workspace->genericSubscriptionFree() && $workspace->hasExpiredGenericTrial()) {
+        if ($workspace->hasGenericSubscription() && ! $workspace->genericSubscriptionFree() && $workspace->hasExpiredGenericTrial()) {
             return redirect()
                 ->route('mixpost_e.workspace.trialEnded', ['workspace' => $workspace->uuid]);
         }
 
         $subscription = $workspace->subscription('default');
 
-        if (!$subscription && !$workspace->hasGenericSubscription()) {
+        if (! $subscription && ! $workspace->hasGenericSubscription()) {
             return redirect()
                 ->route('mixpost_e.workspace.upgrade', ['workspace' => $workspace->uuid]);
         }
 
         if ($subscription) {
-            if ($subscription->paused() && !$subscription->onPausedGracePeriod()) {
+            if ($subscription->paused() && ! $subscription->onPausedGracePeriod()) {
                 //  Determine if a user has paused their subscription and not are still on their "grace period"
                 return redirect()->route('mixpost_e.workspace.locked', ['workspace' => $workspace->uuid]);
             }

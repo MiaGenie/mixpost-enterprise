@@ -22,13 +22,13 @@ class DeleteUnverifiedUsers extends Command
 
     public function handle(): int
     {
-        if (!app(OnboardingConfig::class)->get('email_verification')) {
+        if (! app(OnboardingConfig::class)->get('email_verification')) {
             $this->comment('Email verification is disabled. No users have been deleted.');
 
             return self::SUCCESS;
         }
 
-        if (!app(OnboardingConfig::class)->get('delete_unverified_users')) {
+        if (! app(OnboardingConfig::class)->get('delete_unverified_users')) {
             $this->comment('Deleting unverified users is disabled. No users have been deleted.');
 
             return self::SUCCESS;

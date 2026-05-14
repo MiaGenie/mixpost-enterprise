@@ -13,7 +13,7 @@ class UpdateReceipt extends ReceiptFormRequest
         $rules = parent::rules();
 
         $rules['workspace_uuid'] = ['sometimes', 'nullable'];
-        $rules['invoice_number'] = ['required', 'string', 'max:255', 'unique:' . Receipt::class . ',invoice_number,' . $this->receipt()->id];
+        $rules['invoice_number'] = ['required', 'string', 'max:255', 'unique:'.Receipt::class.',invoice_number,'.$this->receipt()->id];
 
         return $rules;
     }

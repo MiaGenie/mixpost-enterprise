@@ -12,8 +12,8 @@ use Inovector\Mixpost\Concerns\UsesUserModel;
 
 class UpdateUser extends FormRequest
 {
-    use UsesUserModel;
     use UsesAuth;
+    use UsesUserModel;
 
     public function rules(): array
     {
@@ -25,7 +25,7 @@ class UpdateUser extends FormRequest
                 'required_if:password_confirmation,!=,',
                 'confirmed',
                 function ($attribute, $value, $fail) {
-                    if (!empty($value)) {
+                    if (! empty($value)) {
                         $validator = Validator::make(
                             [$attribute => $value],
                             [$attribute => [Password::defaults()]]
@@ -56,11 +56,11 @@ class UpdateUser extends FormRequest
         $user->update($data);
 
         if ($user->id !== self::getAuthGuard()->id()) {
-            if ($user->isAdmin() && !$this->input('is_admin')) {
+            if ($user->isAdmin() && ! $this->input('is_admin')) {
                 $user->admin()->delete();
             }
 
-            if (!$user->isAdmin() && $this->input('is_admin')) {
+            if (! $user->isAdmin() && $this->input('is_admin')) {
                 $user->admin()->create();
             }
         }

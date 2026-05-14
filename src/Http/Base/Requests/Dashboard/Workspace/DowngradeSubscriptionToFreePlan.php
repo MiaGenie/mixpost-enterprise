@@ -17,7 +17,7 @@ class DowngradeSubscriptionToFreePlan extends FormRequest
     public function withValidator($validator): void
     {
         $validator->after(function ($validator) {
-            if (!Plan::activeFreeExists()) {
+            if (! Plan::activeFreeExists()) {
                 $validator->errors()->add('plan', __('mixpost-enterprise::subscription.active_free_plan_not_found'));
             }
 
@@ -29,6 +29,6 @@ class DowngradeSubscriptionToFreePlan extends FormRequest
 
     public function handle(): void
     {
-        (new DowngradeToFreePlanSubscription())(WorkspaceManager::current());
+        (new DowngradeToFreePlanSubscription)(WorkspaceManager::current());
     }
 }

@@ -9,13 +9,21 @@ class SubscriptionBuilder
     protected Workspace $workspace;
 
     protected string $name;
+
     protected string $planId;
+
     protected int $quantity = 1;
+
     protected ?int $trialDays = null;
+
     protected bool $skipTrial = false;
+
     protected ?string $coupon = null;
+
     protected array $metadata = [];
+
     protected ?string $returnTo = null;
+
     protected ?string $cancelUrl = null;
 
     public function __construct(Workspace $workspace, string $name, string $planId)
@@ -77,6 +85,7 @@ class SubscriptionBuilder
     public function create()
     {
         $platformInstance = PaymentPlatform::activePlatformInstance();
+
         // TODO: pass parameter SubscriptionBuilder, example: $platformInstance->createSubscription($this);
         // TODO: refactor Paddle, Stripe, etc. to use SubscriptionBuilder
         return $platformInstance->createSubscription($this->workspace, $this->planId, $this->buildPayload());
@@ -86,7 +95,7 @@ class SubscriptionBuilder
     protected function buildPayload(): array
     {
         return [
-            'coupon_code' => (string)$this->coupon,
+            'coupon_code' => (string) $this->coupon,
             'quantity' => $this->quantity,
             'return_url' => $this->returnTo,
             'cancel_url' => $this->cancelUrl,
@@ -94,8 +103,8 @@ class SubscriptionBuilder
             'meta_data' => $this->metadata,
             'passthrough' => [
                 'subscription_name' => $this->name,
-                'billable_id' => $this->workspace->uuid
-            ]
+                'billable_id' => $this->workspace->uuid,
+            ],
         ];
     }
 

@@ -24,7 +24,7 @@ trait ManagesSubscriptions
         return $this->belongsTo(Plan::class, 'generic_subscription_plan_id', 'id');
     }
 
-    public function subscription($name = 'default'): Model|null
+    public function subscription($name = 'default'): ?Model
     {
         return $this->subscriptions->where('name', $name)->first();
     }
@@ -42,7 +42,7 @@ trait ManagesSubscriptions
 
         $subscription = $this->subscription($name);
 
-        if (!$subscription || !$subscription->onTrial()) {
+        if (! $subscription || ! $subscription->onTrial()) {
             return false;
         }
 
@@ -57,7 +57,7 @@ trait ManagesSubscriptions
 
         $subscription = $this->subscription($name);
 
-        if (!$subscription || !$subscription->hasExpiredTrial()) {
+        if (! $subscription || ! $subscription->hasExpiredTrial()) {
             return false;
         }
 
@@ -103,7 +103,7 @@ trait ManagesSubscriptions
 
     public function remainingGenericTrialDays(): int
     {
-        if (!$this->generic_trial_ends_at) {
+        if (! $this->generic_trial_ends_at) {
             return 0;
         }
 
@@ -111,7 +111,7 @@ trait ManagesSubscriptions
             return 0;
         }
 
-        return (int)Carbon::today()->diffInDays($this->generic_trial_ends_at);
+        return (int) Carbon::today()->diffInDays($this->generic_trial_ends_at);
     }
 
     public function setGenericSubscription(Plan $plan, ?Carbon $trialEndsAt = null): void
@@ -127,7 +127,7 @@ trait ManagesSubscriptions
         $this->generic_subscription_plan_id = null;
         $this->generic_subscription_free = false;
 
-        if (!$keepPrevTrialEndsAt) {
+        if (! $keepPrevTrialEndsAt) {
             $this->generic_trial_ends_at = null;
         }
 
@@ -147,7 +147,7 @@ trait ManagesSubscriptions
     {
         $subscription = $this->subscription($name);
 
-        if (!$subscription || !$subscription->valid()) {
+        if (! $subscription || ! $subscription->valid()) {
             return false;
         }
 

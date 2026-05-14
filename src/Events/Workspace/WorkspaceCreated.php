@@ -13,6 +13,7 @@ class WorkspaceCreated implements WebhookEvent
     use Dispatchable, SerializesModels;
 
     public Workspace $workspace;
+
     public bool $fromAdmin;
 
     public function __construct(Workspace $workspace, bool $fromAdmin = false)

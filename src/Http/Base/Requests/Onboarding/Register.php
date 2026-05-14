@@ -24,7 +24,7 @@ class Register extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . self::getUserClass()],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.self::getUserClass()],
             'password' => ['required', 'confirmed', Password::defaults()],
             'timezone' => ['sometimes', 'nullable', 'timezone'],
             'terms' => ['required', 'accepted'],
@@ -44,18 +44,18 @@ class Register extends FormRequest
                 'password' => Hash::make($this->input('password')),
             ]);
 
-            if (!$emailVerification) {
+            if (! $emailVerification) {
                 $user->markEmailAsVerified();
             }
 
             $user->settings()->create([
                 'name' => 'timezone',
-                'payload' => $this->input('timezone', Config::get('app.timezone'))
+                'payload' => $this->input('timezone', Config::get('app.timezone')),
             ]);
 
-            $workspace = (new NewWorkspace())($user);
+            $workspace = (new NewWorkspace)($user);
 
-            (new OnboardWorkspace())($workspace);
+            (new OnboardWorkspace)($workspace);
         });
 
         UserCreated::dispatch($user);

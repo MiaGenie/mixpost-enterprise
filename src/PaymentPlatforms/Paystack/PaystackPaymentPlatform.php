@@ -4,16 +4,16 @@ namespace Inovector\MixpostEnterprise\PaymentPlatforms\Paystack;
 
 use Inovector\MixpostEnterprise\Abstracts\PaymentPlatform;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns\HandleWebhook;
-use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns\SDK;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns\ManagesSubscriptions;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns\PaystackForm;
+use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns\SDK;
 
 class PaystackPaymentPlatform extends PaymentPlatform
 {
+    use HandleWebhook;
+    use ManagesSubscriptions;
     use PaystackForm;
     use SDK;
-    use ManagesSubscriptions;
-    use HandleWebhook;
 
     public static function name(): string
     {

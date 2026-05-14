@@ -2,6 +2,41 @@
 
 All notable changes to `Mixpost Enterprise` will be documented in this file.
 
+## 5.0.0 - 2025-08-03
+
+**New features**
+
+- Use Mixpost Pro `v4.0.0`
+
+**Changes**
+
+- Added `nl-NL` language
+- Added support for VAT field in Stripe payments
+
+## 4.1.1 - 2025-05-28
+
+**Fixes**
+
+- Fixed the issue with creating new subscriptions on the Paddle Billing platform.
+
+## 4.1.0 - 2025-05-19
+
+**Miscellaneous**
+
+- Support Mixpost Pro 3.6
+- Support Laravel 12
+- Upgraded to Tailwind CSS 4
+
+## 4.0.3 - 2024-12-07
+
+**Fixes**
+
+- Fixed `X` service default documentation URL
+
+**Changes**
+
+- Enhanced translations
+
 ## 4.0.2 - 2024-11-16
 
 **Changes**

@@ -7,7 +7,7 @@ use Inovector\MixpostEnterprise\Http\Base\Middleware\AllowRegister;
 
 Route::middleware([
     AllowRegister::class,
-    RedirectIfAuthenticated::class
+    RedirectIfAuthenticated::class,
 ])->group(function () {
     Route::get('register', [RegisterController::class, 'create'])->name('register');
     Route::post('register', [RegisterController::class, 'store']);

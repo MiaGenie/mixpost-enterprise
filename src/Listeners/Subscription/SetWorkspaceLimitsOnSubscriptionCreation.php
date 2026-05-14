@@ -8,7 +8,7 @@ class SetWorkspaceLimitsOnSubscriptionCreation
 {
     public function handle(SubscriptionCreated $event): void
     {
-        if (!$event->subscription->plan()) {
+        if (! $event->subscription->plan()) {
             return;
         }
 

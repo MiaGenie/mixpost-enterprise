@@ -12,7 +12,7 @@ class NewWorkspace
     {
         $workspace = Workspace::create([
             'name' => "$user->name's Team",
-            'hex_color' => '000000'
+            'hex_color' => '000000',
         ]);
 
         $workspace->attachUser(

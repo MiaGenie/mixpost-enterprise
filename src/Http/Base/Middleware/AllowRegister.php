@@ -11,7 +11,7 @@ class AllowRegister
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!app(OnboardingConfig::class)->allowRegister()) {
+        if (! app(OnboardingConfig::class)->allowRegister()) {
             abort(404);
         }
 

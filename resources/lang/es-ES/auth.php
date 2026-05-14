@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'sign_out' => 'Cerrar sesión',
+    'sign_out' => 'Cerrar sesión',
 ];

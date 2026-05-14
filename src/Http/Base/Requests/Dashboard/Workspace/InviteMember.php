@@ -19,15 +19,15 @@ use Inovector\MixpostEnterprise\Rules\UserAlreadyWorkspaceMemberRule;
 
 class InviteMember extends FormRequest
 {
-    use UsesUserModel;
     use UsesAuth;
+    use UsesUserModel;
 
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', new MemberAlreadyInvitedRule(), new UserAlreadyWorkspaceMemberRule()],
-            'role' => ['required', Rule::in(Arr::map(WorkspaceUserRole::cases(), fn($item) => $item->value))],
-            'can_approve' => ['required', 'boolean']
+            'email' => ['required', 'email', new MemberAlreadyInvitedRule, new UserAlreadyWorkspaceMemberRule],
+            'role' => ['required', Rule::in(Arr::map(WorkspaceUserRole::cases(), fn ($item) => $item->value))],
+            'can_approve' => ['required', 'boolean'],
         ];
     }
 
@@ -44,7 +44,7 @@ class InviteMember extends FormRequest
             'user_id' => $user->id ?? null,
             'email' => $email,
             'role' => $this->input('role'),
-            'can_approve' => $this->input('can_approve')
+            'can_approve' => $this->input('can_approve'),
         ]);
 
         Mail::to($user->email ?? $email)

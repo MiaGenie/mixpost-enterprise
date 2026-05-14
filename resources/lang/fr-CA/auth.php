@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'sign_out' => 'Se déconnecter',
+    'sign_out' => 'Se déconnecter',
 ];

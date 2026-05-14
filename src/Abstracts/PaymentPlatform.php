@@ -14,6 +14,7 @@ use LogicException;
 abstract class PaymentPlatform implements PaymentPlatformContract, PaymentPlatformSubscription, PaymentPlatformWebhookHandler
 {
     protected array $credentials = [];
+
     protected array $options = [];
 
     public function setCredentials(array $value): void

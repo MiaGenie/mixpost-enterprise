@@ -1,42 +1,51 @@
-import { defineConfig, loadEnv } from 'vite';
+import {defineConfig, loadEnv} from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import tailwindcss from "@tailwindcss/vite";
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import fs from 'fs';
-import { resolve } from 'path';
-import { homedir } from 'os';
+import path from 'path'
+import {homedir} from 'os';
 
 export default defineConfig(({command, mode}) => {
-    // Load current .env-file
     const env = loadEnv(mode, process.cwd(), '')
-
-    // Set the host based on APP_URL
-    let host = env.APP_URL !== undefined ? new URL(env.APP_URL).host : null;
-    let homeDir = homedir()
     let serverConfig = {}
 
-    let ziggyPath = resolve('../../../vendor/tightenco/ziggy/dist/vue.m');
-
-    if (host && homeDir) {
-        const certificatesPath = env.CERTIFICATES_PATH !== undefined ? env.CERTIFICATES_PATH : `.config/valet/Certificates/${host}`;
-
-        serverConfig = {
-            https: {
-                key: fs.readFileSync(
-                    resolve(homeDir, `${certificatesPath}.key`),
-                ),
-                cert: fs.readFileSync(
-                    resolve(homeDir, `${certificatesPath}.crt`),
-                ),
-            },
-            hmr: {
-                host
-            },
-            host
+    if (mode === 'development') {
+        if (!env.APP_URL) {
+            console.error('[vite] APP_URL is required in your .env file.');
+            return;
         }
-    } else {
-        serverConfig = {
-            port: 5175,
+
+        const isSSLEnabled = env.ENABLE_SSL === 'true' || (env.ENABLE_SSL !== 'false' && env.APP_URL?.startsWith('https://'));
+
+        if (isSSLEnabled && !env.CERTIFICATES_KEY_PATH) {
+            console.error('[vite] SSL is enabled but CERTIFICATES_KEY_PATH is not set in your .env file.');
+            return;
+        }
+
+        if (isSSLEnabled && !env.CERTIFICATES_CRT_PATH) {
+            console.error('[vite] SSL is enabled but CERTIFICATES_CRT_PATH is not set in your .env file.');
+            return;
+        }
+
+        const homeDir = homedir();
+        const host = new URL(env.APP_URL).host;
+
+        if (isSSLEnabled && host) {
+            const keyPath = path.resolve(homeDir, env.CERTIFICATES_KEY_PATH);
+            const crtPath = path.resolve(homeDir, env.CERTIFICATES_CRT_PATH);
+
+            if (fs.existsSync(keyPath) && fs.existsSync(crtPath)) {
+                serverConfig = {
+                    https: {
+                        key: fs.readFileSync(keyPath), cert: fs.readFileSync(crtPath),
+                    }, hmr: {host}, host,
+                };
+            } else {
+                console.error('[vite] SSL is enabled but one or both certificate files were not found.');
+                return;
+            }
         }
     }
 
@@ -57,16 +66,17 @@ export default defineConfig(({command, mode}) => {
                     },
                 },
             }),
+            tailwindcss(),
             DefineOptions()
         ],
         resolve: {
             alias: {
-                'ziggy': ziggyPath,
                 '@mRs': '/../mixpost-pro-team/resources',
                 '@mJs': '/../mixpost-pro-team/resources/js',
                 '@mCss': '/vendor/inovector/mixpost-pro-team/resources/css',
-                '@css': '/resources/css',
-                '@img': 'resources/img'
+                '@': path.resolve(__dirname, 'resources/js'),
+                '@css': path.resolve(__dirname, 'resources/css'),
+                '@img': path.resolve(__dirname, 'resources/img'),
             },
         },
         server: serverConfig

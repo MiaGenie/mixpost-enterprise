@@ -8,10 +8,10 @@ namespace Inovector\MixpostEnterprise\Actions\Service;
  */
 class ServiceRetrievalAction
 {
-    public function __invoke(string $name, null|string $key = null)
+    public function __invoke(string $name, ?string $key = null)
     {
         return match ($name) {
-            'twitter' => (new RetrieveWorkspaceTwitterServiceConfig())($key),
+            'twitter' => (new RetrieveWorkspaceTwitterServiceConfig)($key),
             default => null,
         };
     }

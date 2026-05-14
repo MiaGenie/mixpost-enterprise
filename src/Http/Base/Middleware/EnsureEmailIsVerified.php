@@ -18,16 +18,16 @@ class EnsureEmailIsVerified
         if (
             $request->routeIs('mixpost.logout') ||
             $request->routeIs('mixpost_e.impersonate.stop') ||
-            ($request->routeIs('mixpost.profile.*') && !$request->routeIs('mixpost.profile.accessTokens.*'))
+            ($request->routeIs('mixpost.profile.*') && ! $request->routeIs('mixpost.profile.accessTokens.*'))
         ) {
             return $next($request);
         }
 
-        if (!app(OnboardingConfig::class)->get('email_verification')) {
+        if (! app(OnboardingConfig::class)->get('email_verification')) {
             return $next($request);
         }
 
-        if (!self::getAuthGuard()->user() || !self::getAuthGuard()->user()->hasVerifiedEmail()) {
+        if (! self::getAuthGuard()->user() || ! self::getAuthGuard()->user()->hasVerifiedEmail()) {
             if ($request->inertia()) {
                 return Inertia::location(route('mixpost_e.emailVerification.notice'));
             }

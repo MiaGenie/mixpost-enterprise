@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'impersonating' => 'Suplantación de identidad',
+    'impersonating' => 'Suplantación de identidad',
 ];

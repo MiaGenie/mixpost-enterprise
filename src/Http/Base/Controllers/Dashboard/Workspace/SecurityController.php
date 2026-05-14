@@ -15,7 +15,7 @@ class SecurityController extends Controller
     public function index(): Response
     {
         return Inertia::render('Dashboard/Workspace/Security', [
-            'workspace' => new WorkspaceResource(WorkspaceManager::current())
+            'workspace' => new WorkspaceResource(WorkspaceManager::current()),
         ]);
     }
 

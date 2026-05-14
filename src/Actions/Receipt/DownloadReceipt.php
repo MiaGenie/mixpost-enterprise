@@ -13,7 +13,7 @@ class DownloadReceipt
 {
     public function __invoke(Receipt $receipt): Response
     {
-        $config = new BillingConfig();
+        $config = new BillingConfig;
 
         $ownerName = $receipt->workspace->owner->name ?? '';
 
@@ -33,6 +33,6 @@ class DownloadReceipt
 
         $pdf = Pdf::loadView('mixpost-enterprise::pdf.receipt', $data);
 
-        return $pdf->download($receipt->invoice_number . '.pdf');
+        return $pdf->download($receipt->invoice_number.'.pdf');
     }
 }

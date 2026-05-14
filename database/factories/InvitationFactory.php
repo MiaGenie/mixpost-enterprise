@@ -4,9 +4,9 @@ namespace Inovector\MixpostEnterprise\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Inovector\Mixpost\Enums\WorkspaceUserRole;
-use Inovector\MixpostEnterprise\Models\Workspace;
 use Inovector\Mixpost\Models\User;
 use Inovector\MixpostEnterprise\Models\Invitation;
+use Inovector\MixpostEnterprise\Models\Workspace;
 
 class InvitationFactory extends Factory
 {

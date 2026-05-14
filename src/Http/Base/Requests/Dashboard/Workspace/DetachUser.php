@@ -13,8 +13,8 @@ class DetachUser extends FormRequest
 
     public function authorize(): bool
     {
-        return (int)$this->route('user') !== (int)self::getAuthGuard()->id()
-            && !WorkspaceManager::current()->isOwner(User::findOrFail($this->route('user')));
+        return (int) $this->route('user') !== (int) self::getAuthGuard()->id()
+            && ! WorkspaceManager::current()->isOwner(User::findOrFail($this->route('user')));
     }
 
     public function rules(): array

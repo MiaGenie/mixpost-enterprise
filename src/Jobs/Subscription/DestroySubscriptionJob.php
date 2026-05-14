@@ -16,9 +16,7 @@ class DestroySubscriptionJob implements ShouldQueue
 
     public $deleteWhenMissingModels = true;
 
-    public function __construct(public readonly Subscription $subscription)
-    {
-    }
+    public function __construct(public readonly Subscription $subscription) {}
 
     public function handle(): void
     {

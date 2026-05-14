@@ -3,8 +3,8 @@
 namespace Inovector\MixpostEnterprise\Models;
 
 use Inovector\Mixpost\Concerns\OwnedByWorkspace;
-use Inovector\MixpostEnterprise\Facades\WorkspaceServiceManager;
 use Inovector\Mixpost\Models\Service;
+use Inovector\MixpostEnterprise\Facades\WorkspaceServiceManager;
 
 class WorkspaceService extends Service
 {

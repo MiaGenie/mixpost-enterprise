@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'edit_profile' => 'Profil bearbeiten',
+    'edit_profile' => 'Profil bearbeiten',
 ];

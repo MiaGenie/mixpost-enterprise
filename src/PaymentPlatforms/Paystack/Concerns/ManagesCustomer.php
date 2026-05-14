@@ -8,11 +8,11 @@ trait ManagesCustomer
 {
     public function createCustomer(array $options = [])
     {
-        if (!array_key_exists('email', $options) && $email = $this->workspace->owner?->email) {
+        if (! array_key_exists('email', $options) && $email = $this->workspace->owner?->email) {
             $options['email'] = $email;
         }
 
-        if (!array_key_exists('metadata', $options) && $metadata = $this->metadata()) {
+        if (! array_key_exists('metadata', $options) && $metadata = $this->metadata()) {
             $options['metadata'] = $metadata;
         }
 
@@ -27,9 +27,9 @@ trait ManagesCustomer
 
     public function getCustomer($options = [])
     {
-        $result = static::makeApiCall('get', '/customer/' . $this->workspace->owner->email, $options);
+        $result = static::makeApiCall('get', '/customer/'.$this->workspace->owner->email, $options);
 
-        if (!$result->successful()) {
+        if (! $result->successful()) {
             return null;
         }
 
@@ -38,15 +38,15 @@ trait ManagesCustomer
 
     public function updateCustomer(string $customerId, array $options = [])
     {
-        if (!array_key_exists('email', $options) && $email = $this->workspace->owner?->email) {
+        if (! array_key_exists('email', $options) && $email = $this->workspace->owner?->email) {
             $options['email'] = $email;
         }
 
-        if (!array_key_exists('metadata', $options) && $metadata = $this->metadata()) {
+        if (! array_key_exists('metadata', $options) && $metadata = $this->metadata()) {
             $options['metadata'] = $metadata;
         }
 
-        $result = static::makeApiCall('put', '/customer/' . $customerId, $options);
+        $result = static::makeApiCall('put', '/customer/'.$customerId, $options);
 
         if ($result->successful()) {
             return $result->json('data');

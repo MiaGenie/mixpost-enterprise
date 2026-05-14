@@ -17,7 +17,7 @@ class ReceiptFactory extends Factory
             'uuid' => $this->faker->uuid(),
             'workspace_id' => Workspace::factory(),
             'transaction_id' => Str::random(),
-            'invoice_number' => 'INV-' . Str::random(),
+            'invoice_number' => 'INV-'.Str::random(),
             'amount' => $this->faker->randomFloat(2, 1, 1000),
             'tax' => 0,
             'currency' => 'USD',

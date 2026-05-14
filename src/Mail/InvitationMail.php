@@ -13,7 +13,7 @@ use Inovector\MixpostEnterprise\Models\Invitation;
 
 class InvitationMail extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels, Mail;
+    use Mail, Queueable, SerializesModels;
 
     public $deleteWhenMissingModels = true;
 
@@ -41,8 +41,8 @@ class InvitationMail extends Mailable implements ShouldQueue
             with: [
                 'workspace' => $this->invitation->workspace,
                 'url' => route('mixpost_e.invitation', [
-                    'invitation' => $this->invitation->uuid
-                ])
+                    'invitation' => $this->invitation->uuid,
+                ]),
             ]
         );
     }

@@ -14,13 +14,11 @@ class AccountDeletionManager
     use UsesUserModel;
 
     public function __construct(
-        readonly DeleteUserOwnedWorkspaces $deleteUserOwnedWorkspaces,
-        readonly DeleteUserSettings        $deleteUserSettings,
-        readonly DeleteUserTokens          $deleteUserTokens,
-        readonly DeleteUserTwoFactorAuth   $deleteUserTwoFactorAuth
-    )
-    {
-    }
+        public readonly DeleteUserOwnedWorkspaces $deleteUserOwnedWorkspaces,
+        public readonly DeleteUserSettings $deleteUserSettings,
+        public readonly DeleteUserTokens $deleteUserTokens,
+        public readonly DeleteUserTwoFactorAuth $deleteUserTwoFactorAuth
+    ) {}
 
     public function deleteAccount(User $user): void
     {

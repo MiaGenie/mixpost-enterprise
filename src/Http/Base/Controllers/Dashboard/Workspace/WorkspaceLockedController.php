@@ -14,7 +14,7 @@ class WorkspaceLockedController
 
         $subscription = $workspace->subscription();
 
-        if (!$workspace->locked() && (!$subscription || ($subscription->valid()))) {
+        if (! $workspace->locked() && (! $subscription || ($subscription->valid()))) {
             abort(404);
         }
 

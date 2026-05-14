@@ -15,7 +15,7 @@ class PaymentWebhookController
         try {
             $instance = PaymentPlatform::activePlatformInstance();
 
-            if (!$instance->verifyWebhookSignature($request)) {
+            if (! $instance->verifyWebhookSignature($request)) {
                 return new Response(__('mixpost-enterprise::dashboard.invalid_webhook_signature'), Response::HTTP_FORBIDDEN);
             }
 

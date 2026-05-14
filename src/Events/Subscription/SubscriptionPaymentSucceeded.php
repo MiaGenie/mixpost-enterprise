@@ -13,6 +13,7 @@ class SubscriptionPaymentSucceeded implements WebhookEvent
     use Dispatchable, SerializesModels;
 
     public Receipt $receipt;
+
     public array $payload;
 
     public function __construct(Receipt $receipt, array $payload)
@@ -33,7 +34,7 @@ class SubscriptionPaymentSucceeded implements WebhookEvent
 
     public function payload(): array
     {
-        if (!$this->receipt->relationLoaded('workspace')) {
+        if (! $this->receipt->relationLoaded('workspace')) {
             $this->receipt->load('workspace');
         }
 

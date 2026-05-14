@@ -1,98 +1,94 @@
 <script setup>
-import {inject} from "vue";
-import {Head} from '@inertiajs/vue3';
-import PageHeader from "@/Components/DataDisplay/PageHeader.vue";
-import Panel from "@/Components/Surface/Panel.vue";
-import HorizontalGroup from "@/Components/Layout/HorizontalGroup.vue";
-import WorkspaceLink from "../../../Components/Workspace/WorkspaceLink.vue";
-import ReceiptAction from "../../../Components/Receipt/ReceiptAction.vue";
+import { Head } from '@inertiajs/vue3'
+import PageHeader from '@/Components/DataDisplay/PageHeader.vue'
+import Panel from '@/Components/Surface/Panel.vue'
+import HorizontalGroup from '@/Components/Layout/HorizontalGroup.vue'
+import WorkspaceLink from '../../../Components/Workspace/WorkspaceLink.vue'
+import ReceiptAction from '../../../Components/Receipt/ReceiptAction.vue'
 
-const routePrefix = inject('routePrefix');
-const confirmation = inject('confirmation');
-
-const props = defineProps({
-    receipt: {
-        type: Object
-    }
+defineProps({
+  receipt: {
+    type: Object
+  }
 })
 </script>
 <template>
-    <Head :title="$t('finance.view_receipt')"/>
+  <Head :title="$t('finance.view_receipt')" />
 
-    <div class="w-full mx-auto row-py">
-        <PageHeader :title="$t('finance.view_receipt')">
-            <template #description>
-                {{ receipt.invoice_number }}
+  <div class="w-full mx-auto row-py">
+    <PageHeader :title="$t('finance.view_receipt')">
+      <template #description>
+        {{ receipt.invoice_number }}
+      </template>
+
+      <ReceiptAction :receipt="receipt" :view="false" />
+    </PageHeader>
+
+    <div class="row-px">
+      <Panel>
+        <template #title>{{ $t('general.details') }}</template>
+
+        <div class="form-field">
+          <HorizontalGroup>
+            <template #title>
+              {{ $t('workspace.workspace') }}
             </template>
 
-            <ReceiptAction :receipt="receipt" :view="false"/>
-        </PageHeader>
+            <template v-if="receipt.workspace">
+              <WorkspaceLink :name="receipt.workspace.name" :uuid="receipt.workspace.uuid" />
+            </template>
+            <template v-else>-</template>
+          </HorizontalGroup>
 
-        <div class="row-px">
-            <Panel>
-                <template #title>{{ $t('general.details')}}</template>
+          <HorizontalGroup class="mt-lg">
+            <template #title>
+              {{ $t('finance.invoice_number') }}
+            </template>
 
-                <div class="form-field">
-                    <HorizontalGroup>
-                        <template #title>
-                            {{ $t('workspace.workspace') }}
-                        </template>
+            {{ receipt.invoice_number }}
+          </HorizontalGroup>
 
-                        <template v-if="receipt.workspace">
-                            <WorkspaceLink :name="receipt.workspace.name" :uuid="receipt.workspace.uuid"/>
-                        </template>
-                        <template v-else>-</template>
-                    </HorizontalGroup>
+          <HorizontalGroup class="mt-lg">
+            <template #title>
+              {{ $t('finance.transaction_id') }}
+            </template>
 
-                    <HorizontalGroup class="mt-lg">
-                        <template #title>
-                            {{$t('finance.invoice_number') }}
-                        </template>
+            {{ receipt.transaction_id }}
+          </HorizontalGroup>
 
-                        {{ receipt.invoice_number }}
-                    </HorizontalGroup>
+          <HorizontalGroup class="mt-lg">
+            <template #title>
+              {{ $t('finance.amount') }}
+            </template>
 
-                    <HorizontalGroup class="mt-lg">
-                        <template #title>
-                            {{ $t('finance.transaction_id') }}
-                        </template>
+            {{ receipt.amount }} {{ receipt.currency }}
+          </HorizontalGroup>
 
-                        {{ receipt.transaction_id }}
-                    </HorizontalGroup>
+          <HorizontalGroup class="mt-lg">
+            <template #title>
+              {{ $t('finance.tax') }}
+            </template>
 
-                    <HorizontalGroup class="mt-lg">
-                        <template #title>
-                            {{ $t('finance.amount') }}
-                        </template>
+            {{ receipt.tax }} {{ receipt.currency }}
+          </HorizontalGroup>
 
-                        {{ receipt.amount }} {{ receipt.currency }}
-                    </HorizontalGroup>
+          <HorizontalGroup class="mt-lg">
+            <template #title>
+              {{ $t('general.description') }}
+            </template>
 
-                    <HorizontalGroup class="mt-lg">
-                        <template #title>
-                            {{ $t('finance.tax') }}
-                        </template>
+            {{ receipt.description }}
+          </HorizontalGroup>
 
-                        {{ receipt.tax }} {{ receipt.currency }}
-                    </HorizontalGroup>
+          <HorizontalGroup class="mt-md">
+            <template #title>
+              {{ $t('finance.billing_date') }}
+            </template>
 
-                    <HorizontalGroup class="mt-lg">
-                        <template #title>
-                            {{ $t('general.description') }}
-                        </template>
-
-                        {{ receipt.description }}
-                    </HorizontalGroup>
-
-                    <HorizontalGroup class="mt-md">
-                        <template #title>
-                            {{ $t('finance.billing_date') }}
-                        </template>
-
-                        {{ receipt.paid_at }}
-                    </HorizontalGroup>
-                </div>
-            </Panel>
+            {{ receipt.paid_at }}
+          </HorizontalGroup>
         </div>
+      </Panel>
     </div>
+  </div>
 </template>

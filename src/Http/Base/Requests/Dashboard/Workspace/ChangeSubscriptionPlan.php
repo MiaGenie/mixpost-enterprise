@@ -16,7 +16,7 @@ class ChangeSubscriptionPlan extends FormRequest
     {
         return [
             'cycle' => ['required', Rule::in(['monthly', 'yearly'])],
-            'plan_id' => ['required', 'exists:' . app(Plan::class)->getTable() . ',id'],
+            'plan_id' => ['required', 'exists:'.app(Plan::class)->getTable().',id'],
         ];
     }
 
@@ -27,9 +27,9 @@ class ChangeSubscriptionPlan extends FormRequest
     {
         $workspace = WorkspaceManager::current();
 
-        $config = new BillingConfig();
+        $config = new BillingConfig;
 
-        (new ChangeSubscriptionPlanAction())(
+        (new ChangeSubscriptionPlanAction)(
             $workspace,
             Plan::find($this->input('plan_id')),
             $this->input('cycle'),

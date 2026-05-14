@@ -20,7 +20,7 @@ class OnboardingConfig extends Config
             'allow_account_deletion' => true,
             'register_title' => __('mixpost-enterprise::panel.register_account'),
             'register_description' => __('mixpost-enterprise::panel.start_free_trial'),
-            'terms_accept_description' => __('mixpost-enterprise::panel.registering_accepting') . '<a href="/terms" target="_blank">' . __('mixpost-enterprise::panel.terms_use') . '</a>'
+            'terms_accept_description' => __('mixpost-enterprise::panel.registering_accepting').'<a href="/terms" target="_blank">'.__('mixpost-enterprise::panel.terms_use').'</a>',
         ];
     }
 

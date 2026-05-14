@@ -31,19 +31,19 @@ trait ManagesSubscriptions
             'custom_data' => [
                 'workspace_uuid' => $workspace->uuid,
                 'subscription_type' => Subscription::DEFAULT_NAME,
-            ]
+            ],
         ])->render();
     }
 
     public function subscriptionInfo(Subscription $subscription): SubscriptionInfo
     {
         $result = $this->makeApiCall('get', "/subscriptions/$subscription->platform_subscription_id", [
-            'include' => 'next_transaction'
+            'include' => 'next_transaction',
         ]);
 
         $data = $result['data'];
 
-        $info = (new SubscriptionInfo())
+        $info = (new SubscriptionInfo)
             ->setRaw($data)
             ->setStatus($this->mapStatus($data['status']))
             ->setPortalUrl($data['management_urls']['update_payment_method']);
@@ -78,7 +78,7 @@ trait ManagesSubscriptions
 
         $data = $result['data'];
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($data)
             ->setStatus($this->mapStatus($data['status']))
             ->setPortalUrl($data['management_urls']['update_payment_method']);
@@ -92,7 +92,7 @@ trait ManagesSubscriptions
 
         $data = $result['data'];
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($data)
             ->setStatus($this->mapStatus($data['status']))
             ->setPortalUrl($data['management_urls']['update_payment_method']);
@@ -115,7 +115,7 @@ trait ManagesSubscriptions
 
         $data = $result['data'];
 
-        return (new SubscriptionInfo())
+        return (new SubscriptionInfo)
             ->setRaw($data)
             ->setStatus($this->mapStatus($data['status']))
             ->setPortalUrl($data['management_urls']['update_payment_method']);

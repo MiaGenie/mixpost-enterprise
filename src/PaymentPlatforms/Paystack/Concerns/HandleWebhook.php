@@ -2,9 +2,9 @@
 
 namespace Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Concerns;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inovector\MixpostEnterprise\Enums\SubscriptionStatus;
 use Inovector\MixpostEnterprise\Events\Subscription\SubscriptionCanceled;
@@ -12,8 +12,8 @@ use Inovector\MixpostEnterprise\Events\Subscription\SubscriptionCreated;
 use Inovector\MixpostEnterprise\Events\Subscription\SubscriptionPaymentSucceeded;
 use Inovector\MixpostEnterprise\Exceptions\InvalidPassthroughPayload;
 use Inovector\MixpostEnterprise\Models\Workspace;
-use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\VerifyWebhookSignature;
 use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\Util;
+use Inovector\MixpostEnterprise\PaymentPlatforms\Paystack\VerifyWebhookSignature;
 use Symfony\Component\HttpFoundation\Response;
 
 trait HandleWebhook
@@ -27,11 +27,11 @@ trait HandleWebhook
     {
         $payload = $request->all();
 
-        if (!isset($payload['event'])) {
-            return new Response();
+        if (! isset($payload['event'])) {
+            return new Response;
         }
 
-        $method = 'handle' . Str::of($payload['event'])->replace('.', '_')->studly()->toString();
+        $method = 'handle'.Str::of($payload['event'])->replace('.', '_')->studly()->toString();
 
         if (method_exists($this, $method)) {
             try {
@@ -43,7 +43,7 @@ trait HandleWebhook
             return new Response('Webhook Handled');
         }
 
-        return new Response();
+        return new Response;
     }
 
     protected function handleChargeSuccess(array $payload): void
@@ -54,6 +54,7 @@ trait HandleWebhook
 
         if (Arr::has($payload, 'metadata.custom_fields.0.card_verification')) {
             $this->initiateRefund($payload['reference']);
+
             return;
         }
 
@@ -98,7 +99,7 @@ trait HandleWebhook
             type: $payload['authorization']['channel'],
             cardBrand: $payload['authorization']['card_type'] ?? '',
             cardLastFour: $payload['authorization']['last4'] ?? '',
-            cardExpires: $payload['authorization']['channel'] === 'card' ? $payload['authorization']['exp_month'] . '/' . $payload['authorization']['exp_year'] : null,
+            cardExpires: $payload['authorization']['channel'] === 'card' ? $payload['authorization']['exp_month'].'/'.$payload['authorization']['exp_year'] : null,
         );
 
         SubscriptionCreated::dispatch($subscription->setRelation('workspace', $billable), $payload);
@@ -116,7 +117,7 @@ trait HandleWebhook
 
     protected function disableSubscription(array $payload): void
     {
-        if (!$subscription = $this->findSubscription($payload['subscription_code'])) {
+        if (! $subscription = $this->findSubscription($payload['subscription_code'])) {
             return;
         }
 
@@ -144,7 +145,7 @@ trait HandleWebhook
     {
         $workspaceId = isset($payload['customer']['metadata']['workspace_uuid']) ? $payload['customer']['metadata']['workspace_uuid'] : null;
 
-        if (!$workspaceId) {
+        if (! $workspaceId) {
             throw new InvalidPassthroughPayload;
         }
 
