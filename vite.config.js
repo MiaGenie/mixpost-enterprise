@@ -10,6 +10,10 @@ import {homedir} from 'os';
 export default defineConfig(({command, mode}) => {
     const env = loadEnv(mode, process.cwd(), '')
     let serverConfig = {}
+    env.APP_URL = env.APP_URL || 'http://localhost'
+    serverConfig = {
+        port: 5175
+    }
 
     if (mode === 'development') {
         if (!env.APP_URL) {

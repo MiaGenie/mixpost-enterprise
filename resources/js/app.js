@@ -62,5 +62,5 @@ router.on('navigate', event => {
     router.get(page.url, {}, { replace: true, preserveScroll: true, preserveState: false })
   }
 
-    stale = false;
-});
+  stale = false
+})

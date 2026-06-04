@@ -89,6 +89,15 @@ const routePrefix = inject('routePrefix')
           {{ $t('sidebar.plans') }}
         </MenuItem>
         <MenuItem
+          :url="route('genie.admin.plans_info.index')"
+          :active="$page.component === 'Genie/Admin/GenieAIConfig'"
+        >
+          <template #icon>
+            <Document />
+          </template>
+          {{ $t('genie.plans_descriptions') }}
+        </MenuItem>
+        <MenuItem
           :url="route(`${routePrefix}.configs.system.view`)"
           :active="$page.component === 'Panel/Configs/SystemConfig'"
         >
