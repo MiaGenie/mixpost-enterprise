@@ -82,6 +82,17 @@
   --color-indigo-800: #1f1b4b;
   --color-indigo-900: #100e25;
 
+  --color-miagenie-50: #F7F5FD;
+  --color-miagenie-100: #EEEBFB;
+  --color-miagenie-200: #CDC4F2;
+  --color-miagenie-300: #BCB1ED;
+  --color-miagenie-400: #AC9DE9;
+  --color-miagenie-500: #9B89E5;
+  --color-miagenie-600: #8A76E0;
+  --color-miagenie-700: #7962DC;
+  --color-miagenie-800: #694FD7;
+  --color-miagenie-900: #583BD3;
+
   --shadow-mix: 0 5px 10px rgb(55 55 89 / 8%);
 
   --spacing-xs: 0.5rem;
