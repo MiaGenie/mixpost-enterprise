@@ -53,9 +53,9 @@ class Register extends FormRequest
                 'payload' => $this->input('timezone', Config::get('app.timezone')),
             ]);
 
-            $workspace = (new NewWorkspace)($user);
+/*            $workspace = (new NewWorkspace)($user);
 
-            (new OnboardWorkspace)($workspace);
+            (new OnboardWorkspace)($workspace);*/
         });
 
         UserCreated::dispatch($user);
